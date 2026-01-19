@@ -1,0 +1,2384 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Налоговый калькулятор 2026 | NPLN Tech</title>
+    
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-1SC8GTWDES"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-1SC8GTWDES');
+    </script>
+    
+    <!-- Yandex.Metrika -->
+    <script type="text/javascript">
+        (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+        m[i].l=1*new Date();
+        for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+        (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+        ym(105793943, "init", {clickmap:true, trackLinks:true, accurateTrackBounce:true, webvisor:true});
+    </script>
+    <noscript><div><img src="https://mc.yandex.ru/watch/105793943" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+/* ===============================
+   НАЛОГОВЫЙ КАЛЬКУЛЯТОР 2026
+   Design: Professional Glassmorphism
+   =============================== */
+
+:root {
+    /* Dark Theme (default) */
+    --bg-base: #09090b;
+    --bg-elevated: #18181b;
+    --bg-surface: #27272a;
+    --bg-hover: #3f3f46;
+    
+    --text-primary: #fafafa;
+    --text-secondary: #a1a1aa;
+    --text-muted: #71717a;
+    
+    --accent: #14b8a6;
+    --accent-hover: #2dd4bf;
+    --accent-glow: rgba(20, 184, 166, 0.15);
+    --accent-subtle: rgba(20, 184, 166, 0.1);
+    
+    --success: #22c55e;
+    --success-glow: rgba(34, 197, 94, 0.2);
+    --warning: #f59e0b;
+    --danger: #ef4444;
+    --danger-glow: rgba(239, 68, 68, 0.2);
+    --purple: #a855f7;
+    --purple-glow: rgba(168, 85, 247, 0.2);
+    
+    --border: #27272a;
+    --border-subtle: #3f3f46;
+    
+    --glass-bg: rgba(24, 24, 27, 0.8);
+    --glass-border: rgba(63, 63, 70, 0.5);
+    
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.5);
+    --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4);
+    --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.5);
+    --shadow-glow: 0 0 40px var(--accent-glow);
+    
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 16px;
+    --radius-xl: 24px;
+    
+    --transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+[data-theme="light"] {
+    --bg-base: #fafafa;
+    --bg-elevated: #ffffff;
+    --bg-surface: #f4f4f5;
+    --bg-hover: #e4e4e7;
+    
+    --text-primary: #18181b;
+    --text-secondary: #52525b;
+    --text-muted: #71717a;
+    
+    --accent: #0d9488;
+    --accent-hover: #14b8a6;
+    --accent-glow: rgba(13, 148, 136, 0.12);
+    --accent-subtle: rgba(13, 148, 136, 0.08);
+    
+    --success-glow: rgba(34, 197, 94, 0.15);
+    --danger-glow: rgba(239, 68, 68, 0.15);
+    --purple-glow: rgba(168, 85, 247, 0.15);
+    
+    --border: #e4e4e7;
+    --border-subtle: #d4d4d8;
+    
+    --glass-bg: rgba(255, 255, 255, 0.9);
+    --glass-border: rgba(228, 228, 231, 0.8);
+    
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
+    --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.12);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 14px;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--bg-base);
+    color: var(--text-primary);
+    line-height: 1.6;
+    min-height: 100vh;
+    transition: background var(--transition), color var(--transition);
+}
+
+/* Noise texture overlay */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.02;
+    pointer-events: none;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+}
+
+/* ===============================
+   HEADER
+   =============================== */
+
+.header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--glass-border);
+    padding: 1rem 1.5rem;
+}
+
+.header-inner {
+    max-width: 1600px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.logo-icon {
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(135deg, var(--accent) 0%, var(--accent-hover) 100%);
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 16px var(--accent-glow);
+}
+
+.logo-icon svg {
+    width: 22px;
+    height: 22px;
+    color: white;
+}
+
+.logo-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.logo-title {
+    font-family: 'Geist Mono', monospace;
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: var(--text-primary);
+    letter-spacing: -0.02em;
+}
+
+.logo-subtitle {
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.law-badge {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    font-family: 'Geist Mono', monospace;
+    font-size: 0.8rem;
+}
+
+.law-badge-number {
+    color: var(--accent);
+    font-weight: 600;
+}
+
+.law-badge-date {
+    color: var(--text-muted);
+}
+
+.theme-toggle {
+    width: 40px;
+    height: 40px;
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all var(--transition);
+    color: var(--text-secondary);
+}
+
+.theme-toggle:hover {
+    background: var(--bg-hover);
+    border-color: var(--border-subtle);
+    color: var(--text-primary);
+}
+
+.theme-toggle svg {
+    width: 20px;
+    height: 20px;
+}
+
+.theme-toggle .sun-icon { display: none; }
+.theme-toggle .moon-icon { display: block; }
+
+[data-theme="light"] .theme-toggle .sun-icon { display: block; }
+[data-theme="light"] .theme-toggle .moon-icon { display: none; }
+
+/* ===============================
+   MAIN LAYOUT
+   =============================== */
+
+.main {
+    display: grid;
+    grid-template-columns: minmax(360px, 400px) 1fr;
+    min-height: calc(100vh - 73px);
+}
+
+/* ===============================
+   LEFT PANEL (Sidebar)
+   =============================== */
+
+.panel-left {
+    background: var(--bg-elevated);
+    border-right: 1px solid var(--border);
+    padding: 1.25rem;
+    overflow-y: auto;
+    height: calc(100vh - 73px);
+    position: sticky;
+    top: 73px;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.panel-left::-webkit-scrollbar {
+    width: 6px;
+}
+
+.panel-left::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.panel-left::-webkit-scrollbar-thumb {
+    background: var(--border-subtle);
+    border-radius: 3px;
+}
+
+/* ===============================
+   CARDS
+   =============================== */
+
+.card {
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 1rem;
+    transition: all var(--transition);
+}
+
+.card:hover {
+    border-color: var(--border-subtle);
+}
+
+.card-header {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-bottom: 0.75rem;
+    padding-bottom: 0.6rem;
+    border-bottom: 1px solid var(--border);
+}
+
+.card-icon {
+    width: 28px;
+    height: 28px;
+    background: var(--accent-subtle);
+    border-radius: var(--radius-sm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--accent);
+}
+
+.card-icon svg {
+    width: 16px;
+    height: 16px;
+}
+
+.card-title {
+    font-family: 'Geist Mono', monospace;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    letter-spacing: -0.01em;
+}
+
+/* ===============================
+   YEAR & LIMIT ROW
+   =============================== */
+
+.year-limit-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.75rem 1rem;
+    background: linear-gradient(135deg, var(--bg-surface) 0%, var(--bg-elevated) 100%);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+}
+
+.year-select-wrap {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.year-select-wrap label {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+
+.year-select {
+    font-family: 'Geist Mono', monospace;
+    font-weight: 600;
+    font-size: 0.9rem;
+    background: var(--bg-base);
+    color: var(--text-primary);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 0.4rem 0.6rem;
+    cursor: pointer;
+    transition: all var(--transition);
+}
+
+.year-select:hover {
+    border-color: var(--accent);
+}
+
+.year-select:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px var(--accent-glow);
+}
+
+.limit-display {
+    text-align: right;
+}
+
+.limit-label {
+    display: block;
+    font-size: 0.65rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 2px;
+}
+
+.limit-value {
+    font-family: 'Geist Mono', monospace;
+    font-weight: 700;
+    font-size: 1rem;
+    color: var(--warning);
+}
+
+/* ===============================
+   ITEEM BUTTON
+   =============================== */
+
+.iteem-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.iteem-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    width: 100%;
+    padding: 0.75rem 1rem;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    border: 2px solid var(--border);
+    border-radius: var(--radius-lg);
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    text-align: left;
+}
+
+[data-theme="light"] .iteem-btn {
+    background: linear-gradient(135deg, #f0f0ff 0%, #e8e8f8 100%);
+}
+
+.iteem-btn:hover {
+    border-color: var(--purple);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px var(--purple-glow);
+}
+
+.iteem-btn.active {
+    border-color: var(--purple);
+    background: linear-gradient(135deg, var(--purple) 0%, #7c3aed 100%);
+    box-shadow: 0 8px 32px var(--purple-glow);
+}
+
+.iteem-icon {
+    width: 36px;
+    height: 36px;
+    background: rgba(168, 85, 247, 0.2);
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--purple);
+    transition: all var(--transition);
+}
+
+.iteem-btn.active .iteem-icon {
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+}
+
+.iteem-icon svg {
+    width: 20px;
+    height: 20px;
+}
+
+.iteem-text {
+    flex: 1;
+}
+
+.iteem-title {
+    font-family: 'Geist Mono', monospace;
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: var(--text-primary);
+    letter-spacing: 0.05em;
+}
+
+.iteem-btn.active .iteem-title {
+    color: white;
+}
+
+.iteem-desc {
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    margin-top: 1px;
+}
+
+.iteem-btn.active .iteem-desc {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.iteem-indicator {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.4rem 0.6rem;
+    background: var(--purple-glow);
+    border: 1px solid rgba(168, 85, 247, 0.3);
+    border-radius: var(--radius-sm);
+    font-size: 0.7rem;
+    color: var(--purple);
+}
+
+.iteem-dot {
+    width: 8px;
+    height: 8px;
+    background: var(--purple);
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(1.3); }
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* ===============================
+   TAX REGIME
+   =============================== */
+
+.radio-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+}
+
+.radio-option {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+    padding: 0.5rem 0.75rem;
+    background: var(--bg-elevated);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: all var(--transition);
+}
+
+.radio-option:hover {
+    border-color: var(--accent);
+    background: var(--accent-subtle);
+}
+
+.radio-option.selected {
+    border-color: var(--accent);
+    background: var(--accent-subtle);
+}
+
+.radio-option input[type="radio"] {
+    display: none;
+}
+
+.radio-check {
+    width: 16px;
+    height: 16px;
+    min-width: 16px;
+    border: 2px solid var(--border-subtle);
+    border-radius: 50%;
+    margin-top: 1px;
+    transition: all var(--transition);
+    position: relative;
+}
+
+.radio-option.selected .radio-check {
+    border-color: var(--accent);
+    background: var(--accent);
+}
+
+.radio-option.selected .radio-check::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 5px;
+    height: 5px;
+    background: white;
+    border-radius: 50%;
+}
+
+.radio-content {
+    flex: 1;
+}
+
+.radio-title {
+    font-weight: 500;
+    font-size: 0.8rem;
+    color: var(--text-primary);
+}
+
+.radio-option.selected .radio-title {
+    color: var(--accent);
+}
+
+.radio-hint {
+    font-size: 0.65rem;
+    color: var(--text-muted);
+    margin-top: 1px;
+}
+
+.regime-warning {
+    margin-top: 0.5rem;
+    padding: 0.6rem 0.75rem;
+    background: var(--danger-glow);
+    border: 1px solid rgba(239, 68, 68, 0.3);
+    border-radius: var(--radius-sm);
+    font-size: 0.75rem;
+    color: var(--danger);
+    line-height: 1.4;
+}
+
+.regime-warning strong {
+    color: var(--text-primary);
+}
+
+/* ===============================
+   INPUT FIELDS
+   =============================== */
+
+.field {
+    margin-bottom: 0.75rem;
+}
+
+.field:last-child {
+    margin-bottom: 0;
+}
+
+.field-label {
+    display: block;
+    font-size: 0.7rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    margin-bottom: 0.35rem;
+}
+
+.field-input-row {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.field-slider {
+    flex: 1;
+    -webkit-appearance: none;
+    appearance: none;
+    height: 6px;
+    background: var(--bg-elevated);
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.field-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    background: var(--accent);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all var(--transition);
+    box-shadow: 0 2px 8px var(--accent-glow);
+}
+
+.field-slider::-webkit-slider-thumb:hover {
+    transform: scale(1.15);
+    box-shadow: 0 4px 16px var(--accent-glow);
+}
+
+.field-slider::-moz-range-thumb {
+    width: 18px;
+    height: 18px;
+    background: var(--accent);
+    border-radius: 50%;
+    cursor: pointer;
+    border: none;
+}
+
+.field-number {
+    width: 100px;
+    font-family: 'Geist Mono', monospace;
+    font-size: 0.85rem;
+    font-weight: 500;
+    text-align: right;
+    background: var(--bg-base);
+    color: var(--text-primary);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 0.5rem 0.75rem;
+    transition: all var(--transition);
+}
+
+.field-number:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px var(--accent-glow);
+}
+
+.field-number::-webkit-inner-spin-button,
+.field-number::-webkit-outer-spin-button {
+    opacity: 0.5;
+}
+
+/* ===============================
+   STAFF SECTION
+   =============================== */
+
+.staff-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+}
+
+.staff-category {
+    background: var(--bg-elevated);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: 0.75rem;
+}
+
+.staff-header {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    margin-bottom: 0.5rem;
+    padding-bottom: 0.4rem;
+    border-bottom: 1px solid var(--border);
+}
+
+.staff-header svg {
+    width: 14px;
+    height: 14px;
+    color: var(--accent);
+}
+
+.staff-header span {
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+}
+
+.staff-fields {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.5rem;
+}
+
+.staff-field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+}
+
+.staff-field label {
+    font-size: 0.6rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+}
+
+.staff-field input {
+    width: 100%;
+    font-family: 'Geist Mono', monospace;
+    font-size: 0.8rem;
+    font-weight: 500;
+    text-align: center;
+    background: var(--bg-base);
+    color: var(--text-primary);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 0.4rem;
+    transition: all var(--transition);
+}
+
+.staff-field input:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px var(--accent-glow);
+}
+
+/* ===============================
+   RIGHT PANEL (Main Content)
+   =============================== */
+
+.panel-right {
+    padding: 1.5rem 2rem;
+    overflow-y: auto;
+    min-height: calc(100vh - 73px);
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    background: var(--bg-base);
+}
+
+/* ===============================
+   HERO METRICS
+   =============================== */
+
+.metrics-hero {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+}
+
+.hero-card {
+    position: relative;
+    padding: 1.5rem;
+    background: linear-gradient(135deg, var(--bg-surface) 0%, var(--bg-elevated) 100%);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    transition: all var(--transition);
+}
+
+.hero-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--accent), var(--accent-hover));
+    opacity: 0;
+    transition: opacity var(--transition);
+}
+
+.hero-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+}
+
+.hero-card:hover::before {
+    opacity: 1;
+}
+
+.hero-card.profit-card.positive::before {
+    background: linear-gradient(90deg, var(--success), #4ade80);
+    opacity: 1;
+}
+
+.hero-card.profit-card.negative::before {
+    background: linear-gradient(90deg, var(--danger), #f87171);
+    opacity: 1;
+}
+
+.hero-top {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+}
+
+.hero-icon {
+    width: 48px;
+    height: 48px;
+    background: var(--accent-subtle);
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--accent);
+}
+
+.hero-card.profit-card.positive .hero-icon {
+    background: var(--success-glow);
+    color: var(--success);
+}
+
+.hero-card.profit-card.negative .hero-icon {
+    background: var(--danger-glow);
+    color: var(--danger);
+}
+
+.hero-icon svg {
+    width: 26px;
+    height: 26px;
+}
+
+.hero-label {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+}
+
+.hero-value {
+    font-family: 'Geist Mono', monospace;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    letter-spacing: -0.03em;
+    line-height: 1;
+}
+
+.hero-card.profit-card.positive .hero-value {
+    color: var(--success);
+}
+
+.hero-card.profit-card.negative .hero-value {
+    color: var(--danger);
+}
+
+/* ===============================
+   METRICS GRID
+   =============================== */
+
+.metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+}
+
+.metric-card {
+    padding: 1rem;
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    text-align: center;
+    transition: all var(--transition);
+}
+
+.metric-card:hover {
+    border-color: var(--border-subtle);
+    transform: translateY(-2px);
+}
+
+.metric-label {
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.5rem;
+}
+
+.metric-value {
+    font-family: 'Geist Mono', monospace;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+/* ===============================
+   SECTION CARDS
+   =============================== */
+
+.section-card {
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-xl);
+    padding: 1.5rem;
+}
+
+.section-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1.25rem;
+}
+
+.section-icon {
+    width: 36px;
+    height: 36px;
+    background: var(--accent-subtle);
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--accent);
+}
+
+.section-icon svg {
+    width: 20px;
+    height: 20px;
+}
+
+.section-title {
+    font-family: 'Geist Mono', monospace;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+/* Tax grid 4 columns */
+.tax-grid-4 {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.75rem;
+}
+
+.tax-item {
+    padding: 1rem;
+    background: var(--bg-elevated);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    text-align: center;
+    transition: all var(--transition);
+}
+
+.tax-item:hover {
+    border-color: var(--border-subtle);
+}
+
+.tax-item.total {
+    background: var(--accent-subtle);
+    border-color: rgba(20, 184, 166, 0.3);
+}
+
+.tax-item.total .tax-item-value {
+    color: var(--accent);
+}
+
+.tax-item-label {
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    margin-bottom: 0.5rem;
+}
+
+.tax-item-value {
+    font-family: 'Geist Mono', monospace;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+/* Expenses */
+.expenses-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.5rem;
+}
+
+.expense-row {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.5rem 0.75rem;
+    background: var(--bg-elevated);
+    border-radius: var(--radius-sm);
+}
+
+.expense-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.expense-name {
+    flex: 1;
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+}
+
+.expense-value {
+    font-family: 'Geist Mono', monospace;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--text-primary);
+}
+
+/* Charts */
+.charts-row {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+}
+
+.chart-wrap {
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 1.25rem;
+    overflow: hidden;
+    position: relative;
+    z-index: 1;
+}
+
+.chart-title {
+    font-family: 'Geist Mono', monospace;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.chart-container {
+    position: relative;
+    height: 200px;
+    overflow: hidden;
+}
+
+.chart-container canvas {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+/* Footer */
+.footer {
+    margin-top: auto;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.footer-info {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+
+.footer-divider {
+    color: var(--border);
+}
+
+.footer-brand {
+    font-family: 'Geist Mono', monospace;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--accent);
+}
+
+/* ===============================
+   RESPONSIVE
+   =============================== */
+
+@media (max-width: 1400px) {
+    .metrics-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .charts-row {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 900px) {
+    /* ПОЛНОСТЬЮ отключаем все эффекты на мобильных */
+    *,
+    *::before,
+    *::after {
+        position: static !important;
+        transform: none !important;
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+        z-index: auto !important;
+    }
+    
+    /* Восстанавливаем только необходимое */
+    body {
+        display: block !important;
+    }
+    
+    body::before {
+        display: none !important;
+    }
+    
+    .header {
+        background: var(--bg-elevated) !important;
+        border-bottom: 1px solid var(--border);
+    }
+    
+    .main {
+        display: block !important;
+    }
+    
+    .panel-left {
+        height: auto !important;
+        overflow: visible !important;
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+    }
+    
+    .panel-right {
+        height: auto !important;
+        overflow: visible !important;
+    }
+    
+    /* Исключения для radio buttons */
+    .radio-check {
+        position: relative !important;
+    }
+    
+    .radio-option.selected .radio-check::after {
+        position: absolute !important;
+        transform: translate(-50%, -50%) !important;
+    }
+    
+    /* Исключения для слайдеров */
+    .slider-container {
+        position: relative !important;
+    }
+    
+    .slider-fill {
+        position: absolute !important;
+    }
+    
+    /* Исключения для chart containers */
+    .chart-container {
+        position: relative !important;
+        height: 180px !important;
+    }
+    
+    .chart-wrap {
+        position: relative !important;
+        z-index: 1 !important;
+    }
+}
+
+@media (max-width: 768px) {
+    html {
+        font-size: 13px;
+    }
+    
+    .header-inner {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .header-actions {
+        width: 100%;
+        justify-content: space-between;
+    }
+    
+    .panel-left,
+    .panel-right {
+        padding: 1rem;
+    }
+    
+    .year-limit-row {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+    }
+    
+    .limit-display {
+        text-align: center;
+    }
+    
+    .staff-fields {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+    }
+    
+    .metrics-hero {
+        display: grid;
+        grid-template-columns: 1fr;
+    }
+    
+    .hero-value {
+        font-size: 2rem;
+    }
+    
+    .metrics-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .tax-grid-4 {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .expenses-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+    }
+    
+    .charts-row {
+        display: grid;
+        gap: 1rem;
+    }
+    
+    .footer {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+        text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .metrics-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .tax-grid-4 {
+        grid-template-columns: 1fr;
+    }
+    
+    .field-number {
+        width: 80px;
+    }
+    
+    .staff-fields {
+        grid-template-columns: 1fr;
+    }
+    }
+}
+    </style>
+</head>
+<body>
+    <!-- Yandex.Metrika counter -->
+    <script type="text/javascript">
+        (function(m,e,t,r,i,k,a){
+            m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+            m[i].l=1*new Date();
+            for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+            k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+        })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=104622377', 'ym');
+        ym(104622377, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", accurateTrackBounce:true, trackLinks:true});
+    </script>
+    <noscript><div><img src="https://mc.yandex.ru/watch/104622377" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+    <!-- /Yandex.Metrika counter -->
+
+    <!-- Header -->
+    <header class="header">
+        <div class="header-inner">
+            <div class="logo">
+                <div class="logo-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 15.75V18m-7.5-6.75h.008v.008H8.25v-.008zm0 2.25h.008v.008H8.25V13.5zm0 2.25h.008v.008H8.25v-.008zm0 2.25h.008v.008H8.25V18zm2.498-6.75h.007v.008h-.007v-.008zm0 2.25h.007v.008h-.007V13.5zm0 2.25h.007v.008h-.007v-.008zm0 2.25h.007v.008h-.007V18zm2.504-6.75h.008v.008h-.008v-.008zm0 2.25h.008v.008h-.008V13.5zm0 2.25h.008v.008h-.008v-.008zm0 2.25h.008v.008h-.008V18zm2.498-6.75h.008v.008h-.008v-.008zm0 2.25h.008v.008h-.008V13.5zM8.25 6h7.5v2.25h-7.5V6zM12 2.25c-1.892 0-3.758.11-5.593.322C5.307 2.7 4.5 3.65 4.5 4.757V19.5a2.25 2.25 0 002.25 2.25h10.5a2.25 2.25 0 002.25-2.25V4.757c0-1.108-.806-2.057-1.907-2.185A48.507 48.507 0 0012 2.25z" />
+                    </svg>
+                </div>
+                <div class="logo-text">
+                    <span class="logo-title">Калькулятор 2026</span>
+                    <span class="logo-subtitle">NPLN Tech</span>
+                </div>
+            </div>
+            <div class="header-actions">
+                <div class="law-badge">
+                    <span class="law-badge-number">425-ФЗ</span>
+                    <span class="law-badge-date">от 28.11.2025</span>
+                </div>
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+                    <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" />
+                    </svg>
+                    <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main -->
+    <main class="main">
+        <!-- Left Panel -->
+        <div class="panel-left">
+            <!-- Year & Limit -->
+            <div class="year-limit-row">
+                <div class="year-select-wrap">
+                    <label for="yearSelect">Год</label>
+                    <select id="yearSelect" class="year-select">
+                        <option value="2026" selected>2026</option>
+                        <option value="2027">2027</option>
+                        <option value="2028">2028+</option>
+                    </select>
+                </div>
+                <div class="limit-display">
+                    <span class="limit-label">Лимит без НДС</span>
+                    <span class="limit-value" id="currentLimit">20 000 000 ₽</span>
+                </div>
+            </div>
+
+            <!-- ITEEM -->
+            <div class="iteem-wrap">
+                <button id="iteemBtn" class="iteem-btn">
+                    <div class="iteem-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" />
+                        </svg>
+                    </div>
+                    <div class="iteem-text">
+                        <span class="iteem-title">ITEEM</span>
+                        <span class="iteem-desc">Сократить площадь на 70%</span>
+                    </div>
+                </button>
+                <div id="iteemIndicator" class="iteem-indicator hidden">
+                    <span class="iteem-dot"></span>
+                    ITEEM активен — площадь сокращена
+                </div>
+            </div>
+
+            <!-- Tax Regime -->
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 18.75a60.07 60.07 0 0115.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 013 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 00-.75.75v.75m0 0H3.75m0 0h-.375a1.125 1.125 0 01-1.125-1.125V15m1.5 1.5v-.75A.75.75 0 003 15h-.75M15 10.5a3 3 0 11-6 0 3 3 0 016 0zm3 0h.008v.008H18V10.5zm-12 0h.008v.008H6V10.5z" />
+                        </svg>
+                    </div>
+                    <span class="card-title">Налоговый режим</span>
+                </div>
+                <div class="radio-group" id="taxRegimeGroup">
+                    <label class="radio-option selected">
+                        <input type="radio" name="taxRegime" value="usn_15" checked>
+                        <span class="radio-check"></span>
+                        <div class="radio-content">
+                            <span class="radio-title">УСН 15% без НДС</span>
+                            <span class="radio-hint regime-hint" data-regime="usn_15">до 20 000 000 ₽/год</span>
+                        </div>
+                    </label>
+                    <label class="radio-option">
+                        <input type="radio" name="taxRegime" value="usn_nds_5">
+                        <span class="radio-check"></span>
+                        <div class="radio-content">
+                            <span class="radio-title">УСН 15% + НДС 5%</span>
+                            <span class="radio-hint">до 272.5 млн ₽/год, без вычета</span>
+                        </div>
+                    </label>
+                    <label class="radio-option">
+                        <input type="radio" name="taxRegime" value="usn_nds_7">
+                        <span class="radio-check"></span>
+                        <div class="radio-content">
+                            <span class="radio-title">УСН 15% + НДС 7%</span>
+                            <span class="radio-hint">272.5–490.5 млн ₽/год, без вычета</span>
+                        </div>
+                    </label>
+                    <label class="radio-option">
+                        <input type="radio" name="taxRegime" value="usn_nds_22">
+                        <span class="radio-check"></span>
+                        <div class="radio-content">
+                            <span class="radio-title">УСН 15% + НДС 22%</span>
+                            <span class="radio-hint">с вычетом входящего НДС</span>
+                        </div>
+                    </label>
+                    <label class="radio-option">
+                        <input type="radio" name="taxRegime" value="osno_ooo">
+                        <span class="radio-check"></span>
+                        <div class="radio-content">
+                            <span class="radio-title">ОСНО (ООО)</span>
+                            <span class="radio-hint">НДС 22% + налог на прибыль 25%</span>
+                        </div>
+                    </label>
+                    <label class="radio-option">
+                        <input type="radio" name="taxRegime" value="osno_ip">
+                        <span class="radio-check"></span>
+                        <div class="radio-content">
+                            <span class="radio-title">ОСНО (ИП)</span>
+                            <span class="radio-hint">НДС 22% + НДФЛ прогрессивный</span>
+                        </div>
+                    </label>
+                </div>
+                <div id="usnWarning" class="regime-warning hidden"></div>
+            </div>
+
+            <!-- Revenue & Margin -->
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 18L9 11.25l4.306 4.307a11.95 11.95 0 015.814-5.519l2.74-1.22m0 0l-5.94-2.28m5.94 2.28l-2.28 5.941" />
+                        </svg>
+                    </div>
+                    <span class="card-title">Выручка и маржа</span>
+                </div>
+                
+                <div class="field">
+                    <label class="field-label">Выручка, ₽/мес</label>
+                    <div class="field-input-row">
+                        <input type="range" id="monthlyRevenue" class="field-slider" min="0" max="20000000" step="100000" value="0">
+                        <input type="number" id="monthlyRevenueInput" class="field-number" min="0" max="100000000" step="10000" value="0">
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label class="field-label">Маржа, %</label>
+                    <div class="field-input-row">
+                        <input type="range" id="marginPercent" class="field-slider" min="0" max="200" step="1" value="0">
+                        <input type="number" id="marginPercentInput" class="field-number" min="0" max="300" step="1" value="0">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Rent -->
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 21v-7.5a.75.75 0 01.75-.75h3a.75.75 0 01.75.75V21m-4.5 0H2.36m11.14 0H18m0 0h3.64m-1.39 0V9.349m-16.5 11.65V9.35m0 0a3.001 3.001 0 003.75-.615A2.993 2.993 0 009.75 9.75c.896 0 1.7-.393 2.25-1.016a2.993 2.993 0 002.25 1.016c.896 0 1.7-.393 2.25-1.016a3.001 3.001 0 003.75.614m-16.5 0a3.004 3.004 0 01-.621-4.72L4.318 3.44A1.5 1.5 0 015.378 3h13.243a1.5 1.5 0 011.06.44l1.19 1.189a3 3 0 01-.621 4.72m-13.5 8.65h3.75a.75.75 0 00.75-.75V13.5a.75.75 0 00-.75-.75H6.75a.75.75 0 00-.75.75v3.75c0 .415.336.75.75.75z" />
+                        </svg>
+                    </div>
+                    <span class="card-title">Аренда</span>
+                </div>
+
+                <div class="field">
+                    <label class="field-label">Торговая площадь, м²</label>
+                    <div class="field-input-row">
+                        <input type="range" id="floorArea" class="field-slider" min="0" max="1000" step="10" value="0">
+                        <input type="number" id="floorAreaInput" class="field-number" min="0" max="5000" step="10" value="0">
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label class="field-label">Ставка аренды, ₽/м²</label>
+                    <div class="field-input-row">
+                        <input type="range" id="rentRate" class="field-slider" min="0" max="5000" step="100" value="0">
+                        <input type="number" id="rentRateInput" class="field-number" min="0" max="10000" step="100" value="0">
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label class="field-label">Аренда склада, ₽/мес</label>
+                    <div class="field-input-row">
+                        <input type="range" id="warehouseRent" class="field-slider" min="0" max="500000" step="5000" value="0">
+                        <input type="number" id="warehouseRentInput" class="field-number" min="0" max="2000000" step="5000" value="0">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Staff -->
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z" />
+                        </svg>
+                    </div>
+                    <span class="card-title">Персонал</span>
+                </div>
+                
+                <div class="staff-grid">
+                    <!-- Managers -->
+                    <div class="staff-category">
+                        <div class="staff-header">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M20.25 14.15v4.25c0 1.094-.787 2.036-1.872 2.18-2.087.277-4.216.42-6.378.42s-4.291-.143-6.378-.42c-1.085-.144-1.872-1.086-1.872-2.18v-4.25m16.5 0a2.18 2.18 0 00.75-1.661V8.706c0-1.081-.768-2.015-1.837-2.175a48.114 48.114 0 00-3.413-.387m4.5 8.006c-.194.165-.42.295-.673.38A23.978 23.978 0 0112 15.75c-2.648 0-5.195-.429-7.577-1.22a2.016 2.016 0 01-.673-.38m0 0A2.18 2.18 0 013 12.489V8.706c0-1.081.768-2.015 1.837-2.175a48.111 48.111 0 013.413-.387m7.5 0V5.25A2.25 2.25 0 0013.5 3h-3a2.25 2.25 0 00-2.25 2.25v.894m7.5 0a48.667 48.667 0 00-7.5 0M12 12.75h.008v.008H12v-.008z" />
+                            </svg>
+                            <span>Менеджеры</span>
+                        </div>
+                        <div class="staff-fields">
+                            <div class="staff-field">
+                                <label>Кол-во</label>
+                                <input type="number" id="managersCount" min="0" max="50" value="0">
+                            </div>
+                            <div class="staff-field">
+                                <label>ЗП, ₽</label>
+                                <input type="number" id="managersSalary" min="0" max="500000" step="1000" value="0">
+                            </div>
+                            <div class="staff-field">
+                                <label>Оформл.</label>
+                                <input type="number" id="managersOfficial" min="0" max="50" value="0">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Warehouse -->
+                    <div class="staff-category">
+                        <div class="staff-header">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M20.25 7.5l-.625 10.632a2.25 2.25 0 01-2.247 2.118H6.622a2.25 2.25 0 01-2.247-2.118L3.75 7.5M10 11.25h4M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125z" />
+                            </svg>
+                            <span>Кладовщики</span>
+                        </div>
+                        <div class="staff-fields">
+                            <div class="staff-field">
+                                <label>Кол-во</label>
+                                <input type="number" id="warehouseCount" min="0" max="50" value="0">
+                            </div>
+                            <div class="staff-field">
+                                <label>ЗП, ₽</label>
+                                <input type="number" id="warehouseSalary" min="0" max="300000" step="1000" value="0">
+                            </div>
+                            <div class="staff-field">
+                                <label>Оформл.</label>
+                                <input type="number" id="warehouseOfficial" min="0" max="50" value="0">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Office -->
+                    <div class="staff-category">
+                        <div class="staff-header">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M9 17.25v1.007a3 3 0 01-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0115 18.257V17.25m6-12V15a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 15V5.25m18 0A2.25 2.25 0 0018.75 3H5.25A2.25 2.25 0 003 5.25m18 0V12a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 12V5.25" />
+                            </svg>
+                            <span>Офис</span>
+                        </div>
+                        <div class="staff-fields">
+                            <div class="staff-field">
+                                <label>Кол-во</label>
+                                <input type="number" id="officeCount" min="0" max="50" value="0">
+                            </div>
+                            <div class="staff-field">
+                                <label>ЗП, ₽</label>
+                                <input type="number" id="officeSalary" min="0" max="300000" step="1000" value="0">
+                            </div>
+                            <div class="staff-field">
+                                <label>Оформл.</label>
+                                <input type="number" id="officeOfficial" min="0" max="50" value="0">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Other Expenses -->
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m-3-2.818l.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                    </div>
+                    <span class="card-title">Прочие расходы</span>
+                </div>
+                
+                <div class="field">
+                    <label class="field-label">Эквайринг, %</label>
+                    <div class="field-input-row">
+                        <input type="range" id="acquiringPercent" class="field-slider" min="0" max="5" step="0.1" value="0">
+                        <input type="number" id="acquiringPercentInput" class="field-number" min="0" max="10" step="0.1" value="0">
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label class="field-label">Реклама, ₽/мес</label>
+                    <div class="field-input-row">
+                        <input type="range" id="advertising" class="field-slider" min="0" max="300000" step="5000" value="0">
+                        <input type="number" id="advertisingInput" class="field-number" min="0" max="1000000" step="1000" value="0">
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label class="field-label">Прочие, ₽/мес</label>
+                    <div class="field-input-row">
+                        <input type="range" id="otherExpenses" class="field-slider" min="0" max="200000" step="5000" value="0">
+                        <input type="number" id="otherExpensesInput" class="field-number" min="0" max="500000" step="1000" value="0">
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label class="field-label">Списания, % от выручки</label>
+                    <div class="field-input-row">
+                        <input type="range" id="writeoffsPercent" class="field-slider" min="0" max="10" step="0.5" value="0">
+                        <input type="number" id="writeoffsPercentInput" class="field-number" min="0" max="20" step="0.1" value="0">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Additional VAT -->
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M9 14.25l6-6m4.5-3.493V21.75l-3.75-1.5-3.75 1.5-3.75-1.5-3.75 1.5V4.757c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0111.186 0c1.1.128 1.907 1.077 1.907 2.185zM9.75 9h.008v.008H9.75V9zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm4.125 4.5h.008v.008h-.008V13.5zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
+                        </svg>
+                    </div>
+                    <span class="card-title">Доп. входящий НДС</span>
+                </div>
+                <p style="font-size: 0.75rem; color: var(--text-muted); margin-bottom: 1rem;">Аренда, хоз. нужды, лизинг — для вычета при ставке 22%</p>
+                
+                <div class="field">
+                    <label class="field-label">Сумма НДС, ₽/мес</label>
+                    <div class="field-input-row">
+                        <input type="range" id="additionalVat" class="field-slider" min="0" max="500000" step="10000" value="0">
+                        <input type="number" id="additionalVatInput" class="field-number" min="0" max="5000000" step="1000" value="0">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Panel -->
+        <div class="panel-right">
+            <!-- Hero Metrics -->
+            <div class="metrics-hero">
+                <div class="hero-card profit-card" id="profitCard">
+                    <div class="hero-top">
+                        <div class="hero-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m-3-2.818l.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                        </div>
+                        <span class="hero-label">Чистая прибыль/мес</span>
+                    </div>
+                    <div class="hero-value" id="netProfit">0 ₽</div>
+                </div>
+                <div class="hero-card">
+                    <div class="hero-top">
+                        <div class="hero-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 18L9 11.25l4.306 4.307a11.95 11.95 0 015.814-5.519l2.74-1.22m0 0l-5.94-2.28m5.94 2.28l-2.28 5.941" />
+                            </svg>
+                        </div>
+                        <span class="hero-label">Рентабельность</span>
+                    </div>
+                    <div class="hero-value" id="profitability">0%</div>
+                </div>
+            </div>
+
+            <!-- Metrics Grid -->
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <div class="metric-label">Выручка/мес</div>
+                    <div class="metric-value" id="totalRevenue">0 ₽</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-label">Выручка/год</div>
+                    <div class="metric-value" id="annualRevenue">0 ₽</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-label">Прибыль/год</div>
+                    <div class="metric-value" id="annualProfit">0 ₽</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-label">Точка безубыточности</div>
+                    <div class="metric-value" id="breakeven">0 ₽/мес</div>
+                </div>
+            </div>
+
+            <!-- Taxes -->
+            <div class="section-card">
+                <div class="section-header">
+                    <div class="section-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 21v-8.25M15.75 21v-8.25M8.25 21v-8.25M3 9l9-6 9 6m-1.5 12V10.332A48.36 48.36 0 0012 9.75c-2.551 0-5.056.2-7.5.582V21M3 21h18M12 6.75h.008v.008H12V6.75z" />
+                        </svg>
+                    </div>
+                    <span class="section-title">Налоги</span>
+                </div>
+                <div class="tax-grid-4">
+                    <div class="tax-item total">
+                        <div class="tax-item-label">Итого</div>
+                        <div class="tax-item-value" id="totalTaxes">0 ₽</div>
+                    </div>
+                    <div class="tax-item">
+                        <div class="tax-item-label">УСН</div>
+                        <div class="tax-item-value" id="usnAmount">0 ₽</div>
+                    </div>
+                    <div class="tax-item">
+                        <div class="tax-item-label">НДС</div>
+                        <div class="tax-item-value" id="vatAmount">0 ₽</div>
+                    </div>
+                    <div class="tax-item">
+                        <div class="tax-item-label">НДФЛ / Прибыль</div>
+                        <div class="tax-item-value" id="incomeAmount">0 ₽</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Expenses -->
+            <div class="section-card">
+                <div class="section-header">
+                    <div class="section-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 6a7.5 7.5 0 107.5 7.5h-7.5V6z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 10.5H21A7.5 7.5 0 0013.5 3v7.5z" />
+                        </svg>
+                    </div>
+                    <span class="section-title">Структура расходов</span>
+                </div>
+                <div class="expenses-grid">
+                    <div class="expense-row">
+                        <span class="expense-dot" style="background: #14b8a6"></span>
+                        <span class="expense-name">Закупка</span>
+                        <span class="expense-value" id="purchaseCost">0 ₽</span>
+                    </div>
+                    <div class="expense-row">
+                        <span class="expense-dot" style="background: #f59e0b"></span>
+                        <span class="expense-name">Аренда ТП</span>
+                        <span class="expense-value" id="rentCost">0 ₽</span>
+                    </div>
+                    <div class="expense-row">
+                        <span class="expense-dot" style="background: #ef4444"></span>
+                        <span class="expense-name">Аренда склада</span>
+                        <span class="expense-value" id="warehouseCost">0 ₽</span>
+                    </div>
+                    <div class="expense-row">
+                        <span class="expense-dot" style="background: #a855f7"></span>
+                        <span class="expense-name">ФОТ + взносы</span>
+                        <span class="expense-value" id="payrollCost">0 ₽</span>
+                    </div>
+                    <div class="expense-row">
+                        <span class="expense-dot" style="background: #3b82f6"></span>
+                        <span class="expense-name">Эквайринг</span>
+                        <span class="expense-value" id="acquiringCost">0 ₽</span>
+                    </div>
+                    <div class="expense-row">
+                        <span class="expense-dot" style="background: #ec4899"></span>
+                        <span class="expense-name">Реклама</span>
+                        <span class="expense-value" id="advertisingCost">0 ₽</span>
+                    </div>
+                    <div class="expense-row">
+                        <span class="expense-dot" style="background: #71717a"></span>
+                        <span class="expense-name">Прочие</span>
+                        <span class="expense-value" id="otherCost">0 ₽</span>
+                    </div>
+                    <div class="expense-row">
+                        <span class="expense-dot" style="background: #06b6d4"></span>
+                        <span class="expense-name">Списания</span>
+                        <span class="expense-value" id="writeoffsCost">0 ₽</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Charts -->
+            <div class="charts-row">
+                <div class="chart-wrap">
+                    <div class="chart-title">Расходы</div>
+                    <div class="chart-container">
+                        <canvas id="expensesChart"></canvas>
+                    </div>
+                </div>
+                <div class="chart-wrap">
+                    <div class="chart-title">Налоги</div>
+                    <div class="chart-container">
+                        <canvas id="taxesChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <div class="footer">
+                <div class="footer-info">
+                    <span>Расчёт по 425-ФЗ от 28.11.2025</span>
+                    <span class="footer-divider">•</span>
+                    <span class="footer-brand">NPLN Tech</span>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+// ===============================
+// НАЛОГОВЫЙ КАЛЬКУЛЯТОР 2026
+// Обновлён под закон 425-ФЗ
+// ===============================
+
+// Лимиты по годам (425-ФЗ)
+const VAT_LIMITS = {
+    2026: 20_000_000,
+    2027: 15_000_000,
+    2028: 10_000_000
+};
+
+// Прогрессивный НДФЛ (годовая шкала)
+function ndflProgressiveAnnual(B) {
+    const base = Math.max(0, B);
+    if (base <= 2_400_000) return 0.13 * base;
+    if (base <= 5_000_000) return 0.15 * (base - 2_400_000) + 312_000;
+    if (base <= 20_000_000) return 0.18 * (base - 5_000_000) + 702_000;
+    if (base <= 50_000_000) return 0.20 * (base - 20_000_000) + 3_402_000;
+    return 0.22 * (base - 50_000_000) + 9_402_000;
+}
+
+// Форматирование
+function formatCurrency(amount) {
+    return new Intl.NumberFormat('ru-RU', {
+        style: 'currency',
+        currency: 'RUB',
+        minimumFractionDigits: 0,
+        maximumFractionDigits: 0
+    }).format(amount);
+}
+
+function formatNumber(num) {
+    return new Intl.NumberFormat('ru-RU').format(Math.round(num));
+}
+
+// ===============================
+// Калькулятор
+// ===============================
+class Calculator {
+    constructor() {
+        this.iteemActive = false;
+        this.originalFloorArea = 0;
+        this.charts = {};
+        this.currentYear = 2026;
+        this.init();
+    }
+
+    init() {
+        this.setupThemeToggle();
+        this.setupEventListeners();
+        this.initializeCharts();
+        this.updateLimitDisplay();
+        this.calculate();
+    }
+
+    setupThemeToggle() {
+        const toggle = document.getElementById('themeToggle');
+        const html = document.documentElement;
+        
+        // Check saved preference
+        const savedTheme = localStorage.getItem('theme') || 'dark';
+        html.setAttribute('data-theme', savedTheme);
+        
+        toggle.addEventListener('click', () => {
+            const current = html.getAttribute('data-theme');
+            const next = current === 'dark' ? 'light' : 'dark';
+            html.setAttribute('data-theme', next);
+            localStorage.setItem('theme', next);
+            this.updateChartsTheme();
+        });
+    }
+
+    setupEventListeners() {
+        // ITEEM
+        document.getElementById('iteemBtn')?.addEventListener('click', () => {
+            this.toggleIteem();
+        });
+
+        // Year
+        document.getElementById('yearSelect')?.addEventListener('change', (e) => {
+            this.currentYear = parseInt(e.target.value);
+            this.updateLimitDisplay();
+            this.calculate();
+        });
+
+        // Tax regime
+        document.querySelectorAll('input[name="taxRegime"]').forEach(radio => {
+            radio.addEventListener('change', (e) => {
+                document.querySelectorAll('.radio-option').forEach(opt => opt.classList.remove('selected'));
+                e.target.closest('.radio-option').classList.add('selected');
+                this.calculate();
+            });
+        });
+
+        // Slider sync
+        this.setupSliderSync();
+        
+        // Staff inputs
+        this.setupStaffInputs();
+    }
+
+    setupSliderSync() {
+        const pairs = [
+            ['monthlyRevenue', 'monthlyRevenueInput'],
+            ['marginPercent', 'marginPercentInput'],
+            ['floorArea', 'floorAreaInput'],
+            ['rentRate', 'rentRateInput'],
+            ['warehouseRent', 'warehouseRentInput'],
+            ['acquiringPercent', 'acquiringPercentInput'],
+            ['advertising', 'advertisingInput'],
+            ['otherExpenses', 'otherExpensesInput'],
+            ['writeoffsPercent', 'writeoffsPercentInput'],
+            ['additionalVat', 'additionalVatInput']
+        ];
+
+        pairs.forEach(([sliderId, inputId]) => {
+            const slider = document.getElementById(sliderId);
+            const input = document.getElementById(inputId);
+            if (!slider || !input) return;
+
+            slider.addEventListener('input', () => {
+                input.value = slider.value;
+                this.calculate();
+            });
+
+            input.addEventListener('input', () => {
+                const v = parseFloat(input.value) || 0;
+                const min = parseFloat(slider.min);
+                const max = parseFloat(slider.max);
+                slider.value = Math.max(min, Math.min(max, v));
+                this.calculate();
+            });
+        });
+    }
+
+    setupStaffInputs() {
+        const staffInputs = [
+            'managersCount', 'managersSalary', 'managersOfficial',
+            'warehouseCount', 'warehouseSalary', 'warehouseOfficial',
+            'officeCount', 'officeSalary', 'officeOfficial'
+        ];
+
+        staffInputs.forEach(id => {
+            const input = document.getElementById(id);
+            if (input) {
+                input.addEventListener('input', () => this.calculate());
+            }
+        });
+    }
+
+    updateLimitDisplay() {
+        const limit = VAT_LIMITS[this.currentYear] || VAT_LIMITS[2028];
+        document.getElementById('currentLimit').textContent = formatNumber(limit) + ' ₽';
+        
+        const hints = document.querySelectorAll('.regime-hint[data-regime="usn_15"]');
+        hints.forEach(hint => {
+            hint.textContent = `до ${formatNumber(limit)} ₽/год`;
+        });
+    }
+
+    toggleIteem() {
+        const btn = document.getElementById('iteemBtn');
+        const indicator = document.getElementById('iteemIndicator');
+        const floorAreaSlider = document.getElementById('floorArea');
+        const floorAreaInput = document.getElementById('floorAreaInput');
+
+        if (!this.iteemActive) {
+            this.originalFloorArea = parseFloat(floorAreaSlider.value) || 0;
+            let newArea = this.originalFloorArea * 0.3;
+            if (this.originalFloorArea >= 133) {
+                newArea = Math.round(newArea);
+            } else {
+                newArea = Math.min(40, this.originalFloorArea);
+            }
+            floorAreaSlider.value = newArea;
+            floorAreaInput.value = newArea;
+            btn.classList.add('active');
+            indicator.classList.remove('hidden');
+            this.iteemActive = true;
+        } else {
+            floorAreaSlider.value = this.originalFloorArea;
+            floorAreaInput.value = this.originalFloorArea;
+            btn.classList.remove('active');
+            indicator.classList.add('hidden');
+            this.iteemActive = false;
+        }
+
+        this.calculate();
+    }
+
+    getValues() {
+        const val = id => parseFloat(document.getElementById(id)?.value) || 0;
+        const vali = id => parseInt(document.getElementById(id)?.value) || 0;
+
+        return {
+            revenue: val('monthlyRevenue'),
+            marginPercent: val('marginPercent'),
+            floorArea: val('floorArea'),
+            rentRate: val('rentRate'),
+            warehouseRent: val('warehouseRent'),
+            managersCount: vali('managersCount'),
+            managersSalary: val('managersSalary'),
+            managersOfficial: vali('managersOfficial'),
+            warehouseCount: vali('warehouseCount'),
+            warehouseSalary: val('warehouseSalary'),
+            warehouseOfficial: vali('warehouseOfficial'),
+            officeCount: vali('officeCount'),
+            officeSalary: val('officeSalary'),
+            officeOfficial: vali('officeOfficial'),
+            acquiringPercent: val('acquiringPercent'),
+            advertising: val('advertising'),
+            otherExpenses: val('otherExpenses'),
+            writeoffsPercent: val('writeoffsPercent'),
+            additionalVat: val('additionalVat')
+        };
+    }
+
+    calculate() {
+        const v = this.getValues();
+        const regime = document.querySelector('input[name="taxRegime"]:checked')?.value || 'usn_15';
+        
+        // Revenue
+        const revenue = v.revenue;
+        const annualRevenue = revenue * 12;
+        
+        // Purchase cost from margin
+        const marginMultiplier = v.marginPercent / 100;
+        const purchaseCost = revenue / (1 + marginMultiplier);
+        
+        // Rent
+        const rentCost = v.floorArea * v.rentRate;
+        const warehouseCost = v.warehouseRent;
+        
+        // Payroll
+        const socialTaxRate = 0.306;
+        
+        const managersTotal = v.managersCount * v.managersSalary;
+        const managersOfficialTotal = v.managersOfficial * v.managersSalary;
+        const managersTax = managersOfficialTotal * socialTaxRate;
+        
+        const warehouseTotal = v.warehouseCount * v.warehouseSalary;
+        const warehouseOfficialTotal = v.warehouseOfficial * v.warehouseSalary;
+        const warehouseTax = warehouseOfficialTotal * socialTaxRate;
+        
+        const officeTotal = v.officeCount * v.officeSalary;
+        const officeOfficialTotal = v.officeOfficial * v.officeSalary;
+        const officeTax = officeOfficialTotal * socialTaxRate;
+        
+        const payrollCost = managersTotal + warehouseTotal + officeTotal + managersTax + warehouseTax + officeTax;
+        
+        // Other expenses
+        const acquiringCost = revenue * (v.acquiringPercent / 100);
+        const advertisingCost = v.advertising;
+        const otherCost = v.otherExpenses;
+        const writeoffsCost = revenue * (v.writeoffsPercent / 100);
+        
+        // Total expenses
+        const totalExpenses = purchaseCost + rentCost + warehouseCost + payrollCost + 
+                            acquiringCost + advertisingCost + otherCost + writeoffsCost;
+        
+        // Taxable profit
+        const taxableProfit = Math.max(0, revenue - totalExpenses);
+        
+        // Taxes
+        const taxes = this.calculateTaxes(regime, revenue, totalExpenses, purchaseCost, taxableProfit, v.additionalVat);
+        
+        // Net profit
+        const netProfit = revenue - totalExpenses - taxes.total;
+        const profitability = revenue > 0 ? (netProfit / revenue) * 100 : 0;
+        
+        // Breakeven
+        const fixedCosts = rentCost + warehouseCost + payrollCost + advertisingCost + otherCost;
+        const variableCostRate = (purchaseCost + acquiringCost + writeoffsCost) / (revenue || 1);
+        const breakeven = variableCostRate < 1 ? fixedCosts / (1 - variableCostRate) : 0;
+        
+        // VAT limit check
+        const vatLimit = VAT_LIMITS[this.currentYear] || VAT_LIMITS[2028];
+        const exceedsLimit = regime === 'usn_15' && annualRevenue > vatLimit;
+        
+        // Update UI
+        this.updateResults({
+            revenue,
+            annualRevenue,
+            netProfit,
+            annualProfit: netProfit * 12,
+            profitability,
+            breakeven,
+            taxes,
+            expenses: {
+                purchaseCost,
+                rentCost,
+                warehouseCost,
+                payrollCost,
+                acquiringCost,
+                advertisingCost,
+                otherCost,
+                writeoffsCost
+            },
+            exceedsLimit,
+            vatLimit
+        });
+    }
+
+    calculateTaxes(regime, revenue, totalExpenses, purchaseCost, taxableProfit, additionalVat) {
+        let usnAmount = 0;
+        let vatAmount = 0;
+        let incomeAmount = 0;
+
+        switch (regime) {
+            case 'usn_15':
+                usnAmount = Math.max(taxableProfit * 0.15, revenue * 0.01);
+                break;
+
+            case 'usn_nds_5': {
+                usnAmount = Math.max(taxableProfit * 0.15, revenue * 0.01);
+                const outputVAT = revenue * (5 / 105);
+                vatAmount = outputVAT - additionalVat;
+                break;
+            }
+
+            case 'usn_nds_7': {
+                usnAmount = Math.max(taxableProfit * 0.15, revenue * 0.01);
+                const outputVAT = revenue * (7 / 107);
+                vatAmount = outputVAT - additionalVat;
+                break;
+            }
+
+            case 'usn_nds_22': {
+                usnAmount = Math.max(taxableProfit * 0.15, revenue * 0.01);
+                const outputVAT = revenue * (22 / 122);
+                const inputVAT = purchaseCost * (22 / 122);
+                vatAmount = outputVAT - inputVAT - additionalVat;
+                break;
+            }
+
+            case 'osno_ooo': {
+                const outputVAT = revenue * (22 / 122);
+                const inputVAT = purchaseCost * (22 / 122);
+                vatAmount = outputVAT - inputVAT - additionalVat;
+                const profitAfterVAT = revenue - totalExpenses - Math.max(0, vatAmount);
+                incomeAmount = Math.max(0, profitAfterVAT) * 0.25;
+                break;
+            }
+
+            case 'osno_ip': {
+                const outputVAT = revenue * (22 / 122);
+                const inputVAT = purchaseCost * (22 / 122);
+                vatAmount = outputVAT - inputVAT - additionalVat;
+                const baseMonth = Math.max(0, revenue - totalExpenses - Math.max(0, vatAmount));
+                const baseAnnual = baseMonth * 12;
+                incomeAmount = ndflProgressiveAnnual(baseAnnual) / 12;
+                break;
+            }
+        }
+
+        return {
+            usn: Math.max(0, usnAmount),
+            vat: vatAmount,
+            income: Math.max(0, incomeAmount),
+            total: Math.max(0, usnAmount) + Math.max(0, vatAmount) + Math.max(0, incomeAmount)
+        };
+    }
+
+    updateResults(results) {
+        // Main metrics
+        document.getElementById('totalRevenue').textContent = formatCurrency(results.revenue);
+        document.getElementById('annualRevenue').textContent = formatCurrency(results.annualRevenue);
+        document.getElementById('netProfit').textContent = formatCurrency(results.netProfit);
+        document.getElementById('annualProfit').textContent = formatCurrency(results.annualProfit);
+        document.getElementById('profitability').textContent = results.profitability.toFixed(1) + '%';
+        document.getElementById('totalTaxes').textContent = formatCurrency(results.taxes.total);
+        document.getElementById('breakeven').textContent = formatCurrency(results.breakeven);
+
+        // Taxes
+        document.getElementById('usnAmount').textContent = formatCurrency(results.taxes.usn);
+        document.getElementById('vatAmount').textContent = formatCurrency(results.taxes.vat);
+        document.getElementById('incomeAmount').textContent = formatCurrency(results.taxes.income);
+
+        // Expenses
+        document.getElementById('purchaseCost').textContent = formatCurrency(results.expenses.purchaseCost);
+        document.getElementById('rentCost').textContent = formatCurrency(results.expenses.rentCost);
+        document.getElementById('warehouseCost').textContent = formatCurrency(results.expenses.warehouseCost);
+        document.getElementById('payrollCost').textContent = formatCurrency(results.expenses.payrollCost);
+        document.getElementById('acquiringCost').textContent = formatCurrency(results.expenses.acquiringCost);
+        document.getElementById('advertisingCost').textContent = formatCurrency(results.expenses.advertisingCost);
+        document.getElementById('otherCost').textContent = formatCurrency(results.expenses.otherCost);
+        document.getElementById('writeoffsCost').textContent = formatCurrency(results.expenses.writeoffsCost);
+
+        // Warning
+        const warningEl = document.getElementById('usnWarning');
+        if (warningEl) {
+            if (results.exceedsLimit) {
+                warningEl.classList.remove('hidden');
+                warningEl.innerHTML = `⚠️ Годовая выручка <strong>${formatCurrency(results.annualRevenue)}</strong> превышает лимит <strong>${formatCurrency(results.vatLimit)}</strong> — необходим переход на режим с НДС`;
+            } else {
+                warningEl.classList.add('hidden');
+            }
+        }
+
+        // Profit card state
+        const profitCard = document.getElementById('profitCard');
+        if (profitCard) {
+            profitCard.classList.remove('positive', 'negative');
+            profitCard.classList.add(results.netProfit >= 0 ? 'positive' : 'negative');
+        }
+
+        // Charts
+        this.updateCharts(results);
+    }
+
+    initializeCharts() {
+        const ctx1 = document.getElementById('expensesChart')?.getContext('2d');
+        const ctx2 = document.getElementById('taxesChart')?.getContext('2d');
+        if (!ctx1 || !ctx2) return;
+
+        const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+        const textColor = isDark ? '#a1a1aa' : '#52525b';
+        const gridColor = isDark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.08)';
+
+        const colors = ['#14b8a6', '#f59e0b', '#ef4444', '#a855f7', '#3b82f6', '#ec4899', '#71717a', '#06b6d4'];
+
+        this.charts.expenses = new Chart(ctx1, {
+            type: 'doughnut',
+            data: {
+                labels: ['Закупка', 'Аренда ТП', 'Аренда склада', 'ФОТ', 'Эквайринг', 'Реклама', 'Прочие', 'Списания'],
+                datasets: [{
+                    data: [0, 0, 0, 0, 0, 0, 0, 0],
+                    backgroundColor: colors,
+                    borderWidth: 0
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                cutout: '65%',
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                }
+            }
+        });
+
+        this.charts.taxes = new Chart(ctx2, {
+            type: 'bar',
+            data: {
+                labels: ['УСН', 'НДС', 'НДФЛ/Прибыль'],
+                datasets: [{
+                    label: 'Налоги',
+                    data: [0, 0, 0],
+                    backgroundColor: ['#ef4444', '#f59e0b', '#a855f7'],
+                    borderRadius: 6
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: { legend: { display: false } },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        grid: { color: gridColor },
+                        ticks: {
+                            color: textColor,
+                            font: { family: "'Geist Mono', monospace" },
+                            callback: (v) => formatNumber(v)
+                        }
+                    },
+                    x: {
+                        grid: { display: false },
+                        ticks: { 
+                            color: textColor,
+                            font: { family: "'Geist Mono', monospace" }
+                        }
+                    }
+                }
+            }
+        });
+    }
+
+    updateChartsTheme() {
+        const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+        const textColor = isDark ? '#a1a1aa' : '#52525b';
+        const gridColor = isDark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.08)';
+
+        if (this.charts.taxes) {
+            this.charts.taxes.options.scales.y.grid.color = gridColor;
+            this.charts.taxes.options.scales.y.ticks.color = textColor;
+            this.charts.taxes.options.scales.x.ticks.color = textColor;
+            this.charts.taxes.update();
+        }
+    }
+
+    updateCharts(results) {
+        if (this.charts.expenses) {
+            this.charts.expenses.data.datasets[0].data = [
+                results.expenses.purchaseCost,
+                results.expenses.rentCost,
+                results.expenses.warehouseCost,
+                results.expenses.payrollCost,
+                results.expenses.acquiringCost,
+                results.expenses.advertisingCost,
+                results.expenses.otherCost,
+                results.expenses.writeoffsCost
+            ];
+            this.charts.expenses.update();
+        }
+
+        if (this.charts.taxes) {
+            this.charts.taxes.data.datasets[0].data = [
+                results.taxes.usn,
+                Math.max(0, results.taxes.vat),
+                results.taxes.income
+            ];
+            this.charts.taxes.update();
+        }
+    }
+}
+
+// Init
+document.addEventListener('DOMContentLoaded', () => {
+    new Calculator();
+});
+    </script>
+</body>
+</html>
