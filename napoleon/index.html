@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="50 лучших магазинов напольных покрытий мира — кураторская подборка от редакции Наполеон">
+    <meta name="keywords" content="напольные покрытия, магазины, шоурумы, паркет, ламинат, плитка">
+    <meta name="author" content="Наполеон">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="50 лучших магазинов напольных покрытий мира | Наполеон">
+    <meta property="og:description" content="Кураторская подборка выдающихся шоурумов и флагманских магазинов — от Копенгагена до Сингапура">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="ru_RU">
+    
+    <title>50 лучших магазинов напольных покрытий мира | Наполеон</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/styles.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>Н</text></svg>">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <a href="https://npln.tech" target="_blank" rel="noopener" class="logo">
+            <img src="images/npln-logo.jpg" alt="NPLN Tech" class="logo-img">
+            НАПОЛЕОН
+        </a>
+        <nav class="header-nav">
+            <a href="https://t.me/npoleon" target="_blank" rel="noopener">Телеграм</a>
+            <a href="#stores">Магазины</a>
+            <a href="#about">О проекте</a>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <span class="hero-subtitle">Редакция Наполеон представляет</span>
+        <h1>50 лучших магазинов <em>напольных покрытий</em> мира</h1>
+        <p class="hero-description">
+            Кураторская подборка выдающихся шоурумов и флагманских магазинов — 
+            от Копенгагена до Сингапура. Вдохновение для профессионалов индустрии.
+        </p>
+        <div class="hero-stats">
+            <div class="stat">
+                <div class="stat-number">50</div>
+                <div class="stat-label">Магазинов</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">24</div>
+                <div class="stat-label">Страны</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">4</div>
+                <div class="stat-label">Категории</div>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <span>Листайте</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 5v14M5 12l7 7 7-7"/>
+            </svg>
+        </div>
+    </section>
+
+    <!-- Filters Section -->
+    <section class="filters-section" id="stores">
+        <div class="filters-container">
+            <div class="filters-label">Фильтр по категории</div>
+            <div class="filters">
+                <button class="filter-btn active" data-filter="all">Все магазины</button>
+                <button class="filter-btn" data-filter="flagship">Флагманы</button>
+                <button class="filter-btn" data-filter="innovation">Инновации</button>
+                <button class="filter-btn" data-filter="unique">Уникальный подход</button>
+                <button class="filter-btn" data-filter="specialist">Специализированные</button>
+            </div>
+            <p class="store-count" id="store-count">Показано: <span>50</span> магазинов</p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="main">
+        <div class="stores-grid" id="stores-grid">
+            <!-- Store cards will be loaded dynamically from JSON -->
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer" id="about">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <h3>Наполеон</h3>
+                <p>Телеграм-канал для профессионалов индустрии напольных покрытий. Новости рынка, тренды, аналитика — всё, что важно знать владельцам и директорам магазинов.</p>
+            </div>
+            <div class="footer-section">
+                <h4>Проект</h4>
+                <a href="https://t.me/npoleon" target="_blank" rel="noopener">Телеграм-канал</a>
+                <a href="#">О редакции</a>
+                <a href="#">Контакты</a>
+            </div>
+            <div class="footer-section">
+                <h4>Ресурсы</h4>
+                <a href="#stores">Все магазины</a>
+                <a href="#">Карта магазинов</a>
+                <a href="#">Методология отбора</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span class="footer-copyright">© 2025 Наполеон. Все права защищены.</span>
+            <a href="https://npln.tech" target="_blank" rel="noopener" class="npln-badge">
+                <img src="images/npln-logo.jpg" alt="NPLN Tech" class="npln-logo">
+                Разработано NPLN Tech
+            </a>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/app.js"></script>
+</body>
+</html>
