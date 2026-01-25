@@ -434,30 +434,133 @@ em {
 }
 
 @media (max-width: 768px) {
-    .hero h1 {
-        font-size: 2.5rem;
+    /* Компактный хедер */
+    .header {
+        padding: 12px 4%;
     }
 
-    .hero-stats {
-        flex-direction: column;
-        gap: 30px;
+    .logo {
+        font-size: 1rem;
+    }
+
+    .logo-img {
+        height: 32px;
+        margin-right: 8px;
+    }
+
+    .header-nav a {
+        margin-left: 15px;
+        font-size: 0.8rem;
+    }
+
+    /* Фильтры НЕ липкие на мобильных */
+    .filters-section {
+        position: relative;
+        top: auto;
+        padding: 20px 4%;
     }
 
     .filters-container {
         flex-direction: column;
-        gap: 20px;
+        gap: 15px;
+    }
+
+    .filters-label {
+        display: none;
     }
 
     .filters {
         flex-wrap: wrap;
         justify-content: center;
+        gap: 8px;
+    }
+
+    .filter-btn {
+        padding: 8px 14px;
+        font-size: 0.75rem;
+    }
+
+    .store-count {
+        font-size: 0.8rem;
+    }
+
+    /* Hero */
+    .hero {
+        height: auto;
+        min-height: 60vh;
+        padding: 80px 5% 40px;
+        margin-top: 50px;
+    }
+
+    .hero h1 {
+        font-size: 2rem;
+    }
+
+    .hero-description {
+        font-size: 0.95rem;
+        margin-bottom: 30px;
+    }
+
+    .hero-stats {
+        flex-direction: row;
+        gap: 30px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .stat-number {
+        font-size: 1.8rem;
+    }
+
+    .scroll-indicator {
+        display: none;
+    }
+
+    /* Карточки магазинов */
+    .main {
+        padding: 30px 4%;
+    }
+
+    .stores-grid {
+        grid-template-columns: 1fr;
+        gap: 25px;
+    }
+
+    .store-image {
+        height: 200px;
+    }
+
+    .store-info {
+        padding: 20px;
+    }
+
+    .store-name {
+        font-size: 1.4rem;
+    }
+
+    /* Футер */
+    .footer {
+        padding: 50px 4% 30px;
+        margin-top: 50px;
     }
 
     .footer-content {
         grid-template-columns: 1fr;
+        gap: 30px;
+        margin-bottom: 40px;
     }
 
     .footer-brand {
         grid-column: span 1;
+    }
+
+    .footer-brand h3 {
+        font-size: 1.5rem;
+    }
+
+    .footer-bottom {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
     }
 }
