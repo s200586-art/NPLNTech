@@ -989,4 +989,14 @@
         document.querySelectorAll('.service-card, .client-card, .process-step').forEach(el => {
             el.style.opacity = '0';
             el.style.transform = 'translateY(20px)';
-            el.style.t<\!-- Test auto-update: 2026-01-19 20:21:10 -->
+            el.style.transition = 'all 0.6s ease';
+            observer.observe(el);
+        });
+    </script>
+
+    <!-- Amplitude Analytics -->
+    <script src="https://cdn.amplitude.com/libs/analytics-browser-2.11.1-min.js.gz"></script>
+    <script src="https://cdn.amplitude.com/libs/plugin-autocapture-browser-0.9.0-min.js.gz"></script>
+    <script src="analytics.js"></script>
+</body>
+</html>
