@@ -1,0 +1,68 @@
+name: Uptime Monitor
+
+on:
+  schedule:
+    - cron: "*/15 * * * *"
+  workflow_dispatch:
+
+jobs:
+  uptime:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Make scripts executable
+        run: chmod +x scripts/check_site.sh
+
+      - name: Run uptime check
+        id: uptime
+        shell: bash
+        run: |
+          set +e
+          URL="${{ secrets.MONITOR_URL }}"
+          if [[ -z "$URL" ]]; then
+            URL="https://npln.tech/"
+          fi
+
+          OUTPUT="$(scripts/check_site.sh "$URL" 2>&1)"
+          STATUS=$?
+
+          echo "$OUTPUT"
+          {
+            echo "status=$STATUS"
+            echo "url=$URL"
+            echo "details<<EOF"
+            echo "$OUTPUT"
+            echo "EOF"
+          } >> "$GITHUB_OUTPUT"
+          exit 0
+
+      - name: Notify Telegram On Failure
+        if: steps.uptime.outputs.status != '0' && secrets.TELEGRAM_BOT_TOKEN != '' && secrets.TELEGRAM_CHAT_ID != ''
+        env:
+          BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          URL: ${{ steps.uptime.outputs.url }}
+          DETAILS: ${{ steps.uptime.outputs.details }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        shell: bash
+        run: |
+          MESSAGE=$(cat <<EOF
+          🚨 NPLN Tech uptime check failed
+          URL: $URL
+          Run: $RUN_URL
+
+          Details:
+          $DETAILS
+          EOF
+          )
+          ENCODED="$(python3 -c 'import urllib.parse, sys; print(urllib.parse.quote(sys.stdin.read()))' <<< "$MESSAGE")"
+          curl -sS "https://api.telegram.org/bot${BOT_TOKEN}/sendMessage?chat_id=${CHAT_ID}&text=${ENCODED}" >/dev/null
+
+      - name: Fail job when monitor failed
+        if: steps.uptime.outputs.status != '0'
+        run: |
+          echo "Uptime check failed."
+          echo "${{ steps.uptime.outputs.details }}"
+          exit 1

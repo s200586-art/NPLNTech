@@ -1,0 +1,28 @@
+name: CI Static Checks
+
+on:
+  push:
+    branches: ["main"]
+    paths:
+      - "**.html"
+      - "scripts/**"
+      - ".github/workflows/ci-static.yml"
+  pull_request:
+    paths:
+      - "**.html"
+      - "scripts/**"
+      - ".github/workflows/ci-static.yml"
+  workflow_dispatch:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Make scripts executable
+        run: chmod +x scripts/validate_static.sh scripts/check_site.sh
+
+      - name: Validate static files
+        run: scripts/validate_static.sh

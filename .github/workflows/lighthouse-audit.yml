@@ -1,0 +1,62 @@
+name: Lighthouse Audit
+
+on:
+  schedule:
+    - cron: "0 */6 * * *"
+  workflow_dispatch:
+  push:
+    branches: ["main"]
+    paths:
+      - ".lighthouserc.json"
+      - ".github/workflows/lighthouse-audit.yml"
+      - "index.html"
+      - "learning-hub.html"
+
+jobs:
+  lighthouse:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Run Lighthouse CI
+        id: lighthouse
+        uses: treosh/lighthouse-ci-action@v12
+        with:
+          configPath: ./.lighthouserc.json
+          uploadArtifacts: true
+          temporaryPublicStorage: true
+
+      - name: Add report links to summary
+        if: always()
+        env:
+          LINKS: ${{ steps.lighthouse.outputs.links }}
+        shell: bash
+        run: |
+          echo "## Lighthouse Reports" >> "$GITHUB_STEP_SUMMARY"
+          if [[ -n "$LINKS" ]]; then
+            echo "$LINKS" | tr ',' '\n' | sed 's/^/- /' >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo "- links not available" >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+      - name: Notify Telegram on failure
+        if: failure() && secrets.TELEGRAM_BOT_TOKEN != '' && secrets.TELEGRAM_CHAT_ID != ''
+        env:
+          BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+          LINKS: ${{ steps.lighthouse.outputs.links }}
+        shell: bash
+        run: |
+          MESSAGE=$(cat <<EOF
+          🚨 NPLN Lighthouse audit failed
+          Run: $RUN_URL
+
+          Reports:
+          $LINKS
+          EOF
+          )
+          ENCODED="$(python3 -c 'import urllib.parse, sys; print(urllib.parse.quote(sys.stdin.read()))' <<< "$MESSAGE")"
+          curl -sS "https://api.telegram.org/bot${BOT_TOKEN}/sendMessage?chat_id=${CHAT_ID}&text=${ENCODED}" >/dev/null
