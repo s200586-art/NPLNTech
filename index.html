@@ -2072,6 +2072,14 @@
             if (typeof gtag === 'function') {
                 gtag('event', 'lead_form_submit', { channel });
             }
+
+            window.dispatchEvent(new CustomEvent('npln:lead_submit', {
+                detail: {
+                    channel,
+                    hasCompany: Boolean(data.company),
+                    hasBudget: Boolean(data.budget)
+                }
+            }));
         };
 
         if (leadForm) {

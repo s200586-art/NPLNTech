@@ -1,8 +1,9 @@
 // Amplitude Analytics — NPLN Tech
-// Autocapture + custom CTA tracking
+// Unified custom events for key conversion actions.
 
-(function() {
-  // Init Amplitude with autocapture
+(function () {
+  if (!window.amplitude || !window.amplitudeAutocapturePlugin) return;
+
   window.amplitude.add(window.amplitudeAutocapturePlugin.plugin());
   window.amplitude.init('beec1f72b269caa1c4b82d5ea8e3cf76', {
     autocapture: {
@@ -13,29 +14,60 @@
     }
   });
 
-  // Auto-track CTA clicks: Telegram links, mailto, buttons with .cta-btn/.btn-primary/.contact-link
-  document.addEventListener('click', function(e) {
-    var el = e.target.closest('a[href*="t.me/"], a[href^="mailto:"], .cta-btn, .btn-primary, .contact-link');
-    if (!el) return;
+  function normText(el) {
+    return (el && el.textContent ? el.textContent : '').trim().replace(/\s+/g, ' ').slice(0, 120);
+  }
 
-    var buttonName = (el.textContent || '').trim().replace(/\s+/g, ' ');
-    var href = el.getAttribute('href') || '';
+  function track(eventName, props) {
+    window.amplitude.track(eventName, Object.assign({
+      page_path: window.location.pathname
+    }, props || {}));
+  }
 
-    amplitude.track('CTA Clicked', {
-      button_name: buttonName,
-      href: href,
-      page: window.location.pathname
+  document.addEventListener('click', function (e) {
+    var heroCta = e.target.closest('.cta-group a');
+    if (heroCta) {
+      track('npln_hero_cta_click', {
+        cta_text: normText(heroCta),
+        href: heroCta.getAttribute('href') || ''
+      });
+      return;
+    }
+
+    var serviceLink = e.target.closest('.service-card a, a.service-card-link');
+    if (serviceLink) {
+      var href = serviceLink.getAttribute('href') || '';
+      track('npln_service_click', {
+        service_text: normText(serviceLink),
+        href: href,
+        is_learning_hub: /learning-hub\.html/i.test(href)
+      });
+      return;
+    }
+
+    var learningHubLink = e.target.closest('a[href*="learning-hub.html"]');
+    if (learningHubLink) {
+      track('npln_learning_hub_open', {
+        trigger_text: normText(learningHubLink),
+        href: learningHubLink.getAttribute('href') || ''
+      });
+    }
+  });
+
+  document.addEventListener('click', function (e) {
+    var filterBtn = e.target.closest('[data-case-filter]');
+    if (!filterBtn) return;
+    track('npln_case_filter_click', {
+      filter: filterBtn.getAttribute('data-case-filter') || 'all'
     });
   });
 
-  // Auto-track form submissions
-  document.addEventListener('submit', function(e) {
-    var form = e.target;
-    var formName = form.getAttribute('name') || form.getAttribute('id') || 'unknown';
-
-    amplitude.track('Form Submitted', {
-      form_name: formName,
-      page: window.location.pathname
+  window.addEventListener('npln:lead_submit', function (e) {
+    var detail = e.detail || {};
+    track('npln_lead_form_submit', {
+      channel: detail.channel || 'unknown',
+      has_company: !!detail.hasCompany,
+      has_budget: !!detail.hasBudget
     });
   });
 })();
