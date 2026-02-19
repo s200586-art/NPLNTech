@@ -11,6 +11,16 @@ on:
       - ".github/workflows/lighthouse-audit.yml"
       - "index.html"
       - "learning-hub.html"
+  pull_request:
+    paths:
+      - ".lighthouserc.json"
+      - ".github/workflows/lighthouse-audit.yml"
+      - "index.html"
+      - "learning-hub.html"
+
+permissions:
+  contents: read
+  pull-requests: write
 
 jobs:
   lighthouse:
@@ -40,6 +50,68 @@ jobs:
           else
             echo "- links not available" >> "$GITHUB_STEP_SUMMARY"
           fi
+
+      - name: Prepare PR comment
+        if: always() && github.event_name == 'pull_request'
+        id: pr_comment
+        env:
+          LINKS: ${{ steps.lighthouse.outputs.links }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+          JOB_STATUS: ${{ job.status }}
+        shell: bash
+        run: |
+          {
+            echo "body<<EOF"
+            echo "<!-- lighthouse-audit-report -->"
+            echo "## Lighthouse Audit: ${JOB_STATUS}"
+            echo
+            if [[ -n "$LINKS" ]]; then
+              echo "Reports:"
+              echo "$LINKS" | tr ',' '\n' | sed 's/^/- /'
+            else
+              echo "Reports: links not available"
+            fi
+            echo
+            echo "Workflow run: $RUN_URL"
+            echo "EOF"
+          } >> "$GITHUB_OUTPUT"
+
+      - name: Upsert PR comment
+        if: always() && github.event_name == 'pull_request'
+        uses: actions/github-script@v7
+        env:
+          BODY: ${{ steps.pr_comment.outputs.body }}
+        with:
+          script: |
+            const marker = '<!-- lighthouse-audit-report -->';
+            const body = process.env.BODY;
+            const issue_number = context.issue.number;
+            const { owner, repo } = context.repo;
+
+            const comments = await github.paginate(
+              github.rest.issues.listComments,
+              { owner, repo, issue_number, per_page: 100 }
+            );
+
+            const existing = comments.find(
+              c => c.user?.type === 'Bot' && c.body && c.body.includes(marker)
+            );
+
+            if (existing) {
+              await github.rest.issues.updateComment({
+                owner,
+                repo,
+                comment_id: existing.id,
+                body
+              });
+            } else {
+              await github.rest.issues.createComment({
+                owner,
+                repo,
+                issue_number,
+                body
+              });
+            }
 
       - name: Notify Telegram on failure
         if: failure() && secrets.TELEGRAM_BOT_TOKEN != '' && secrets.TELEGRAM_CHAT_ID != ''

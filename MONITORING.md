@@ -23,13 +23,14 @@
 
 3. `Lighthouse Audit` workflow:
    - File: `.github/workflows/lighthouse-audit.yml`
-   - Runs every 6 hours + manual run + on `main` changes to key pages
+   - Runs every 6 hours + manual run + on `main` and PR changes to key pages
    - Uses `.lighthouserc.json`
    - Audits:
      - `https://npln.tech/`
      - `https://npln.tech/learning-hub.html`
    - Tracks category scores and key metrics (`FCP`, `LCP`, `CLS`)
    - Publishes report links to GitHub Actions Step Summary
+   - Creates/updates a PR comment with report links on every audit run in pull requests
    - Sends Telegram alert on failure (if secrets are configured)
 
 ## Required GitHub Secrets
