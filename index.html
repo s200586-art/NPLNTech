@@ -1468,20 +1468,59 @@
             padding-bottom: 2rem;
         }
 
-        .stack-logos {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 0.6rem;
+        .stack-marquee {
             margin-bottom: 1.2rem;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            overflow: hidden;
+            background: linear-gradient(120deg, rgba(0, 229, 255, 0.05), rgba(0, 0, 0, 0.2));
+            position: relative;
+        }
+
+        .stack-marquee::before,
+        .stack-marquee::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 56px;
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        .stack-marquee::before {
+            left: 0;
+            background: linear-gradient(to right, rgba(10, 14, 20, 0.95), rgba(10, 14, 20, 0));
+        }
+
+        .stack-marquee::after {
+            right: 0;
+            background: linear-gradient(to left, rgba(10, 14, 20, 0.95), rgba(10, 14, 20, 0));
+        }
+
+        .stack-track {
+            display: flex;
+            width: max-content;
+            gap: 0.55rem;
+            padding: 0.62rem 0.7rem;
+            animation: stackMarquee 28s linear infinite;
+        }
+
+        .stack-marquee:hover .stack-track {
+            animation-play-state: paused;
+        }
+
+        @keyframes stackMarquee {
+            from { transform: translateX(0); }
+            to { transform: translateX(-50%); }
         }
 
         .stack-logo {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            min-width: 92px;
-            padding: 0.42rem 0.68rem;
+            min-width: 120px;
+            padding: 0.42rem 0.7rem;
             border: 1px solid var(--border);
             border-radius: 999px;
             font-family: 'JetBrains Mono', monospace;
@@ -1491,13 +1530,13 @@
             text-transform: uppercase;
             background: rgba(0, 229, 255, 0.05);
             transition: all 0.22s ease;
+            white-space: nowrap;
         }
 
         .stack-logo:hover {
             color: var(--cyan);
             border-color: var(--cyan);
             box-shadow: 0 0 12px rgba(0, 229, 255, 0.14);
-            transform: translateY(-1px);
         }
 
         .proof-mini-grid {
@@ -1727,6 +1766,13 @@
 
             .scanline {
                 display: none;
+            }
+
+            .stack-track {
+                animation: none;
+                width: 100%;
+                flex-wrap: wrap;
+                justify-content: center;
             }
         }
     </style>
@@ -2019,15 +2065,30 @@
             <p class="section-desc">Платформы и каналы, с которыми регулярно строим рабочие автоматизации.</p>
         </div>
 
-        <div class="stack-logos">
-            <span class="stack-logo">Telegram</span>
-            <span class="stack-logo">MAX</span>
-            <span class="stack-logo">VK Teams</span>
-            <span class="stack-logo">Ozon</span>
-            <span class="stack-logo">Wildberries</span>
-            <span class="stack-logo">Yandex Market</span>
-            <span class="stack-logo">CRM</span>
-            <span class="stack-logo">Google Sheets</span>
+        <div class="stack-marquee" aria-label="Платформы интеграций">
+            <div class="stack-track">
+                <span class="stack-logo">Telegram</span>
+                <span class="stack-logo">MAX</span>
+                <span class="stack-logo">VK Teams</span>
+                <span class="stack-logo">Ozon</span>
+                <span class="stack-logo">Wildberries</span>
+                <span class="stack-logo">Yandex Market</span>
+                <span class="stack-logo">CRM</span>
+                <span class="stack-logo">Google Sheets</span>
+                <span class="stack-logo">API Integrations</span>
+                <span class="stack-logo">Analytics</span>
+
+                <span class="stack-logo">Telegram</span>
+                <span class="stack-logo">MAX</span>
+                <span class="stack-logo">VK Teams</span>
+                <span class="stack-logo">Ozon</span>
+                <span class="stack-logo">Wildberries</span>
+                <span class="stack-logo">Yandex Market</span>
+                <span class="stack-logo">CRM</span>
+                <span class="stack-logo">Google Sheets</span>
+                <span class="stack-logo">API Integrations</span>
+                <span class="stack-logo">Analytics</span>
+            </div>
         </div>
 
         <div class="proof-mini-grid">
