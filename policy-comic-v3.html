@@ -1,0 +1,997 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Комикс-кейс: Почему мы не даём скидок | NPLN Tech</title>
+<meta name="description" content="Креативное обращение к команде в формате интерактивного комикса: как продавать ценность без скидок. Портфолио-кейс NPLN Tech.">
+<meta name="author" content="NPLN Tech">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://npln.tech/policy-comic-v3.html">
+<link rel="icon" type="image/x-icon" href="/files/favicon.ico">
+<link rel="apple-touch-icon" sizes="180x180" href="/files/apple-touch-icon.png">
+
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://npln.tech/policy-comic-v3.html">
+<meta property="og:title" content="Комикс-кейс: Почему мы не даём скидок">
+<meta property="og:description" content="Креативное обращение к команде + веб-версия для портфолио NPLN Tech.">
+<meta property="og:image" content="https://npln.tech/files/policy-comic-preview.svg">
+<meta property="og:locale" content="ru_RU">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Комикс-кейс: Почему мы не даём скидок">
+<meta name="twitter:description" content="Креативное обращение к команде + веб-версия для портфолио NPLN Tech.">
+<meta name="twitter:image" content="https://npln.tech/files/policy-comic-preview.svg">
+<link href="https://fonts.googleapis.com/css2?family=Bangers&family=Comic+Neue:wght@400;700&family=Permanent+Marker&display=swap" rel="stylesheet">
+<style>
+:root {
+  --yellow: #FFD93D;
+  --red: #FF6B6B;
+  --blue: #4ECDC4;
+  --purple: #A78BFA;
+  --orange: #FF8C42;
+  --green: #6BCB77;
+  --dark: #1a1a2e;
+  --panel-bg: #FFFEF2;
+  --ink: #1a1a2e;
+  --speech-bg: #fff;
+  --halftone: radial-gradient(circle, #000 1px, transparent 1px);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Comic Neue', cursive;
+  background: #e8e4d8;
+  color: var(--ink);
+  overflow-x: hidden;
+  background-image:
+    radial-gradient(circle, rgba(0,0,0,0.03) 1px, transparent 1px);
+  background-size: 8px 8px;
+}
+
+/* === COVER === */
+.cover {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+  background:
+    linear-gradient(135deg, #FFD93D 0%, #FF8C42 50%, #FF6B6B 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.cover::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle, rgba(0,0,0,0.08) 1px, transparent 1px);
+  background-size: 4px 4px;
+}
+
+.cover-inner {
+  position: relative;
+  text-align: center;
+  max-width: 700px;
+}
+
+.cover-badge {
+  display: inline-block;
+  background: var(--ink);
+  color: var(--yellow);
+  font-family: 'Bangers', cursive;
+  font-size: 14px;
+  letter-spacing: 3px;
+  padding: 6px 20px;
+  border-radius: 4px;
+  margin-bottom: 24px;
+  transform: rotate(-2deg);
+}
+
+.cover h1 {
+  font-family: 'Bangers', cursive;
+  font-size: clamp(3rem, 10vw, 6rem);
+  line-height: 1.05;
+  color: var(--ink);
+  text-shadow: 4px 4px 0 rgba(255,255,255,0.3);
+  margin-bottom: 16px;
+  letter-spacing: 2px;
+}
+
+.cover h1 .accent {
+  color: #fff;
+  text-shadow: 4px 4px 0 rgba(0,0,0,0.15);
+}
+
+.cover-sub {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--ink);
+  opacity: 0.7;
+  margin-bottom: 40px;
+}
+
+.cover-scroll {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--ink);
+  color: #fff;
+  font-family: 'Bangers', cursive;
+  font-size: 1.2rem;
+  letter-spacing: 1px;
+  padding: 14px 32px;
+  border-radius: 60px;
+  text-decoration: none;
+  border: 3px solid var(--ink);
+  transition: all 0.2s;
+  box-shadow: 4px 4px 0 rgba(0,0,0,0.2);
+}
+
+.cover-scroll:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0 rgba(0,0,0,0.2);
+}
+
+/* Starburst */
+.starburst {
+  position: absolute;
+  width: 120px;
+  height: 120px;
+  background: #fff;
+  clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Bangers', cursive;
+  font-size: 14px;
+  color: var(--red);
+  top: 10%;
+  right: 5%;
+  transform: rotate(15deg);
+  animation: wiggle 3s ease-in-out infinite;
+}
+
+@media (max-width: 640px) { .starburst { display: none; } }
+
+/* === COMIC GRID === */
+.comic-page {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 40px 16px;
+}
+
+.page-title {
+  font-family: 'Bangers', cursive;
+  font-size: 1.8rem;
+  text-align: center;
+  color: var(--ink);
+  margin-bottom: 8px;
+  letter-spacing: 2px;
+}
+
+.page-subtitle {
+  text-align: center;
+  font-weight: 700;
+  color: rgba(26,26,46,0.5);
+  margin-bottom: 32px;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.comic-grid {
+  display: grid;
+  gap: 12px;
+  margin-bottom: 48px;
+}
+
+/* Panel */
+.panel {
+  background: var(--panel-bg);
+  border: 3px solid var(--ink);
+  border-radius: 8px;
+  position: relative;
+  overflow: hidden;
+  min-height: 220px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 5px 5px 0 rgba(0,0,0,0.12);
+  opacity: 0;
+  transform: scale(0.95);
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.panel.visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.panel-inner {
+  padding: 28px 24px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  z-index: 2;
+}
+
+/* Panel color accents */
+.panel-yellow { background: linear-gradient(135deg, #FFF9DB, #FFFEF2); }
+.panel-red { background: linear-gradient(135deg, #FFE8E8, #FFFEF2); }
+.panel-blue { background: linear-gradient(135deg, #E0F7FA, #FFFEF2); }
+.panel-green { background: linear-gradient(135deg, #E8F5E9, #FFFEF2); }
+.panel-purple { background: linear-gradient(135deg, #F3E8FF, #FFFEF2); }
+.panel-orange { background: linear-gradient(135deg, #FFF3E0, #FFFEF2); }
+
+/* Halftone overlay */
+.panel-halftone::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle, rgba(0,0,0,0.05) 1px, transparent 1px);
+  background-size: 5px 5px;
+  pointer-events: none;
+}
+
+/* Speech bubbles */
+.speech {
+  background: var(--speech-bg);
+  border: 2.5px solid var(--ink);
+  border-radius: 20px;
+  padding: 16px 20px;
+  position: relative;
+  margin-bottom: 16px;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  max-width: 90%;
+}
+
+.speech::after {
+  content: '';
+  position: absolute;
+  bottom: -14px;
+  left: 30px;
+  width: 0;
+  height: 0;
+  border-left: 14px solid transparent;
+  border-right: 6px solid transparent;
+  border-top: 14px solid var(--ink);
+}
+
+.speech::before {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 31px;
+  width: 0;
+  height: 0;
+  border-left: 12px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 12px solid var(--speech-bg);
+  z-index: 1;
+}
+
+.speech.right {
+  margin-left: auto;
+}
+
+.speech.right::after {
+  left: auto;
+  right: 30px;
+}
+
+.speech.right::before {
+  left: auto;
+  right: 31px;
+}
+
+.speech.thought {
+  border-radius: 24px;
+}
+
+.speech.thought::after,
+.speech.thought::before {
+  display: none;
+}
+
+/* Shout bubble */
+.shout {
+  background: var(--yellow);
+  border: 3px solid var(--ink);
+  padding: 20px 24px;
+  font-family: 'Bangers', cursive;
+  font-size: 1.6rem;
+  letter-spacing: 1px;
+  text-align: center;
+  clip-path: polygon(
+    2% 12%, 8% 2%, 16% 10%, 25% 0%, 34% 8%, 44% 1%, 53% 9%, 62% 0%, 72% 7%, 80% 1%, 88% 10%, 95% 3%, 99% 14%,
+    93% 24%, 100% 36%, 94% 48%, 100% 60%, 93% 72%, 99% 84%, 92% 92%, 84% 99%, 74% 93%, 64% 100%, 54% 94%,
+    44% 100%, 34% 93%, 24% 99%, 14% 92%, 6% 98%, 1% 88%, 7% 76%, 0% 64%, 6% 52%, 0% 40%, 7% 28%
+  );
+  position: relative;
+  margin: 8px auto;
+  max-width: 95%;
+}
+
+.shout.red { background: var(--red); color: #fff; }
+.shout.green { background: var(--green); }
+
+/* Character */
+.character {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  border: 3px solid var(--ink);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+  flex-shrink: 0;
+  background: #fff;
+  box-shadow: 3px 3px 0 rgba(0,0,0,0.1);
+}
+
+.char-row {
+  display: flex;
+  align-items: flex-end;
+  gap: 16px;
+  margin-top: auto;
+}
+
+.char-row.right {
+  flex-direction: row-reverse;
+}
+
+.char-name {
+  font-family: 'Bangers', cursive;
+  font-size: 0.75rem;
+  letter-spacing: 1px;
+  color: rgba(26,26,46,0.4);
+  text-align: center;
+  margin-top: 4px;
+}
+
+/* Big number */
+.big-number {
+  font-family: 'Bangers', cursive;
+  font-size: 5rem;
+  line-height: 1;
+  text-align: center;
+}
+
+.big-number.red { color: var(--red); }
+.big-number.green { color: var(--green); }
+.big-number.orange { color: var(--orange); }
+.big-number.purple { color: var(--purple); }
+
+.big-label {
+  font-family: 'Bangers', cursive;
+  font-size: 1rem;
+  text-align: center;
+  letter-spacing: 1px;
+  color: rgba(26,26,46,0.6);
+  margin-top: 4px;
+}
+
+/* Narrative box */
+.narration {
+  background: var(--yellow);
+  border: 2px solid var(--ink);
+  padding: 12px 16px;
+  font-weight: 700;
+  font-size: 0.85rem;
+  position: absolute;
+  top: 0;
+  left: 0;
+  max-width: 260px;
+  z-index: 10;
+  box-shadow: 2px 2px 0 rgba(0,0,0,0.1);
+}
+
+.narration.bottom-right {
+  top: auto;
+  left: auto;
+  bottom: 0;
+  right: 0;
+}
+
+.narration.top-right {
+  left: auto;
+  right: 0;
+}
+
+/* Speed lines */
+.speed-lines {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  opacity: 0.06;
+}
+
+.speed-lines::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: -50%;
+  right: -50%;
+  height: 400%;
+  transform: translateY(-50%);
+  background: repeating-linear-gradient(
+    90deg,
+    transparent,
+    transparent 8px,
+    var(--ink) 8px,
+    var(--ink) 10px
+  );
+}
+
+/* Divider */
+.comic-divider {
+  text-align: center;
+  padding: 20px;
+  font-family: 'Bangers', cursive;
+  font-size: 2rem;
+  color: rgba(26,26,46,0.15);
+  letter-spacing: 8px;
+}
+
+/* Final panel */
+.final-panel {
+  background: linear-gradient(135deg, var(--yellow), var(--orange));
+  border: 4px solid var(--ink);
+  border-radius: 12px;
+  padding: 48px 32px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 6px 6px 0 rgba(0,0,0,0.15);
+  margin-bottom: 60px;
+}
+
+.final-panel::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle, rgba(0,0,0,0.04) 1.5px, transparent 1.5px);
+  background-size: 5px 5px;
+  pointer-events: none;
+}
+
+.final-panel h2 {
+  font-family: 'Bangers', cursive;
+  font-size: clamp(1.8rem, 5vw, 2.8rem);
+  color: var(--ink);
+  margin-bottom: 16px;
+  position: relative;
+  z-index: 1;
+  text-shadow: 2px 2px 0 rgba(255,255,255,0.3);
+}
+
+.final-panel p {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: rgba(26,26,46,0.7);
+  max-width: 520px;
+  margin: 0 auto 24px;
+  position: relative;
+  z-index: 1;
+}
+
+.final-sig {
+  font-family: 'Permanent Marker', cursive;
+  font-size: 1.4rem;
+  color: var(--ink);
+  position: relative;
+  z-index: 1;
+}
+
+/* Layouts */
+.grid-2 { grid-template-columns: 1fr 1fr; }
+.grid-3 { grid-template-columns: 1fr 1fr 1fr; }
+.grid-1-2 { grid-template-columns: 1fr 2fr; }
+.grid-2-1 { grid-template-columns: 2fr 1fr; }
+.grid-1 { grid-template-columns: 1fr; }
+
+@media (max-width: 640px) {
+  .grid-2, .grid-3, .grid-1-2, .grid-2-1 {
+    grid-template-columns: 1fr;
+  }
+  .panel { min-height: 180px; }
+  .big-number { font-size: 3.5rem; }
+  .shout { font-size: 1.2rem; }
+  .narration { position: relative; max-width: 100%; }
+}
+
+/* SFX */
+.sfx {
+  font-family: 'Bangers', cursive;
+  position: absolute;
+  z-index: 5;
+  pointer-events: none;
+  opacity: 0.12;
+}
+
+/* Animations */
+@keyframes wiggle {
+  0%, 100% { transform: rotate(15deg); }
+  50% { transform: rotate(20deg) scale(1.05); }
+}
+
+@keyframes pop {
+  0% { transform: scale(0); }
+  80% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<section class="cover">
+  <div class="starburst">ВАЖНО!<br>ЧИТАЙ!</div>
+  <div class="cover-inner">
+    <div class="cover-badge">★ идеал-пол.рф — для команды ★</div>
+    <h1>Продавай <span class="accent">ценность</span>,<br>а не цену!</h1>
+    <p class="cover-sub">Обращение СС к команде идеал-пол.рф в картинках и пузырях</p>
+    <a href="#ch1" class="cover-scroll">Листать комикс ▼</a>
+  </div>
+</section>
+
+<!-- ============ ГЛАВА 1 ============ -->
+<div class="comic-page" id="ch1">
+  <p class="page-title">Глава 1: Слон в комнате</p>
+  <p class="page-subtitle">О чём все думают, но боятся сказать</p>
+
+  <!-- Row 1 -->
+  <div class="comic-grid grid-2">
+    <div class="panel panel-yellow panel-halftone">
+      <div class="panel-inner">
+        <div class="speech">Продажи упали на 30–40%… Клиентов стало меньше. А тут ещё и скидки запретили. 😩</div>
+        <div class="char-row">
+          <div>
+            <div class="character">👩‍💼</div>
+            <div class="char-name">Менеджер</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel panel-red panel-halftone">
+      <div class="panel-inner">
+        <div class="speech">Клиент ушёл к конкурентам! Там дешевле! Если бы я дал скидку — он бы купил!!!</div>
+        <div class="char-row">
+          <div>
+            <div class="character">🤦</div>
+            <div class="char-name">Все мы</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Row 2 -->
+  <div class="comic-grid grid-1">
+    <div class="panel panel-blue panel-halftone">
+      <div class="panel-inner" style="text-align:center;">
+        <div class="speech thought" style="display:inline-block; max-width:600px; margin:0 auto;">
+          Я слышу этот страх. И хочу объяснить своё решение. Это не эмоции — это <strong>математика</strong> и <strong>психология продаж</strong>. Дочитайте до конца, это важно для нашего выживания и <strong>вашего заработка</strong>.</div>
+        <div style="margin-top:20px;">
+          <div class="character" style="margin:0 auto;">🧔</div>
+          <div class="char-name">СС</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="comic-divider">· · · · ·</div>
+
+<!-- ============ ГЛАВА 2: МАТЕМАТИКА ============ -->
+<div class="comic-page">
+  <p class="page-title">Глава 2: Убийственная математика</p>
+  <p class="page-subtitle">Данные McKinsey & Company</p>
+
+  <!-- Row 1 -->
+  <div class="comic-grid grid-1-2">
+    <div class="panel panel-yellow panel-halftone">
+      <div class="panel-inner" style="text-align:center; justify-content:center;">
+        <div class="big-number red">–1%</div>
+        <div class="big-label">Снижение цены</div>
+      </div>
+    </div>
+
+    <div class="panel panel-red panel-halftone">
+      <div class="speed-lines"></div>
+      <div class="panel-inner">
+        <div class="shout red">–8% ОПЕРАЦИОННОЙ ПРИБЫЛИ!</div>
+        <p style="text-align:center; margin-top:16px; font-weight:700; font-size:0.9rem; opacity:0.6;">Всего 1% скидки = минус 8% прибыли компании</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Row 2 -->
+  <div class="comic-grid grid-2">
+    <div class="panel panel-orange panel-halftone">
+      <div class="panel-inner">
+        <div class="speech">А если дать скидку 5–10%?</div>
+        <div class="char-row">
+          <div>
+            <div class="character">🤔</div>
+            <div class="char-name">Менеджер</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel panel-red panel-halftone">
+      <div class="speed-lines"></div>
+      <div class="panel-inner" style="text-align:center;">
+        <div style="font-family:'Bangers',cursive; font-size:3rem; color:var(--red); text-shadow:2px 2px 0 rgba(0,0,0,0.1);">💀 СМЕРТЬ ПРИБЫЛИ</div>
+        <p style="font-weight:700; font-size:0.85rem; opacity:0.6; margin-top:8px;">Грузим товар, платим аренду, тратим время — а в кассе ноль</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Narration panel -->
+  <div class="comic-grid grid-1">
+    <div class="panel panel-yellow" style="min-height:120px;">
+      <div class="panel-inner" style="text-align:center;">
+        <p style="font-weight:700; font-size:1.05rem;">⚠️ Иллюзия: «Лучше продать со скидкой, чем не продать вообще».<br>Реальность: <strong>на падающем рынке скидки = работа в минус.</strong></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="comic-divider">· · · · ·</div>
+
+<!-- ============ ГЛАВА 3: ПСИХОЛОГИЯ ============ -->
+<div class="comic-page">
+  <p class="page-title">Глава 3: Дофаминовая ловушка</p>
+  <p class="page-subtitle">Harvard Business Review</p>
+
+  <div class="comic-grid grid-2">
+    <div class="panel panel-purple panel-halftone">
+      <div class="panel-inner">
+        <p style="font-weight:700; margin-bottom:12px;">🧪 «Эффект избегания боли»:</p>
+        <div class="speech">Спорить с клиентом — больно. Проще назвать цену ниже и получить быстрое «Да»…</div>
+        <div class="char-row">
+          <div>
+            <div class="character">😓</div>
+            <div class="char-name">Мозг</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel panel-red panel-halftone">
+      <div class="panel-inner" style="text-align:center;">
+        <p style="font-family:'Bangers',cursive; font-size:1.4rem; margin-bottom:12px;">Дофаминовая петля:</p>
+        <div style="font-size:2.5rem; margin-bottom:8px;">💉 → 😊 → 📉 → 😰 → 💉</div>
+        <p style="font-size:0.85rem; font-weight:700; opacity:0.6;">Быстрая продажа = кайф.<br>Но навык продавать атрофируется. Мы превращаемся в кассиров.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="comic-grid grid-1">
+    <div class="panel panel-orange panel-halftone" style="min-height:140px;">
+      <div class="panel-inner">
+        <div class="shout">СКИДКА — ЭТО НАРКОТИК! 🚫</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="comic-divider">· · · · ·</div>
+
+<!-- ============ ГЛАВА 4: ЯРКАЯ ЛИНИЯ ============ -->
+<div class="comic-page">
+  <p class="page-title">Глава 4: Правило Яркой Линии</p>
+  <p class="page-subtitle">Bright-Line Rule — поведенческая психология</p>
+
+  <div class="comic-grid grid-2">
+    <div class="panel panel-red panel-halftone">
+      <div class="panel-inner">
+        <p style="font-family:'Bangers',cursive; font-size:1.1rem; color:var(--red); margin-bottom:12px;">❌ Если скидку «можно согласовать»:</p>
+        <div class="speech">Может, шеф разрешит… Ну ладно, давайте я спрошу…</div>
+        <p style="font-size:0.85rem; margin-top:16px; opacity:0.6;"><strong>Голос дрожит. Взгляд бегает.</strong> Клиент считывает неуверенность и давит до конца.</p>
+        <div class="char-row">
+          <div>
+            <div class="character">😰</div>
+            <div class="char-name">Слабость</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel panel-green panel-halftone">
+      <div class="panel-inner">
+        <p style="font-family:'Bangers',cursive; font-size:1.1rem; color:var(--green); margin-bottom:12px;">✓ Когда скидок НЕТ физически:</p>
+        <div class="speech" style="border-color:var(--green);">Иван Иванович, у нас единая политика сети. Цена окончательная.</div>
+        <p style="font-size:0.85rem; margin-top:16px; opacity:0.6;"><strong>Спокойно. Твёрдо. С достоинством.</strong> Клиент чувствует надёжность.</p>
+        <div class="char-row right">
+          <div>
+            <div class="character">😎</div>
+            <div class="char-name">Сила</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="comic-grid grid-1">
+    <div class="panel panel-blue panel-halftone" style="min-height:120px;">
+      <div class="panel-inner" style="text-align:center;">
+        <div class="shout green">ПАРАДОКС: КЛИЕНТЫ ЧАЩЕ ПОКУПАЮТ У ТЕХ, КТО УВЕРЕННО ОТКАЗЫВАЕТ В ТОРГЕ! 🤯</div>
+        <p style="font-size:0.85rem; font-weight:700; opacity:0.6; margin-top:12px;">Это сигнал надёжности компании</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="comic-divider">· · · · ·</div>
+
+<!-- ============ ГЛАВА 5: ЧТО ДЕЛАТЬ ============ -->
+<div class="comic-page">
+  <p class="page-title">Глава 5: Секретное оружие</p>
+  <p class="page-subtitle">CEB / Методика Challenger Sale</p>
+
+  <div class="comic-grid grid-2-1">
+    <div class="panel panel-yellow panel-halftone">
+      <div class="panel-inner">
+        <div class="speech">Клиент сказал «Там дешевле» и ушёл. Значит, дело в цене?</div>
+        <div class="char-row">
+          <div>
+            <div class="character">🤷</div>
+            <div class="char-name">Менеджер</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel panel-orange panel-halftone">
+      <div class="panel-inner" style="text-align:center;">
+        <div class="big-number orange">80%</div>
+        <div class="big-label">случаев — дело НЕ в цене!</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="comic-grid grid-3">
+    <div class="panel panel-green panel-halftone">
+      <div class="panel-inner" style="text-align:center;">
+        <div style="font-size:3rem; margin-bottom:8px;">🛡️</div>
+        <p style="font-family:'Bangers',cursive; font-size:1.2rem;">Безопасность</p>
+        <p style="font-size:0.85rem; opacity:0.6; margin-top:4px;">«Мы — идеал-пол.рф, мы не исчезнем завтра»</p>
+      </div>
+    </div>
+
+    <div class="panel panel-blue panel-halftone">
+      <div class="panel-inner" style="text-align:center;">
+        <div style="font-size:3rem; margin-bottom:8px;">🎯</div>
+        <p style="font-family:'Bangers',cursive; font-size:1.2rem;">Экспертность</p>
+        <p style="font-size:0.85rem; opacity:0.6; margin-top:4px;">«Я подобрал пол, который не вздуется через год»</p>
+      </div>
+    </div>
+
+    <div class="panel panel-purple panel-halftone">
+      <div class="panel-inner" style="text-align:center;">
+        <div style="font-size:3rem; margin-bottom:8px;">📦</div>
+        <p style="font-family:'Bangers',cursive; font-size:1.2rem;">Сервис</p>
+        <p style="font-size:0.85rem; opacity:0.6; margin-top:4px;">Наличие, доставка, гарантия</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="comic-grid grid-1">
+    <div class="panel panel-yellow panel-halftone" style="min-height:140px;">
+      <div class="panel-inner" style="text-align:center;">
+        <div class="speech thought" style="display:inline-block; max-width:600px; margin:0 auto;">
+          Только <strong>9%</strong> покупателей выбирают по самой низкой цене. Остальные <strong>91%</strong> готовы платить — но они не увидели ценности! Значит, мы продавали «ламинат», а не решение проблемы.
+        </div>
+        <div style="margin-top:16px;">
+          <div class="character" style="margin:0 auto;">🧔</div>
+          <div class="char-name">СС</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="comic-divider">· · · · ·</div>
+
+<!-- ============ ГЛАВА 6: АРСЕНАЛ ============ -->
+<div class="comic-page">
+  <p class="page-title">Глава 6: Ваш арсенал</p>
+  <p class="page-subtitle">4 инструмента, которые заменяют любую скидку</p>
+
+  <!-- Intro panel -->
+  <div class="comic-grid grid-1">
+    <div class="panel panel-blue panel-halftone" style="min-height:160px;">
+      <div class="panel-inner">
+        <div style="display:flex; gap:20px; align-items:center; flex-wrap:wrap; justify-content:center;">
+          <div>
+            <div class="character" style="margin:0 auto;">🧔</div>
+            <div class="char-name">СС</div>
+          </div>
+          <div class="speech thought" style="display:inline-block; max-width:600px; margin:0;">
+            Я не оставил вас с пустыми руками. Я убрал скидки, которые съедали нашу с вами прибыль, но оставил и усилил <strong>4 мощнейших инструмента</strong>. Это ваш арсенал на идеал-пол.рф!
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOOL 1: Защита объектов -->
+  <div class="comic-grid grid-2">
+    <div class="panel panel-green panel-halftone">
+      <div class="panel-inner">
+        <div style="text-align:center;">
+          <div style="font-size:3rem; margin-bottom:4px;">🛡️</div>
+          <p style="font-family:'Bangers',cursive; font-size:1.5rem; color:var(--green);">1. Защита объектов</p>
+          <p style="font-family:'Bangers',cursive; font-size:0.9rem; opacity:0.5; margin-top:2px;">Ваш главный щит от демпинга</p>
+        </div>
+        <div class="speech" style="margin-top:16px; font-size:0.9rem;">
+          Выписали счёт → внесли в Гугл-таблицу → подали поставщику → <strong>ЗАБРОНИРОВАЛИ клиента за нами!</strong>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel panel-red panel-halftone">
+      <div class="speed-lines"></div>
+      <div class="panel-inner">
+        <div class="shout red" style="font-size:1.2rem;">ГУГЛ-ТАБЛИЦА ПОЧТИ ПУСТАЯ! 😱</div>
+        <p style="text-align:center; margin-top:16px; font-weight:700; font-size:0.9rem; opacity:0.7;">Вы сами отказываетесь от своих денег!</p>
+        <div class="speech" style="margin-top:16px; font-size:0.85rem; border-color:var(--green);">
+          Когда объект защищён — <strong>ни один конкурент</strong> не сможет дать клиенту цену ниже. Поставщик ему просто не отгрузит!
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="comic-grid grid-1">
+    <div class="panel panel-yellow panel-halftone" style="min-height:100px;">
+      <div class="panel-inner" style="text-align:center;">
+        <p style="font-weight:700; font-size:1rem;">⚡ Защита объекта убивает демпинг на корню. Используйте таблицу после <strong>каждого</strong> крупного просчёта!</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOOL 2: Акции поставщиков -->
+  <div class="comic-grid grid-1-2">
+    <div class="panel panel-orange panel-halftone">
+      <div class="panel-inner" style="text-align:center;">
+        <div style="font-size:3rem; margin-bottom:4px;">🏷️</div>
+        <p style="font-family:'Bangers',cursive; font-size:1.5rem; color:var(--orange);">2. Акции заводов</p>
+        <p style="font-family:'Bangers',cursive; font-size:0.9rem; opacity:0.5; margin-top:2px;">100% выгоды — клиенту</p>
+      </div>
+    </div>
+
+    <div class="panel panel-yellow panel-halftone">
+      <div class="panel-inner">
+        <div class="speech" style="font-size:0.9rem;">Клиент просит скидку? А вот что вы говорите:</div>
+        <div class="speech right" style="margin-top:12px; background:var(--green); color:#fff; border-color:var(--green); font-weight:700; font-size:0.95rem;">
+          «Магазин скидок не делает, но сейчас идёт мощная федеральная акция от самого завода — вот отличный вариант по лучшей цене!»
+        </div>
+        <div class="char-row right" style="margin-top:12px;">
+          <div>
+            <div class="character">😎</div>
+            <div class="char-name">Менеджер</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="comic-grid grid-1">
+    <div class="panel panel-orange panel-halftone" style="min-height:90px;">
+      <div class="panel-inner" style="text-align:center;">
+        <p style="font-weight:700; font-size:1rem;">🎯 Ваша задача — <strong>знать все текущие акции поставщиков наизусть</strong>. Ведите клиента к жёлтым и красным ценникам!</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOOL 3: Складские остатки -->
+  <div class="comic-grid grid-2">
+    <div class="panel panel-purple panel-halftone">
+      <div class="panel-inner" style="text-align:center;">
+        <div style="font-size:3rem; margin-bottom:4px;">📦</div>
+        <p style="font-family:'Bangers',cursive; font-size:1.5rem; color:var(--purple);">3. Распродажа остатков</p>
+        <div class="big-number purple" style="font-size:3rem; margin-top:8px;">10–20%</div>
+        <div class="big-label">ассортимента на складе с лучшими ценами</div>
+      </div>
+    </div>
+
+    <div class="panel panel-purple panel-halftone">
+      <div class="panel-inner">
+        <div class="speech" style="font-size:0.9rem;">У клиента жёсткий бюджет?</div>
+        <div class="speech right" style="margin-top:12px; background:var(--purple); color:#fff; border-color:var(--purple); font-weight:700; font-size:0.95rem;">
+          Покажите складские остатки! Клиент впишется в смету, а компания сделает оборот. Win-win! 🤝
+        </div>
+        <div class="char-row right" style="margin-top:12px;">
+          <div>
+            <div class="character">💡</div>
+            <div class="char-name">Менеджер</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOOL 4: B2B -->
+  <div class="comic-grid grid-2-1">
+    <div class="panel panel-blue panel-halftone">
+      <div class="panel-inner">
+        <div style="text-align:center; margin-bottom:12px;">
+          <div style="font-size:3rem;">🤝</div>
+          <p style="font-family:'Bangers',cursive; font-size:1.5rem; color:var(--blue);">4. B2B: Дизайнеры и строители</p>
+        </div>
+        <div class="speech" style="font-size:0.9rem;">
+          Для тех, кто генерирует постоянный поток — дизайнеры, прорабы, архитекторы — мы <strong>не изменили ни одной цифры</strong>. Все премии, бонусы и агентские работают железно.
+        </div>
+      </div>
+    </div>
+
+    <div class="panel panel-blue panel-halftone">
+      <div class="panel-inner" style="text-align:center;">
+        <div class="shout green" style="font-size:1.1rem;">СТАБИЛЬНОЕ ПАРТНЁРСТВО = ГАРАНТИЯ</div>
+        <p style="font-size:0.85rem; font-weight:700; opacity:0.6; margin-top:12px;">Им важна не разовая скидка, а надёжное сотрудничество с идеал-пол.рф</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Arsenal summary -->
+  <div class="comic-grid grid-1">
+    <div class="panel panel-yellow panel-halftone" style="min-height:160px;">
+      <div class="panel-inner" style="text-align:center;">
+        <p style="font-family:'Bangers',cursive; font-size:1.4rem; margin-bottom:16px;">Резюме от СС:</p>
+        <div class="speech thought" style="display:inline-block; max-width:620px; margin:0 auto; font-size:0.95rem;">
+          Вы заходите в зал и видите: нам <strong>ЕСТЬ</strong> что предложить клиентам, ищущим выгоду (акции заводов, остатки). Нам <strong>ЕСТЬ</strong> чем бить конкурентов (защита объектов). Хватит мыслить «нет скидки — нет продажи». Начинайте использовать инструменты, которые делают нас <strong>монополистами</strong> по конкретным клиентам!
+        </div>
+        <div style="margin-top:16px;">
+          <div class="character" style="margin:0 auto;">🧔</div>
+          <div class="char-name">СС</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="comic-grid grid-1">
+    <div class="panel panel-green panel-halftone" style="min-height:100px;">
+      <div class="speed-lines"></div>
+      <div class="panel-inner">
+        <div class="shout green" style="font-size:1.4rem;">ЖДУ АКТИВНОГО ЗАПОЛНЕНИЯ ГУГЛ-ТАБЛИЦЫ ПО ЗАЩИТЕ ОБЪЕКТОВ С СЕГОДНЯШНЕГО ДНЯ! 📋🔥</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="comic-divider">★ ★ ★</div>
+
+<!-- ============ ФИНАЛ ============ -->
+<div class="comic-page">
+  <div class="final-panel">
+    <h2>Запрет скидок — это тренировка ваших мышц переговорщиков 💪</h2>
+    <p>Сейчас будет сложно. Но те из команды идеал-пол.рф, кто научится продавать БЕЗ скидок, станут самыми дорогими специалистами на рынке.</p>
+    <p>Давайте учиться продавать ценность, а не цену.</p>
+    <div class="final-sig">Я в вас верю. — СС</div>
+  </div>
+</div>
+
+<script>
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.panel').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>

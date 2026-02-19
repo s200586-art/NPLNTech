@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Обучение по-новому | NPLN Tech</title>
+    <meta name="description" content="Раздел обучающих материалов NPLN Tech. Креативные форматы обучения для команд: комиксы, видео и интерактивные кейсы.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://npln.tech/learning-hub.html">
+
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://npln.tech/learning-hub.html">
+    <meta property="og:title" content="Обучение по-новому | NPLN Tech">
+    <meta property="og:description" content="Раздел обучающих материалов NPLN Tech: комикс-кейс и видео про работу со скидками.">
+    <meta property="og:image" content="https://npln.tech/files/learning-hub-og.png?v=20260218a">
+    <meta property="og:locale" content="ru_RU">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Обучение по-новому | NPLN Tech">
+    <meta name="twitter:description" content="Раздел обучающих материалов NPLN Tech: комикс-кейс и видео про работу со скидками.">
+    <meta name="twitter:image" content="https://npln.tech/files/learning-hub-og.png?v=20260218a">
+
+    <link rel="icon" type="image/x-icon" href="/files/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="/files/apple-touch-icon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --cyan: #00E5FF;
+            --cyan-glow: rgba(0, 229, 255, 0.45);
+            --cyan-dim: rgba(0, 229, 255, 0.12);
+            --bg-dark: #0a0e14;
+            --bg-card: rgba(15, 22, 30, 0.84);
+            --text-primary: #e6edf3;
+            --text-secondary: #8b949e;
+            --border: rgba(0, 229, 255, 0.25);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-primary);
+            min-height: 100vh;
+            background-image:
+                linear-gradient(var(--cyan-dim) 1px, transparent 1px),
+                linear-gradient(90deg, var(--cyan-dim) 1px, transparent 1px);
+            background-size: 42px 42px;
+        }
+
+        .wrap {
+            width: min(1200px, 94vw);
+            margin: 36px auto;
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 22px;
+        }
+
+        .panel {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            overflow: hidden;
+            box-shadow: 0 0 35px rgba(0, 0, 0, 0.2);
+        }
+
+        .left {
+            padding: 20px;
+        }
+
+        .brand {
+            font-family: 'JetBrains Mono', monospace;
+            color: var(--cyan);
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            text-shadow: 0 0 12px var(--cyan-glow);
+        }
+
+        .brand-sub {
+            font-family: 'JetBrains Mono', monospace;
+            color: var(--text-secondary);
+            font-size: 0.86rem;
+            margin-bottom: 18px;
+        }
+
+        .nav-title {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.82rem;
+            letter-spacing: 0.08em;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        .menu {
+            display: grid;
+            gap: 10px;
+        }
+
+        .menu-item {
+            text-decoration: none;
+            display: block;
+            padding: 12px 14px;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            color: var(--text-primary);
+            background: var(--cyan-dim);
+            transition: all 0.22s ease;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+        }
+
+        .menu-item:hover {
+            border-color: var(--cyan);
+            box-shadow: 0 0 18px rgba(0, 229, 255, 0.2);
+            transform: translateX(3px);
+        }
+
+        .right {
+            padding: 24px;
+        }
+
+        .crumbs {
+            font-family: 'JetBrains Mono', monospace;
+            color: var(--text-secondary);
+            font-size: 0.84rem;
+            margin-bottom: 16px;
+        }
+
+        .crumbs a {
+            color: var(--cyan);
+            text-decoration: none;
+        }
+
+        h1 {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: clamp(1.4rem, 3.4vw, 2.1rem);
+            margin-bottom: 12px;
+        }
+
+        .lead {
+            color: var(--text-secondary);
+            max-width: 860px;
+            margin-bottom: 22px;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+            gap: 16px;
+        }
+
+        .case-card {
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 16px;
+            background: linear-gradient(135deg, rgba(0, 229, 255, 0.08), rgba(15, 22, 30, 0.9));
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .case-badge {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
+            color: var(--cyan);
+        }
+
+        .case-title {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.05rem;
+            line-height: 1.4;
+        }
+
+        .case-desc {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        .case-action {
+            margin-top: auto;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            width: fit-content;
+            padding: 11px 14px;
+            border-radius: 9px;
+            border: 1px solid var(--cyan);
+            color: var(--cyan);
+            font-family: 'JetBrains Mono', monospace;
+            background: rgba(0, 229, 255, 0.06);
+            transition: all 0.2s ease;
+        }
+
+        .case-action:hover {
+            box-shadow: 0 0 20px rgba(0, 229, 255, 0.22);
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 900px) {
+            .wrap {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <main class="wrap">
+        <aside class="panel left">
+            <div class="brand">&gt; NPP</div>
+            <div class="brand-sub">learning hub</div>
+
+            <div class="nav-title">Материалы</div>
+            <nav class="menu" aria-label="Обучающие материалы">
+                <a class="menu-item" href="policy-comic-v3.html">🎨 Комикс про скидки</a>
+                <a class="menu-item" href="video-proschayte-skidki.html">🎬 Видео: Прощайте, скидки</a>
+            </nav>
+        </aside>
+
+        <section class="panel right">
+            <div class="crumbs"><a href="index.html">Главная</a> / Обучение по-новому</div>
+            <h1>Обучение по-новому</h1>
+            <p class="lead">Здесь собраны обучающие форматы для команды: креативный комикс-кейс и видео-обращение про работу со скидками.</p>
+
+            <div class="cards">
+                <article class="case-card">
+                    <div class="case-badge">Кейс #01</div>
+                    <h2 class="case-title">Комикс: «Почему мы не даём скидок»</h2>
+                    <p class="case-desc">Интерактивная веб-версия обращения к команде: аргументация, инструменты продаж и сценарии диалога с клиентом.</p>
+                    <a class="case-action" href="policy-comic-v3.html">Открыть кейс <span>→</span></a>
+                </article>
+
+                <article class="case-card">
+                    <div class="case-badge">Видео #02</div>
+                    <h2 class="case-title">Видео: «Прощайте, скидки»</h2>
+                    <p class="case-desc">Видеоформат для команды: готовый ролик с ключевыми тезисами для внедрения новой модели продаж.</p>
+                    <a class="case-action" href="video-proschayte-skidki.html">Смотреть видео <span>→</span></a>
+                </article>
+            </div>
+        </section>
+    </main>
+</body>
+</html>

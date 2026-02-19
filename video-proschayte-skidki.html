@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Видео: Прощайте, скидки | NPLN Tech</title>
+    <meta name="description" content="Видео-материал для команды: Прощайте, скидки. Обучающий формат в разделе Обучение по-новому от NPLN Tech.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://npln.tech/video-proschayte-skidki.html">
+
+    <meta property="og:type" content="video.other">
+    <meta property="og:url" content="https://npln.tech/video-proschayte-skidki.html">
+    <meta property="og:title" content="Видео: Прощайте, скидки">
+    <meta property="og:description" content="Видео-обращение к команде в разделе Обучение по-новому.">
+    <meta property="og:image" content="https://npln.tech/files/policy-comic-preview.svg">
+    <meta property="og:locale" content="ru_RU">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Видео: Прощайте, скидки">
+    <meta name="twitter:description" content="Видео-обращение к команде в разделе Обучение по-новому.">
+    <meta name="twitter:image" content="https://npln.tech/files/policy-comic-preview.svg">
+
+    <link rel="icon" type="image/x-icon" href="/files/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="/files/apple-touch-icon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --cyan: #00E5FF;
+            --cyan-glow: rgba(0, 229, 255, 0.45);
+            --cyan-dim: rgba(0, 229, 255, 0.12);
+            --bg-dark: #0a0e14;
+            --bg-card: rgba(15, 22, 30, 0.84);
+            --text-primary: #e6edf3;
+            --text-secondary: #8b949e;
+            --border: rgba(0, 229, 255, 0.25);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-primary);
+            min-height: 100vh;
+            background-image:
+                linear-gradient(var(--cyan-dim) 1px, transparent 1px),
+                linear-gradient(90deg, var(--cyan-dim) 1px, transparent 1px);
+            background-size: 42px 42px;
+        }
+
+        .wrap {
+            width: min(1120px, 94vw);
+            margin: 34px auto;
+            padding: 24px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            box-shadow: 0 0 35px rgba(0, 0, 0, 0.2);
+        }
+
+        .crumbs {
+            font-family: 'JetBrains Mono', monospace;
+            color: var(--text-secondary);
+            font-size: 0.84rem;
+            margin-bottom: 14px;
+        }
+
+        .crumbs a { color: var(--cyan); text-decoration: none; }
+
+        h1 {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: clamp(1.35rem, 3.2vw, 2rem);
+            margin-bottom: 8px;
+        }
+
+        .lead {
+            color: var(--text-secondary);
+            margin-bottom: 18px;
+        }
+
+        .player {
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            overflow: hidden;
+            background: #000;
+            margin-bottom: 14px;
+        }
+
+        video {
+            width: 100%;
+            height: auto;
+            display: block;
+            background: #000;
+        }
+
+        .actions {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 14px;
+            text-decoration: none;
+            border-radius: 8px;
+            font-family: 'JetBrains Mono', monospace;
+            border: 1px solid var(--border);
+            color: var(--text-primary);
+            background: var(--cyan-dim);
+        }
+
+        .btn:hover {
+            border-color: var(--cyan);
+            color: var(--cyan);
+            box-shadow: 0 0 16px rgba(0, 229, 255, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <main class="wrap">
+        <div class="crumbs"><a href="index.html">Главная</a> / <a href="learning-hub.html">Обучение по-новому</a> / Видео</div>
+        <h1>Видео: «Прощайте, скидки»</h1>
+        <p class="lead">Видеоматериал для внутреннего обучения команды.</p>
+
+        <div class="player">
+            <video controls preload="metadata" poster="files/policy-comic-preview.svg">
+                <source src="files/proschayte-skidki.mp4" type="video/mp4">
+                Ваш браузер не поддерживает встроенное видео.
+            </video>
+        </div>
+
+        <div class="actions">
+            <a class="btn" href="files/proschayte-skidki.mp4" download>⬇ Скачать MP4</a>
+            <a class="btn" href="learning-hub.html">← Назад в обучение</a>
+        </div>
+    </main>
+</body>
+</html>
