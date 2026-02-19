@@ -1088,6 +1088,85 @@
             line-height: 1.4;
         }
 
+        .lead-radar {
+            margin: 0 auto 1rem;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            background: linear-gradient(145deg, rgba(11, 18, 27, 0.92), rgba(0, 229, 255, 0.05));
+            padding: 0.8rem;
+            text-align: left;
+        }
+
+        .lead-radar-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 0.7rem;
+            margin-bottom: 0.6rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.72rem;
+            text-transform: uppercase;
+            color: var(--text-secondary);
+        }
+
+        .lead-radar-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--cyan);
+            box-shadow: 0 0 12px var(--cyan-glow);
+        }
+
+        .lead-radar-grid {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 0.5rem;
+        }
+
+        .lead-radar-item {
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 0.45rem 0.5rem;
+            background: rgba(0, 229, 255, 0.04);
+        }
+
+        .lead-radar-label {
+            display: block;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.64rem;
+            letter-spacing: 0.05em;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            margin-bottom: 0.2rem;
+        }
+
+        .lead-radar-value {
+            color: var(--text-primary);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.72rem;
+            line-height: 1.35;
+            word-break: break-word;
+        }
+
+        .lead-radar-stats {
+            margin-top: 0.55rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.45rem;
+        }
+
+        .lead-radar-chip {
+            display: inline-flex;
+            align-items: center;
+            border: 1px solid var(--border);
+            border-radius: 999px;
+            padding: 0.22rem 0.55rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.68rem;
+            color: var(--text-secondary);
+            background: rgba(0, 229, 255, 0.06);
+        }
+
         .contact-links {
             display: flex;
             gap: 1rem;
@@ -1231,6 +1310,10 @@
                 grid-template-columns: 1fr;
             }
 
+            .lead-radar-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
             .form-actions {
                 flex-direction: column;
             }
@@ -1242,6 +1325,10 @@
 
         @media (max-width: 520px) {
             .impact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .lead-radar-grid {
                 grid-template-columns: 1fr;
             }
         }
@@ -2394,6 +2481,34 @@
                     <p class="contact-trust-desc">После запуска не исчезаем: мониторинг, апдейты, развитие решения.</p>
                 </article>
             </div>
+            <div class="lead-radar" id="leadRadar" aria-label="Lead Radar: источник лидов">
+                <div class="lead-radar-head">
+                    <span>lead radar // источник текущей сессии</span>
+                    <span class="lead-radar-dot" aria-hidden="true"></span>
+                </div>
+                <div class="lead-radar-grid">
+                    <div class="lead-radar-item">
+                        <span class="lead-radar-label">utm_source</span>
+                        <span class="lead-radar-value" id="radarUtmSource">-</span>
+                    </div>
+                    <div class="lead-radar-item">
+                        <span class="lead-radar-label">utm_medium</span>
+                        <span class="lead-radar-value" id="radarUtmMedium">-</span>
+                    </div>
+                    <div class="lead-radar-item">
+                        <span class="lead-radar-label">utm_campaign</span>
+                        <span class="lead-radar-value" id="radarUtmCampaign">-</span>
+                    </div>
+                    <div class="lead-radar-item">
+                        <span class="lead-radar-label">referrer</span>
+                        <span class="lead-radar-value" id="radarReferrer">-</span>
+                    </div>
+                </div>
+                <div class="lead-radar-stats">
+                    <span class="lead-radar-chip">стартов формы: <strong id="radarStarts">0</strong></span>
+                    <span class="lead-radar-chip">отправок формы: <strong id="radarSubmits">0</strong></span>
+                </div>
+            </div>
             <div class="contact-links">
                 <a href="https://t.me/nplntch_bot" class="contact-link">
                     <span>&#128241;</span> Telegram
@@ -2473,6 +2588,12 @@
         const leadEmailBtn = document.getElementById('leadEmailBtn');
         const leadStatus = document.getElementById('leadStatus');
         const leadSteps = Array.from(document.querySelectorAll('[data-lead-step]'));
+        const radarUtmSource = document.getElementById('radarUtmSource');
+        const radarUtmMedium = document.getElementById('radarUtmMedium');
+        const radarUtmCampaign = document.getElementById('radarUtmCampaign');
+        const radarReferrer = document.getElementById('radarReferrer');
+        const radarStarts = document.getElementById('radarStarts');
+        const radarSubmits = document.getElementById('radarSubmits');
         let leadStartedTracked = false;
 
         const setLeadStatus = (message, type = '') => {
@@ -2509,6 +2630,47 @@
         Object.entries(hiddenFieldMap).forEach(([key, field]) => {
             if (field) field.value = leadSource[key] || '';
         });
+
+        const radarSessionKey = 'npln_lead_radar_session';
+        const readRadarSession = () => {
+            try {
+                const raw = sessionStorage.getItem(radarSessionKey);
+                if (!raw) return { starts: 0, submits: 0 };
+                const parsed = JSON.parse(raw);
+                return {
+                    starts: Number(parsed.starts || 0),
+                    submits: Number(parsed.submits || 0)
+                };
+            } catch (error) {
+                return { starts: 0, submits: 0 };
+            }
+        };
+
+        const writeRadarSession = (state) => {
+            try {
+                sessionStorage.setItem(radarSessionKey, JSON.stringify(state));
+            } catch (error) {
+                // no-op
+            }
+        };
+
+        const renderLeadRadar = () => {
+            if (radarUtmSource) radarUtmSource.textContent = leadSource.utmSource || '-';
+            if (radarUtmMedium) radarUtmMedium.textContent = leadSource.utmMedium || '-';
+            if (radarUtmCampaign) radarUtmCampaign.textContent = leadSource.utmCampaign || '-';
+            if (radarReferrer) radarReferrer.textContent = leadSource.referrer || '-';
+
+            const state = readRadarSession();
+            if (radarStarts) radarStarts.textContent = String(state.starts);
+            if (radarSubmits) radarSubmits.textContent = String(state.submits);
+        };
+
+        const bumpRadarMetric = (metricName) => {
+            const state = readRadarSession();
+            state[metricName] = Number(state[metricName] || 0) + 1;
+            writeRadarSession(state);
+            renderLeadRadar();
+        };
 
         const readLeadData = () => ({
             name: (document.getElementById('leadName')?.value || '').trim(),
@@ -2620,7 +2782,11 @@
                     referrer: data.referrer || ''
                 }
             }));
+
+            bumpRadarMetric('submits');
         };
+
+        renderLeadRadar();
 
         if (leadForm) {
             updateLeadSteps();
@@ -2637,6 +2803,7 @@
                         referrer: leadSource.referrer || ''
                     }
                 }));
+                bumpRadarMetric('starts');
             }, { once: true });
 
             leadForm.addEventListener('submit', (event) => {
