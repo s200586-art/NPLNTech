@@ -1064,12 +1064,22 @@
                 grid-template-columns: 1fr;
             }
 
+            .impact-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
             .form-actions {
                 flex-direction: column;
             }
 
             .lead-btn {
                 width: 100%;
+            }
+        }
+
+        @media (max-width: 520px) {
+            .impact-grid {
+                grid-template-columns: 1fr;
             }
         }
 
@@ -1392,6 +1402,101 @@
 
         .proof-mini-link:hover {
             color: var(--cyan);
+        }
+
+        .impact-section {
+            padding: 3rem 2rem 4rem;
+        }
+
+        .impact-shell {
+            max-width: 1160px;
+            margin: 0 auto;
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 1.2rem;
+            background:
+                radial-gradient(circle at 20% 0%, rgba(0, 229, 255, 0.09), transparent 44%),
+                linear-gradient(150deg, rgba(8, 19, 30, 0.96), rgba(15, 18, 24, 0.92));
+            box-shadow: inset 0 0 0 1px rgba(0, 229, 255, 0.08), 0 0 28px rgba(0, 229, 255, 0.09);
+        }
+
+        .impact-grid {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 0.75rem;
+        }
+
+        .impact-card {
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 0.95rem;
+            background: rgba(5, 16, 27, 0.78);
+        }
+
+        .impact-value {
+            display: block;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: clamp(1.2rem, 2.6vw, 1.9rem);
+            color: var(--cyan);
+            text-shadow: 0 0 12px var(--cyan-glow);
+            margin-bottom: 0.35rem;
+        }
+
+        .impact-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--text-secondary);
+            margin-bottom: 0.35rem;
+        }
+
+        .impact-note {
+            color: var(--text-secondary);
+            font-size: 0.88rem;
+            line-height: 1.42;
+        }
+
+        .impact-actions {
+            margin-top: 0.85rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.65rem;
+        }
+
+        .impact-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            padding: 0.65rem 0.9rem;
+            text-decoration: none;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
+            transition: all 0.22s ease;
+        }
+
+        .impact-btn-primary {
+            background: var(--cyan);
+            border-color: var(--cyan);
+            color: #00121c;
+            box-shadow: 0 0 16px rgba(0, 229, 255, 0.22);
+        }
+
+        .impact-btn-primary:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 0 24px rgba(0, 229, 255, 0.35);
+        }
+
+        .impact-btn-secondary {
+            background: rgba(0, 229, 255, 0.08);
+            color: var(--text-primary);
+        }
+
+        .impact-btn-secondary:hover {
+            color: var(--cyan);
+            border-color: var(--cyan);
         }
 
         /* FAQ Section */
@@ -1775,6 +1880,42 @@
                 <p class="proof-mini-text">Поддержка после релиза: мониторинг, апдейты и развитие.</p>
                 <a class="proof-mini-link" href="#faq">как это работает →</a>
             </article>
+        </div>
+    </section>
+
+    <section class="impact-section" aria-label="Результат внедрения">
+        <div class="section-header">
+            <span class="section-tag">impact</span>
+            <h2 class="section-title">Что получает бизнес после запуска</h2>
+            <p class="section-desc">Фокус на цифрах, которые видит собственник: скорость, качество процессов и рост конверсии.</p>
+        </div>
+        <div class="impact-shell">
+            <div class="impact-grid">
+                <article class="impact-card">
+                    <span class="impact-value">-40% до -62%</span>
+                    <div class="impact-label">Сокращение рутины</div>
+                    <p class="impact-note">Меньше ручной обработки заявок, претензий и операционных задач.</p>
+                </article>
+                <article class="impact-card">
+                    <span class="impact-value">x2 скорость</span>
+                    <div class="impact-label">Реакция команды</div>
+                    <p class="impact-note">Быстрый ответ клиентам и прозрачный контроль статусов в процессе.</p>
+                </article>
+                <article class="impact-card">
+                    <span class="impact-value">+31%</span>
+                    <div class="impact-label">Конверсия</div>
+                    <p class="impact-note">Больше целевых диалогов и меньше потерь лидов на первом касании.</p>
+                </article>
+                <article class="impact-card">
+                    <span class="impact-value">1-4 недели</span>
+                    <div class="impact-label">До эффекта</div>
+                    <p class="impact-note">Первые рабочие результаты появляются быстро, без длинной внедренки.</p>
+                </article>
+            </div>
+            <div class="impact-actions">
+                <a class="impact-btn impact-btn-primary" href="#contact">→ обсудить задачу</a>
+                <a class="impact-btn impact-btn-secondary" href="#cases">смотреть кейсы</a>
+            </div>
         </div>
     </section>
 
