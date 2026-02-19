@@ -51,3 +51,20 @@ chmod +x scripts/validate_static.sh scripts/check_site.sh
 scripts/validate_static.sh
 scripts/check_site.sh https://npln.tech/
 ```
+
+## Safe server pull (manual)
+
+When server has local changes and a normal `git pull` fails:
+
+```bash
+cd /var/www/nplntech
+chmod +x scripts/safe_git_pull.sh
+./scripts/safe_git_pull.sh origin main
+```
+
+What it does:
+
+1. Fetches `origin/main` and checks incoming files
+2. Stashes tracked local edits only for conflicting files
+3. Moves untracked conflicting files into `.pull-backups/<timestamp>/`
+4. Runs `git pull origin main`
