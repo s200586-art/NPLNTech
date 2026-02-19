@@ -916,6 +916,38 @@
             margin: 0 auto 1rem;
         }
 
+        .lead-steps {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 0.55rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .lead-step {
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 0.45rem 0.55rem;
+            background: rgba(0, 229, 255, 0.03);
+            color: var(--text-secondary);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            letter-spacing: 0.02em;
+            text-transform: uppercase;
+            transition: all 0.2s ease;
+        }
+
+        .lead-step.is-active {
+            color: var(--cyan);
+            border-color: var(--cyan);
+            box-shadow: 0 0 10px rgba(0, 229, 255, 0.16);
+        }
+
+        .lead-step.is-done {
+            color: #24f8b4;
+            border-color: rgba(36, 248, 180, 0.5);
+            background: rgba(36, 248, 180, 0.08);
+        }
+
         .lead-grid {
             display: grid;
             grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -1184,6 +1216,10 @@
             }
 
             .lead-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .lead-steps {
                 grid-template-columns: 1fr;
             }
 
@@ -2301,6 +2337,16 @@
                 Расскажите о своей задаче — разберёмся, подходит ли вам автоматизация и что можно сделать в первую очередь
             </p>
             <form class="lead-form" id="leadForm" novalidate>
+                <div class="lead-steps" aria-label="Шаги формы">
+                    <div class="lead-step is-active" data-lead-step="1">1. Контакт</div>
+                    <div class="lead-step" data-lead-step="2">2. Задача</div>
+                    <div class="lead-step" data-lead-step="3">3. Отправка</div>
+                </div>
+                <input type="hidden" id="leadUtmSource" name="utm_source">
+                <input type="hidden" id="leadUtmCampaign" name="utm_campaign">
+                <input type="hidden" id="leadUtmMedium" name="utm_medium">
+                <input type="hidden" id="leadReferrer" name="referrer">
+                <input type="hidden" id="leadLanding" name="landing_page">
                 <div class="lead-grid">
                     <div class="form-group">
                         <label class="form-label" for="leadName">Имя</label>
@@ -2426,6 +2472,8 @@
         const leadForm = document.getElementById('leadForm');
         const leadEmailBtn = document.getElementById('leadEmailBtn');
         const leadStatus = document.getElementById('leadStatus');
+        const leadSteps = Array.from(document.querySelectorAll('[data-lead-step]'));
+        let leadStartedTracked = false;
 
         const setLeadStatus = (message, type = '') => {
             if (!leadStatus) return;
@@ -2434,13 +2482,68 @@
             if (type) leadStatus.classList.add(type);
         };
 
+        const query = new URLSearchParams(window.location.search);
+        let refHost = '';
+        try {
+            refHost = document.referrer ? new URL(document.referrer).hostname : '';
+        } catch (error) {
+            refHost = '';
+        }
+
+        const leadSource = {
+            utmSource: query.get('utm_source') || '',
+            utmCampaign: query.get('utm_campaign') || '',
+            utmMedium: query.get('utm_medium') || '',
+            referrer: refHost,
+            landingPage: window.location.href
+        };
+
+        const hiddenFieldMap = {
+            utmSource: document.getElementById('leadUtmSource'),
+            utmCampaign: document.getElementById('leadUtmCampaign'),
+            utmMedium: document.getElementById('leadUtmMedium'),
+            referrer: document.getElementById('leadReferrer'),
+            landingPage: document.getElementById('leadLanding')
+        };
+
+        Object.entries(hiddenFieldMap).forEach(([key, field]) => {
+            if (field) field.value = leadSource[key] || '';
+        });
+
         const readLeadData = () => ({
             name: (document.getElementById('leadName')?.value || '').trim(),
             contact: (document.getElementById('leadContact')?.value || '').trim(),
             company: (document.getElementById('leadCompany')?.value || '').trim(),
             budget: (document.getElementById('leadBudget')?.value || '').trim(),
-            task: (document.getElementById('leadTask')?.value || '').trim()
+            task: (document.getElementById('leadTask')?.value || '').trim(),
+            utmSource: (document.getElementById('leadUtmSource')?.value || '').trim(),
+            utmCampaign: (document.getElementById('leadUtmCampaign')?.value || '').trim(),
+            utmMedium: (document.getElementById('leadUtmMedium')?.value || '').trim(),
+            referrer: (document.getElementById('leadReferrer')?.value || '').trim(),
+            landingPage: (document.getElementById('leadLanding')?.value || '').trim()
         });
+
+        const updateLeadSteps = () => {
+            if (!leadSteps.length) return;
+            const data = readLeadData();
+            const hasContact = data.name.length >= 2 && data.contact.length >= 4;
+            const hasTask = data.task.length >= 10;
+
+            leadSteps.forEach(step => step.classList.remove('is-active', 'is-done'));
+            const step1 = leadSteps.find(step => step.dataset.leadStep === '1');
+            const step2 = leadSteps.find(step => step.dataset.leadStep === '2');
+            const step3 = leadSteps.find(step => step.dataset.leadStep === '3');
+
+            if (step1) step1.classList.add(hasContact ? 'is-done' : 'is-active');
+            if (step2) {
+                if (hasTask) {
+                    step2.classList.add('is-done');
+                } else if (hasContact) {
+                    step2.classList.add('is-active');
+                }
+            }
+            if (step3 && hasTask) step3.classList.add('is-active');
+        };
 
         const validateLeadData = (data) => {
             if (data.name.length < 2) return 'Укажите имя (минимум 2 символа).';
@@ -2460,7 +2563,13 @@
                 'Задача:',
                 data.task,
                 '',
-                `Страница: ${location.href}`,
+                'Источник:',
+                `utm_source: ${data.utmSource || '-'}`,
+                `utm_medium: ${data.utmMedium || '-'}`,
+                `utm_campaign: ${data.utmCampaign || '-'}`,
+                `referrer: ${data.referrer || '-'}`,
+                '',
+                `Страница: ${data.landingPage || location.href}`,
                 `Время: ${new Date().toLocaleString('ru-RU')}`
             ];
             return lines.join('\n');
@@ -2504,12 +2613,32 @@
                 detail: {
                     channel,
                     hasCompany: Boolean(data.company),
-                    hasBudget: Boolean(data.budget)
+                    hasBudget: Boolean(data.budget),
+                    utmSource: data.utmSource || '',
+                    utmCampaign: data.utmCampaign || '',
+                    utmMedium: data.utmMedium || '',
+                    referrer: data.referrer || ''
                 }
             }));
         };
 
         if (leadForm) {
+            updateLeadSteps();
+            leadForm.addEventListener('input', updateLeadSteps);
+            leadForm.addEventListener('change', updateLeadSteps);
+            leadForm.addEventListener('focusin', () => {
+                if (leadStartedTracked) return;
+                leadStartedTracked = true;
+                window.dispatchEvent(new CustomEvent('npln:lead_start', {
+                    detail: {
+                        utmSource: leadSource.utmSource || '',
+                        utmCampaign: leadSource.utmCampaign || '',
+                        utmMedium: leadSource.utmMedium || '',
+                        referrer: leadSource.referrer || ''
+                    }
+                }));
+            }, { once: true });
+
             leadForm.addEventListener('submit', (event) => {
                 event.preventDefault();
                 submitLead('telegram');

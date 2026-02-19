@@ -67,7 +67,21 @@
     track('npln_lead_form_submit', {
       channel: detail.channel || 'unknown',
       has_company: !!detail.hasCompany,
-      has_budget: !!detail.hasBudget
+      has_budget: !!detail.hasBudget,
+      utm_source: detail.utmSource || '',
+      utm_campaign: detail.utmCampaign || '',
+      utm_medium: detail.utmMedium || '',
+      referrer: detail.referrer || ''
+    });
+  });
+
+  window.addEventListener('npln:lead_start', function (e) {
+    var detail = e.detail || {};
+    track('npln_lead_form_start', {
+      utm_source: detail.utmSource || '',
+      utm_campaign: detail.utmCampaign || '',
+      utm_medium: detail.utmMedium || '',
+      referrer: detail.referrer || ''
     });
   });
 })();
