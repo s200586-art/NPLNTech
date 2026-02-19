@@ -56,7 +56,7 @@
             "description": "Автоматизация бизнес-процессов: боты, калькуляторы, интеграции с маркетплейсами.",
             "areaServed": "RU",
             "sameAs": [
-                "https://t.me/nplntech"
+                "https://t.me/nplntch_bot"
             ],
             "contactPoint": [
                 {
@@ -1932,7 +1932,7 @@
                 <p class="lead-status" id="leadStatus" aria-live="polite"></p>
             </form>
             <div class="contact-links">
-                <a href="https://t.me/nplntech" class="contact-link">
+                <a href="https://t.me/nplntch_bot" class="contact-link">
                     <span>&#128241;</span> Telegram
                 </a>
                 <a href="mailto:hello@npln.tech" class="contact-link">
@@ -2059,9 +2059,19 @@
 
             const message = buildLeadMessage(data);
             if (channel === 'telegram') {
-                const telegramUrl = `https://t.me/nplntech?text=${encodeURIComponent(message)}`;
+                const telegramUrl = 'https://t.me/nplntch_bot?start=lead_nplntech';
                 window.open(telegramUrl, '_blank', 'noopener');
-                setLeadStatus('Черновик открыт в Telegram. Отправьте сообщение в чате.', 'success');
+                if (navigator.clipboard && navigator.clipboard.writeText) {
+                    navigator.clipboard.writeText(message)
+                        .then(() => {
+                            setLeadStatus('Открыли чат с ботом. Текст заявки скопирован: вставьте в сообщение и отправьте.', 'success');
+                        })
+                        .catch(() => {
+                            setLeadStatus('Открыли чат с ботом. Вставьте текст заявки вручную и отправьте.', 'success');
+                        });
+                } else {
+                    setLeadStatus('Открыли чат с ботом. Вставьте текст заявки вручную и отправьте.', 'success');
+                }
             } else {
                 const mailSubject = encodeURIComponent('Заявка с npln.tech');
                 const mailBody = encodeURIComponent(message);
