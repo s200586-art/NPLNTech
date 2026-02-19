@@ -50,49 +50,120 @@
     <script type="application/ld+json">
         {
             "@context": "https://schema.org",
-            "@type": "ProfessionalService",
-            "name": "NPLN Tech",
-            "url": "https://npln.tech/",
-            "description": "Автоматизация бизнес-процессов: боты, калькуляторы, интеграции с маркетплейсами.",
-            "areaServed": "RU",
-            "sameAs": [
-                "https://t.me/nplntch_bot"
-            ],
-            "contactPoint": [
+            "@graph": [
                 {
-                    "@type": "ContactPoint",
-                    "contactType": "sales",
-                    "email": "hello@npln.tech"
-                }
-            ],
-            "offers": [
+                    "@type": "Organization",
+                    "@id": "https://npln.tech/#org",
+                    "name": "NPLN Tech",
+                    "url": "https://npln.tech/",
+                    "email": "hello@npln.tech",
+                    "sameAs": [
+                        "https://t.me/nplntch_bot"
+                    ]
+                },
                 {
-                    "@type": "Offer",
-                    "itemOffered": {
-                        "@type": "Service",
-                        "name": "Боты для мессенджеров"
+                    "@type": "WebSite",
+                    "@id": "https://npln.tech/#website",
+                    "url": "https://npln.tech/",
+                    "name": "NPLN Tech",
+                    "inLanguage": "ru-RU",
+                    "publisher": {
+                        "@id": "https://npln.tech/#org"
                     }
                 },
                 {
-                    "@type": "Offer",
-                    "itemOffered": {
-                        "@type": "Service",
-                        "name": "Интеграции с маркетплейсами"
-                    }
+                    "@type": "ProfessionalService",
+                    "@id": "https://npln.tech/#service",
+                    "name": "NPLN Tech",
+                    "url": "https://npln.tech/",
+                    "description": "Автоматизация бизнес-процессов: боты, калькуляторы, интеграции с маркетплейсами.",
+                    "areaServed": "RU",
+                    "provider": {
+                        "@id": "https://npln.tech/#org"
+                    },
+                    "contactPoint": [
+                        {
+                            "@type": "ContactPoint",
+                            "contactType": "sales",
+                            "email": "hello@npln.tech"
+                        }
+                    ],
+                    "offers": [
+                        {
+                            "@type": "Offer",
+                            "itemOffered": {
+                                "@type": "Service",
+                                "name": "Боты для мессенджеров"
+                            }
+                        },
+                        {
+                            "@type": "Offer",
+                            "itemOffered": {
+                                "@type": "Service",
+                                "name": "Интеграции с маркетплейсами"
+                            }
+                        },
+                        {
+                            "@type": "Offer",
+                            "itemOffered": {
+                                "@type": "Service",
+                                "name": "Обучение по-новому"
+                            }
+                        },
+                        {
+                            "@type": "Offer",
+                            "itemOffered": {
+                                "@type": "Service",
+                                "name": "Разработка сайтов"
+                            }
+                        }
+                    ]
                 },
                 {
-                    "@type": "Offer",
-                    "itemOffered": {
-                        "@type": "Service",
-                        "name": "Обучение по-новому"
-                    }
-                },
-                {
-                    "@type": "Offer",
-                    "itemOffered": {
-                        "@type": "Service",
-                        "name": "Разработка сайтов"
-                    }
+                    "@type": "FAQPage",
+                    "@id": "https://npln.tech/#faq",
+                    "mainEntity": [
+                        {
+                            "@type": "Question",
+                            "name": "Сколько стоит запуск автоматизации?",
+                            "acceptedAnswer": {
+                                "@type": "Answer",
+                                "text": "Зависит от масштаба. После диагностики даём фиксированную вилку и этапы. Обычно первые работающие решения запускаем быстрее и дешевле, чем классическую ERP-внедренку."
+                            }
+                        },
+                        {
+                            "@type": "Question",
+                            "name": "За сколько времени будет первый результат?",
+                            "acceptedAnswer": {
+                                "@type": "Answer",
+                                "text": "Типовой срок первого результата — 1-4 недели. На старте показываем демо и согласуем критерии успеха, чтобы не тратить время на лишнее."
+                            }
+                        },
+                        {
+                            "@type": "Question",
+                            "name": "Что с безопасностью и доступами?",
+                            "acceptedAnswer": {
+                                "@type": "Answer",
+                                "text": "Работаем по принципу минимальных доступов: только необходимое, с разграничением ролей. Ключи и токены храним в защищённых переменных, доступы можно отозвать в любой момент."
+                            }
+                        },
+                        {
+                            "@type": "Question",
+                            "name": "Кому принадлежат код и сценарии после запуска?",
+                            "acceptedAnswer": {
+                                "@type": "Answer",
+                                "text": "Проектные наработки передаются вам, чтобы вы не были привязаны к подрядчику. Формат передачи и сопровождения фиксируем заранее."
+                            }
+                        },
+                        {
+                            "@type": "Question",
+                            "name": "Есть ли поддержка после релиза?",
+                            "acceptedAnswer": {
+                                "@type": "Answer",
+                                "text": "Да. Предлагаем поддержку по подписке: мониторинг, доработки, SLA-реакция и развитие системы под рост команды и нагрузку."
+                            }
+                        }
+                    ]
                 }
             ]
         }
