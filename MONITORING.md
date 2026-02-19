@@ -52,6 +52,14 @@ scripts/validate_static.sh
 scripts/check_site.sh https://npln.tech/
 ```
 
+## GitHub workflows (manual trigger)
+
+```bash
+chmod +x scripts/github_ops_check.sh scripts/github_run_workflows.sh
+./scripts/github_ops_check.sh s200586-art/NPLNTech
+./scripts/github_run_workflows.sh s200586-art/NPLNTech
+```
+
 ## Safe server pull (manual)
 
 When server has local changes and a normal `git pull` fails:

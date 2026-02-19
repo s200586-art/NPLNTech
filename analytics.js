@@ -4,7 +4,7 @@
 (function() {
   // Init Amplitude with autocapture
   window.amplitude.add(window.amplitudeAutocapturePlugin.plugin());
-  window.amplitude.init('dE8ZZkuU15H9Bc6ugcfMtIbtEHssGY3k', {
+  window.amplitude.init('beec1f72b269caa1c4b82d5ea8e3cf76', {
     autocapture: {
       elementInteractions: true,
       pageViews: true,
