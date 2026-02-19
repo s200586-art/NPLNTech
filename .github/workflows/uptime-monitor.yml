@@ -8,6 +8,9 @@ on:
 jobs:
   uptime:
     runs-on: ubuntu-latest
+    env:
+      TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+      TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -39,10 +42,10 @@ jobs:
           exit 0
 
       - name: Notify Telegram On Failure
-        if: steps.uptime.outputs.status != '0' && secrets.TELEGRAM_BOT_TOKEN != '' && secrets.TELEGRAM_CHAT_ID != ''
+        if: steps.uptime.outputs.status != '0' && env.TELEGRAM_BOT_TOKEN != '' && env.TELEGRAM_CHAT_ID != ''
         env:
-          BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
-          CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          BOT_TOKEN: ${{ env.TELEGRAM_BOT_TOKEN }}
+          CHAT_ID: ${{ env.TELEGRAM_CHAT_ID }}
           URL: ${{ steps.uptime.outputs.url }}
           DETAILS: ${{ steps.uptime.outputs.details }}
           RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
