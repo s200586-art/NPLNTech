@@ -447,6 +447,94 @@
             background: var(--cyan-dim);
         }
 
+        .hero-console {
+            width: min(860px, 95vw);
+            margin-top: 1.25rem;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            background: linear-gradient(165deg, rgba(7, 17, 28, 0.92), rgba(0, 229, 255, 0.04));
+            box-shadow: 0 0 26px rgba(0, 229, 255, 0.1);
+            overflow: hidden;
+        }
+
+        .hero-console-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 0.8rem;
+            padding: 0.55rem 0.8rem;
+            border-bottom: 1px solid var(--border);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.72rem;
+            text-transform: uppercase;
+            color: var(--text-secondary);
+            background: rgba(0, 229, 255, 0.05);
+        }
+
+        .hero-console-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #24f8b4;
+            box-shadow: 0 0 10px rgba(36, 248, 180, 0.85);
+            animation: consolePulse 1.9s ease-in-out infinite;
+        }
+
+        @keyframes consolePulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.55; transform: scale(0.85); }
+        }
+
+        .hero-console-body {
+            padding: 0.75rem 0.8rem 0.9rem;
+            display: grid;
+            gap: 0.65rem;
+        }
+
+        .hero-console-stats {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 0.55rem;
+        }
+
+        .hero-console-stat {
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 0.55rem 0.6rem;
+            background: rgba(0, 229, 255, 0.03);
+            text-align: left;
+        }
+
+        .hero-console-value {
+            display: block;
+            color: var(--cyan);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.92rem;
+            margin-bottom: 0.15rem;
+        }
+
+        .hero-console-label {
+            color: var(--text-secondary);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+        }
+
+        .hero-console-line {
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 0.55rem 0.65rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.76rem;
+            color: var(--cyan);
+            text-align: left;
+            min-height: 42px;
+            display: flex;
+            align-items: center;
+            background: rgba(0, 229, 255, 0.03);
+        }
+
         .scroll-indicator {
             position: absolute;
             bottom: 2rem;
@@ -1037,6 +1125,10 @@
             .hero {
                 padding: 1rem;
                 padding-top: 5rem;
+            }
+
+            .hero-console-stats {
+                grid-template-columns: 1fr;
             }
 
             section {
@@ -1657,6 +1749,30 @@
             <a href="#services" class="btn btn-secondary">
                 Услуги
             </a>
+        </div>
+
+        <div class="hero-console" aria-label="Технологический статус NPLN Tech">
+            <div class="hero-console-head">
+                <span>mission control // npln.tech</span>
+                <span class="hero-console-dot" aria-hidden="true"></span>
+            </div>
+            <div class="hero-console-body">
+                <div class="hero-console-stats">
+                    <div class="hero-console-stat">
+                        <span class="hero-console-value">CI: PASS</span>
+                        <span class="hero-console-label">quality checks</span>
+                    </div>
+                    <div class="hero-console-stat">
+                        <span class="hero-console-value">UPTIME: 24/7</span>
+                        <span class="hero-console-label">monitoring</span>
+                    </div>
+                    <div class="hero-console-stat">
+                        <span class="hero-console-value">DEPLOY: <span id="heroDeployStamp">live</span></span>
+                        <span class="hero-console-label">release state</span>
+                    </div>
+                </div>
+                <div class="hero-console-line terminal-text" id="heroStatusLine">init: business-driven automation pipeline ready</div>
+            </div>
         </div>
 
         <div class="scroll-indicator">
@@ -2283,6 +2399,31 @@
                 gtag('event', 'faq_open', { question });
             });
         });
+
+        // Hero console status line rotation
+        const heroStatusLine = document.getElementById('heroStatusLine');
+        const heroDeployStamp = document.getElementById('heroDeployStamp');
+        const heroLines = [
+            'init: business-driven automation pipeline ready',
+            'focus: bots + integrations + learning hub',
+            'mode: launch fast, measure impact, iterate',
+            'trust: ci monitoring + support sla active'
+        ];
+
+        if (heroDeployStamp) {
+            const now = new Date();
+            const hh = String(now.getHours()).padStart(2, '0');
+            const mm = String(now.getMinutes()).padStart(2, '0');
+            heroDeployStamp.textContent = `${hh}:${mm}`;
+        }
+
+        if (heroStatusLine && !prefersReducedMotion) {
+            let heroLineIndex = 0;
+            setInterval(() => {
+                heroLineIndex = (heroLineIndex + 1) % heroLines.length;
+                heroStatusLine.textContent = heroLines[heroLineIndex];
+            }, 3200);
+        }
 
         // Scrollspy
         const navLinks = Array.from(document.querySelectorAll('.nav-links a[href^="#"], .mobile-nav-links a[href^="#"]'));
