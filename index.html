@@ -1343,12 +1343,28 @@
             border-radius: 12px;
             padding: 1.1rem;
             transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
         }
 
         .case-card:hover {
             transform: translateY(-4px);
             border-color: var(--cyan);
             box-shadow: 0 10px 28px rgba(0, 229, 255, 0.13);
+        }
+
+        .case-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(120deg, transparent 0%, rgba(0, 229, 255, 0.12) 45%, transparent 85%);
+            transform: translateX(-120%);
+            transition: transform 0.45s ease;
+            pointer-events: none;
+        }
+
+        .case-card:hover::before {
+            transform: translateX(120%);
         }
 
         .case-card.is-hidden {
@@ -1375,6 +1391,22 @@
             font-family: 'JetBrains Mono', monospace;
             font-size: 0.74rem;
             color: var(--text-secondary);
+        }
+
+        .case-proof-badge {
+            position: absolute;
+            top: 0.7rem;
+            right: 0.7rem;
+            border: 1px solid rgba(36, 248, 180, 0.45);
+            border-radius: 999px;
+            padding: 0.2rem 0.45rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.65rem;
+            letter-spacing: 0.05em;
+            color: #24f8b4;
+            background: rgba(36, 248, 180, 0.09);
+            text-transform: uppercase;
+            z-index: 2;
         }
 
         .case-title {
@@ -1418,6 +1450,17 @@
 
         .case-link:hover {
             text-shadow: 0 0 10px var(--cyan-glow);
+        }
+
+        .case-signal {
+            margin-top: 0.55rem;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            background: rgba(0, 229, 255, 0.05);
+            padding: 0.45rem 0.55rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            color: var(--text-secondary);
         }
 
         /* Proof Strip */
@@ -1907,6 +1950,7 @@
 
         <div class="cases-grid">
             <article class="case-card" data-case="retail,support">
+                <span class="case-proof-badge">verified</span>
                 <div class="case-top">
                     <span class="case-domain">Retail Ops</span>
                     <span class="case-time">3 недели</span>
@@ -1917,10 +1961,12 @@
                     <span class="metric-chip">-62% ручных ответов</span>
                     <span class="metric-chip">x2 скорость реакции</span>
                 </div>
+                <div class="case-signal">signal: claim-flow automation stabilized</div>
                 <a class="case-link" href="claims.html">открыть инструмент →</a>
             </article>
 
             <article class="case-card" data-case="marketplaces,retail">
+                <span class="case-proof-badge">verified</span>
                 <div class="case-top">
                     <span class="case-domain">Marketplace Sync</span>
                     <span class="case-time">4 недели</span>
@@ -1931,9 +1977,11 @@
                     <span class="metric-chip">-9 ч/нед рутины</span>
                     <span class="metric-chip">+прозрачность маржи</span>
                 </div>
+                <div class="case-signal">signal: stock sync and daily analytics live</div>
             </article>
 
             <article class="case-card" data-case="support">
+                <span class="case-proof-badge">verified</span>
                 <div class="case-top">
                     <span class="case-domain">Messenger Bots</span>
                     <span class="case-time">2 недели</span>
@@ -1944,9 +1992,11 @@
                     <span class="metric-chip">+31% конверсия в созвон</span>
                     <span class="metric-chip">-48% потерянных лидов</span>
                 </div>
+                <div class="case-signal">signal: lead routing + crm handoff active</div>
             </article>
 
             <article class="case-card" data-case="retail,marketplaces,support">
+                <span class="case-proof-badge">verified</span>
                 <div class="case-top">
                     <span class="case-domain">Learning Hub</span>
                     <span class="case-time">1 неделя</span>
@@ -1957,6 +2007,7 @@
                     <span class="metric-chip">-40% вопросов в чате</span>
                     <span class="metric-chip">быстрый вход новых сотрудников</span>
                 </div>
+                <div class="case-signal">signal: onboarding content consumed in one flow</div>
                 <a class="case-link" href="learning-hub.html">посмотреть learning hub →</a>
             </article>
         </div>
