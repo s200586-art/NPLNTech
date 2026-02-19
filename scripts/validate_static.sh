@@ -37,6 +37,9 @@ required_tokens=(
   '/files/npln-logo.webp'
   'data-case-filter'
   'lead_form_submit'
+  'cdn.amplitude.com/libs/analytics-browser-2.11.1-min.js.gz'
+  'cdn.amplitude.com/libs/plugin-autocapture-browser-0.9.0-min.js.gz'
+  'src="analytics.js"'
 )
 
 for token in "${required_tokens[@]}"; do
