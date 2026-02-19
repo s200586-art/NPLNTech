@@ -1025,6 +1025,37 @@
             color: #ff9eb2;
         }
 
+        .contact-trust {
+            margin: 0 auto 1rem;
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 0.65rem;
+            text-align: left;
+        }
+
+        .contact-trust-item {
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 0.7rem 0.75rem;
+            background: linear-gradient(145deg, rgba(15, 22, 30, 0.9), rgba(0, 229, 255, 0.05));
+        }
+
+        .contact-trust-title {
+            display: block;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.72rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: var(--cyan);
+            margin-bottom: 0.25rem;
+        }
+
+        .contact-trust-desc {
+            font-size: 0.82rem;
+            color: var(--text-secondary);
+            line-height: 1.4;
+        }
+
         .contact-links {
             display: flex;
             gap: 1rem;
@@ -1158,6 +1189,10 @@
 
             .impact-grid {
                 grid-template-columns: 1fr 1fr;
+            }
+
+            .contact-trust {
+                grid-template-columns: 1fr;
             }
 
             .form-actions {
@@ -2299,6 +2334,20 @@
                 </div>
                 <p class="lead-status" id="leadStatus" aria-live="polite"></p>
             </form>
+            <div class="contact-trust" aria-label="Гарантии взаимодействия">
+                <article class="contact-trust-item">
+                    <span class="contact-trust-title">Ответ быстро</span>
+                    <p class="contact-trust-desc">Обычно возвращаемся с первым ответом в течение рабочего дня.</p>
+                </article>
+                <article class="contact-trust-item">
+                    <span class="contact-trust-title">Secure by design</span>
+                    <p class="contact-trust-desc">Работаем по принципу минимальных доступов и изолированных сценариев.</p>
+                </article>
+                <article class="contact-trust-item">
+                    <span class="contact-trust-title">SLA support</span>
+                    <p class="contact-trust-desc">После запуска не исчезаем: мониторинг, апдейты, развитие решения.</p>
+                </article>
+            </div>
             <div class="contact-links">
                 <a href="https://t.me/nplntch_bot" class="contact-link">
                     <span>&#128241;</span> Telegram
