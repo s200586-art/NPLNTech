@@ -1,0 +1,14 @@
+Use case: hero loop video for a premium corporate tech website.
+Primary request: create an ultra-premium animated reveal of the NPLN Tech logo using the provided reference image.
+Scene/background: dark cyberpunk circuit chamber, subtle volumetric haze, controlled depth.
+Subject: NPLN Tech logo and wordmark.
+Action: the logo emerges from a central chip core, circuit traces light up outward, then the logo settles into a calm elegant glow.
+Camera: slow cinematic dolly-in (~5%), subtle parallax, stable framing, no aggressive movement.
+Lighting/mood: high-end cyan neon with deep blacks, refined and expensive look.
+Color palette: #02050B, #071220, #00E5FF, #7EF9FF, #A9B4C0.
+Style/format: premium motion design, polished compositing, realistic light behavior.
+Timing/beats: 0-2s circuit activation build; 2-5s logo reveal and lock; 5-8s steady loop-friendly hold.
+Audio: no audio.
+Text (verbatim): "NPLN Tech"
+Constraints: no watermark, no third-party logos, no extra words, no people, no jitter, no flicker, clean edges, loop-friendly ending.
+Avoid: cartoon style, noisy grain, shaky camera, overexposed glow.
