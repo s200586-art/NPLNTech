@@ -1766,6 +1766,10 @@
             box-shadow: 0 0 14px rgba(0, 229, 255, 0.16);
         }
 
+        .cases-mobile-progress {
+            display: none;
+        }
+
         .cases-grid {
             display: grid;
             grid-template-columns: 1fr;
@@ -1787,6 +1791,53 @@
         @media (min-width: 1180px) {
             .cases-grid {
                 grid-template-columns: repeat(5, minmax(0, 1fr));
+            }
+        }
+
+        @media (max-width: 640px) {
+            .cases-grid {
+                display: flex;
+                gap: 0.8rem;
+                overflow-x: auto;
+                padding: 0.2rem 0.3rem 0.45rem;
+                margin: 0 -0.3rem;
+                scroll-snap-type: x mandatory;
+                -webkit-overflow-scrolling: touch;
+                scrollbar-width: none;
+            }
+
+            .cases-grid::-webkit-scrollbar {
+                display: none;
+            }
+
+            .cases-grid .case-card {
+                flex: 0 0 88%;
+                min-width: 88%;
+                scroll-snap-align: center;
+            }
+
+            .cases-mobile-progress {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: 0.35rem;
+                margin-top: 0.55rem;
+            }
+
+            .cases-progress-dot {
+                width: 7px;
+                height: 7px;
+                border-radius: 999px;
+                border: 1px solid var(--border);
+                background: rgba(0, 229, 255, 0.14);
+                transition: all 0.2s ease;
+            }
+
+            .cases-progress-dot.active {
+                background: var(--cyan);
+                border-color: var(--cyan);
+                box-shadow: 0 0 10px var(--cyan-glow);
+                transform: scale(1.15);
             }
         }
 
@@ -2575,6 +2626,7 @@
                 <a class="case-link" href="napoleon/">посмотреть пример →</a>
             </article>
         </div>
+        <div class="cases-mobile-progress" id="casesMobileProgress" aria-hidden="true"></div>
     </section>
 
     <section class="proof-section" aria-label="Доказательства экспертизы">
@@ -3235,6 +3287,8 @@
         // Cases filter
         const caseFilters = Array.from(document.querySelectorAll('[data-case-filter]'));
         const caseCards = Array.from(document.querySelectorAll('[data-case]'));
+        const casesGrid = document.querySelector('.cases-grid');
+        const casesMobileProgress = document.getElementById('casesMobileProgress');
 
         const applyCaseFilter = (filterName) => {
             caseCards.forEach(card => {
@@ -3242,7 +3296,45 @@
                 const shouldShow = filterName === 'all' || tags.includes(filterName);
                 card.classList.toggle('is-hidden', !shouldShow);
             });
+            updateCasesMobileProgress();
         };
+
+        const updateCasesMobileProgress = () => {
+            if (!casesGrid || !casesMobileProgress) return;
+
+            const visibleCards = caseCards.filter(card => !card.classList.contains('is-hidden'));
+            if (window.innerWidth > 640 || visibleCards.length <= 1) {
+                casesMobileProgress.innerHTML = '';
+                return;
+            }
+
+            const gridRect = casesGrid.getBoundingClientRect();
+            let activeIndex = 0;
+            let bestDistance = Number.POSITIVE_INFINITY;
+
+            visibleCards.forEach((card, index) => {
+                const rect = card.getBoundingClientRect();
+                const cardCenter = rect.left + rect.width / 2;
+                const gridCenter = gridRect.left + gridRect.width / 2;
+                const distance = Math.abs(cardCenter - gridCenter);
+                if (distance < bestDistance) {
+                    bestDistance = distance;
+                    activeIndex = index;
+                }
+            });
+
+            casesMobileProgress.innerHTML = visibleCards.map((_, index) => {
+                const cls = index === activeIndex ? 'cases-progress-dot active' : 'cases-progress-dot';
+                return `<span class="${cls}"></span>`;
+            }).join('');
+        };
+
+        if (casesGrid && casesMobileProgress) {
+            casesGrid.addEventListener('scroll', () => {
+                if (window.innerWidth <= 640) updateCasesMobileProgress();
+            }, { passive: true });
+            window.addEventListener('resize', updateCasesMobileProgress);
+        }
 
         if (caseFilters.length && caseCards.length) {
             caseFilters.forEach(button => {
@@ -3259,6 +3351,7 @@
             });
 
             applyCaseFilter('all');
+            updateCasesMobileProgress();
         }
 
         // FAQ analytics
