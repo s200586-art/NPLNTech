@@ -34,6 +34,15 @@
       return;
     }
 
+    var quickbarCta = e.target.closest('[data-quickbar-action]');
+    if (quickbarCta) {
+      track('npln_mobile_quickbar_click', {
+        action: quickbarCta.getAttribute('data-quickbar-action') || 'unknown',
+        href: quickbarCta.getAttribute('href') || ''
+      });
+      return;
+    }
+
     var serviceLink = e.target.closest('.service-card a, a.service-card-link');
     if (serviceLink) {
       var href = serviceLink.getAttribute('href') || '';
