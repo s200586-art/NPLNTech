@@ -1,0 +1,89 @@
+<svg width="1400" height="760" viewBox="0 0 1400 760" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="NPLN Tech animated logo">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#03070d"/>
+      <stop offset="100%" stop-color="#071220"/>
+    </linearGradient>
+    <linearGradient id="strokeGrad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#007d8f"/>
+      <stop offset="55%" stop-color="#00E5FF"/>
+      <stop offset="100%" stop-color="#10f6ff"/>
+    </linearGradient>
+    <pattern id="grid" width="24" height="24" patternUnits="userSpaceOnUse">
+      <path d="M24 0H0V24" fill="none" stroke="#00E5FF" stroke-opacity="0.08" stroke-width="1"/>
+    </pattern>
+    <filter id="glow" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="7" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <style>
+      .pulse { animation: pulse 2.4s ease-in-out infinite; }
+      .pulse-d2 { animation-delay: .6s; }
+      .pulse-d3 { animation-delay: 1.2s; }
+      .flow {
+        stroke-dasharray: 9 11;
+        animation: flow 5.8s linear infinite;
+      }
+      .flow-slow { animation-duration: 8.6s; }
+      .text-glow {
+        animation: textGlow 3s ease-in-out infinite;
+      }
+      @keyframes pulse {
+        0%, 100% { opacity: .3; transform: scale(1); }
+        50% { opacity: 1; transform: scale(1.16); }
+      }
+      @keyframes flow {
+        from { stroke-dashoffset: 0; }
+        to { stroke-dashoffset: -320; }
+      }
+      @keyframes textGlow {
+        0%, 100% { opacity: .92; }
+        50% { opacity: 1; }
+      }
+    </style>
+  </defs>
+
+  <rect width="1400" height="760" fill="url(#bgGrad)"/>
+  <rect width="1400" height="760" fill="url(#grid)"/>
+
+  <g opacity="0.9">
+    <path class="flow" d="M128 162H480V232H620" fill="none" stroke="url(#strokeGrad)" stroke-width="3"/>
+    <path class="flow flow-slow" d="M128 600H520V530H620" fill="none" stroke="url(#strokeGrad)" stroke-width="3"/>
+    <path class="flow" d="M1272 170H930V242H780" fill="none" stroke="url(#strokeGrad)" stroke-width="3"/>
+    <path class="flow flow-slow" d="M1272 588H900V518H780" fill="none" stroke="url(#strokeGrad)" stroke-width="3"/>
+    <path class="flow" d="M700 78V230" fill="none" stroke="url(#strokeGrad)" stroke-width="3"/>
+    <path class="flow flow-slow" d="M700 682V530" fill="none" stroke="url(#strokeGrad)" stroke-width="3"/>
+  </g>
+
+  <g filter="url(#glow)">
+    <rect x="615" y="232" width="170" height="298" rx="14" fill="#050b12" stroke="#00E5FF" stroke-opacity="0.5"/>
+    <g stroke="#00E5FF" stroke-opacity="0.55" fill="none">
+      <path d="M620 260H535V220H452" stroke-width="2.6"/>
+      <path d="M620 292H500V252H412" stroke-width="2.6"/>
+      <path d="M620 324H470V284H382" stroke-width="2.6"/>
+      <path d="M620 436H510V476H420" stroke-width="2.6"/>
+      <path d="M620 468H482V508H390" stroke-width="2.6"/>
+      <path d="M620 500H460V540H368" stroke-width="2.6"/>
+      <path d="M780 260H865V220H950" stroke-width="2.6"/>
+      <path d="M780 292H900V252H988" stroke-width="2.6"/>
+      <path d="M780 324H930V284H1018" stroke-width="2.6"/>
+      <path d="M780 436H890V476H980" stroke-width="2.6"/>
+      <path d="M780 468H918V508H1010" stroke-width="2.6"/>
+      <path d="M780 500H940V540H1032" stroke-width="2.6"/>
+    </g>
+  </g>
+
+  <g filter="url(#glow)" class="text-glow">
+    <text x="248" y="432" fill="#00E5FF" font-family="'JetBrains Mono', 'Fira Mono', monospace" font-size="126" font-weight="700">&gt; NPLN Tech_</text>
+  </g>
+
+  <g fill="#00E5FF" filter="url(#glow)">
+    <circle class="pulse" cx="184" cy="178" r="8"/>
+    <circle class="pulse pulse-d2" cx="1224" cy="142" r="8"/>
+    <circle class="pulse pulse-d3" cx="1188" cy="620" r="8"/>
+    <circle class="pulse pulse-d2" cx="210" cy="628" r="8"/>
+  </g>
+</svg>
