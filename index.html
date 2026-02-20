@@ -676,11 +676,10 @@
 
         /* Manifest Section */
         .manifest {
-            background: linear-gradient(135deg, var(--bg-card) 0%, rgba(0, 229, 255, 0.05) 100%);
+            background: linear-gradient(135deg, rgba(10, 18, 28, 0.95) 0%, rgba(0, 229, 255, 0.06) 100%);
             border: 1px solid var(--border);
             border-radius: 12px;
-            padding: 3rem;
-            text-align: center;
+            padding: 1.4rem 1.5rem;
             position: relative;
             overflow: hidden;
         }
@@ -691,36 +690,49 @@
             top: 0;
             left: 0;
             right: 0;
-            height: 3px;
+            height: 2px;
             background: linear-gradient(90deg, transparent, var(--cyan), transparent);
         }
 
-        .manifest-quote {
-            font-size: clamp(1.2rem, 3vw, 1.6rem);
-            font-style: italic;
-            color: var(--text-primary);
-            margin-bottom: 1.5rem;
-            line-height: 1.6;
+        .manifest-label {
+            display: inline-flex;
+            align-items: center;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--cyan);
+            margin-bottom: 0.7rem;
         }
 
-        .manifest-quote::before,
-        .manifest-quote::after {
-            content: '"';
-            color: var(--cyan);
-            font-size: 1.5em;
+        .manifest-quote {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: clamp(1rem, 2.4vw, 1.2rem);
+            color: var(--text-primary);
+            margin-bottom: 0.45rem;
+            line-height: 1.45;
+        }
+
+        .manifest-note {
+            color: var(--text-secondary);
+            font-size: 0.92rem;
+            margin-bottom: 0.65rem;
         }
 
         .manifest-author {
+            display: inline-flex;
             font-family: 'JetBrains Mono', monospace;
             color: var(--cyan);
-            font-size: 0.9rem;
+            font-size: 0.78rem;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
         }
 
         /* Services Grid */
         .services-grid {
             display: grid;
             grid-template-columns: 1fr;
-            gap: 2rem;
+            gap: 1rem;
         }
 
         @media (min-width: 760px) {
@@ -736,13 +748,15 @@
         }
 
         .service-card {
-            background: var(--bg-card);
+            background: linear-gradient(165deg, rgba(14, 20, 28, 0.95), rgba(0, 229, 255, 0.04));
             border: 1px solid var(--border);
             border-radius: 12px;
-            padding: 2rem;
-            transition: all 0.4s ease;
+            padding: 1.2rem;
+            transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
+            display: flex;
+            flex-direction: column;
         }
 
         .service-card::before {
@@ -761,9 +775,9 @@
         }
 
         .service-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-4px);
             border-color: var(--cyan);
-            box-shadow: 0 10px 40px rgba(0, 229, 255, 0.15);
+            box-shadow: 0 10px 28px rgba(0, 229, 255, 0.13);
         }
         
         .service-card-link {
@@ -779,93 +793,132 @@
         }
 
         .service-icon {
-            width: 60px;
-            height: 60px;
+            width: 52px;
+            height: 52px;
             background: var(--cyan-dim);
-            border-radius: 12px;
+            border-radius: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-bottom: 1.5rem;
-            font-size: 1.8rem;
+            margin-bottom: 0.9rem;
+            font-size: 1.45rem;
         }
 
         .service-title {
             font-family: 'JetBrains Mono', monospace;
-            font-size: 1.2rem;
-            margin-bottom: 1rem;
+            font-size: 1.05rem;
+            margin-bottom: 0.55rem;
             color: var(--text-primary);
         }
 
         .service-desc {
             color: var(--text-secondary);
-            margin-bottom: 1.5rem;
-            font-size: 0.95rem;
-        }
-
-        .service-price {
-            font-family: 'JetBrains Mono', monospace;
-            color: var(--cyan);
+            margin-bottom: 0.9rem;
             font-size: 0.9rem;
-            padding: 0.5rem 1rem;
-            background: var(--cyan-dim);
-            border-radius: 4px;
-            display: inline-block;
         }
 
-        .service-card.featured {
-            grid-column: 1 / -1;
-            background: linear-gradient(135deg, var(--bg-card) 0%, rgba(0, 229, 255, 0.08) 100%);
+        .service-links {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.45rem;
+            margin-top: auto;
+        }
+
+        .service-links li {
+            margin: 0;
+        }
+
+        .service-links a {
+            display: inline-flex;
+            align-items: center;
+            width: 100%;
+            text-decoration: none;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 0.45rem 0.6rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.72rem;
+            color: var(--text-secondary);
+            background: rgba(0, 229, 255, 0.06);
+            transition: all 0.2s ease;
+        }
+
+        .service-links a:hover {
+            color: var(--cyan);
+            border-color: var(--cyan);
+            box-shadow: 0 0 12px rgba(0, 229, 255, 0.15);
+        }
+
+        .service-bridge {
+            margin-top: 1rem;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1rem;
+            background:
+                radial-gradient(circle at 90% 20%, rgba(0, 229, 255, 0.11), transparent 45%),
+                linear-gradient(140deg, rgba(8, 19, 30, 0.95), rgba(16, 22, 30, 0.93));
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 0.85rem;
+        }
+
+        .service-bridge-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.72rem;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: var(--cyan);
+            margin-bottom: 0.3rem;
+        }
+
+        .service-bridge-title {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .service-bridge-desc {
+            color: var(--text-secondary);
+            font-size: 0.88rem;
+        }
+
+        .service-bridge-list {
+            list-style: none;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 0.45rem;
+        }
+
+        .service-bridge-list a {
+            display: inline-flex;
+            align-items: center;
+            width: 100%;
+            text-decoration: none;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 0.48rem 0.65rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.74rem;
+            color: var(--text-primary);
+            background: rgba(0, 229, 255, 0.07);
+            transition: all 0.2s ease;
+        }
+
+        .service-bridge-list a:hover {
+            color: var(--cyan);
             border-color: var(--cyan);
         }
 
-        @media (min-width: 768px) {
-            .service-card.featured {
-                display: grid;
-                grid-template-columns: auto 1fr;
-                gap: 2rem;
+        @media (min-width: 900px) {
+            .service-bridge {
+                grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr);
                 align-items: center;
             }
 
-            .service-card.featured .service-icon {
-                grid-row: 1 / 3;
-                width: 80px;
-                height: 80px;
-                font-size: 2.5rem;
+            .service-bridge-list {
+                grid-template-columns: repeat(3, minmax(0, 1fr));
             }
-        }
-
-        .service-list {
-            list-style: none;
-            margin-top: 1rem;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.75rem;
-        }
-
-        .service-list li {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.9rem;
-            padding: 0.5rem 1rem;
-            background: var(--cyan-dim);
-            border: 1px solid var(--border);
-            border-radius: 6px;
-            transition: all 0.3s ease;
-        }
-
-        .service-list li:hover {
-            border-color: var(--cyan);
-            transform: translateX(3px);
-        }
-
-        .service-list li a {
-            color: inherit;
-            text-decoration: none;
-            display: block;
-        }
-
-        .service-list li a:hover {
-            color: var(--cyan);
         }
 
         /* Clients Section */
@@ -2141,11 +2194,10 @@
 
     <section>
         <div class="manifest">
-            <p class="manifest-quote">
-                Я не айтишник, который думает, что знает бизнес.<br>
-                Я бизнесмен, который научился делать IT.
-            </p>
-            <span class="manifest-author">— Сергей, основатель NPLN Tech</span>
+            <span class="manifest-label">позиция основателя</span>
+            <p class="manifest-quote">Мы строим IT-решения так, как их видит собственник бизнеса, а не только разработка.</p>
+            <p class="manifest-note">Сначала считаем ценность для бизнеса, потом автоматизируем процесс и доводим до стабильной работы.</p>
+            <span class="manifest-author">Сергей, основатель NPLN Tech</span>
         </div>
     </section>
 
@@ -2202,50 +2254,62 @@
     <section id="services">
         <div class="section-header">
             <span class="section-tag">услуги</span>
-            <h2 class="section-title">Что делаем</h2>
-            <p class="section-desc">Готовые решения с понятной ценностью. Сделали — работает — поддерживаем.</p>
+            <h2 class="section-title">Что делаем и где это уже работает</h2>
+            <p class="section-desc">Убрали дубль между услугами и кейсами: каждое направление ниже привязано к реальному внедрению с результатом.</p>
         </div>
 
         <div class="services-grid">
-            <div class="service-card featured">
-                <div class="service-icon">&#128230;</div>
-                <h3 class="service-title">Готовые калькуляторы и сервисы</h3>
-                <p class="service-desc">Подписывайся и пользуйся. Без разработки, без ожидания — сразу в работу.</p>
-                <ul class="service-list">
-                    <li><a href="calculator.html">&#129518; Калькулятор магазина 2026</a></li>
-                    <li><a href="claims.html">&#128203; Претензионный помощник</a></li>
-                </ul>
-            </div>
-
-            <div class="service-card">
+            <article class="service-card">
                 <div class="service-icon">&#129302;</div>
                 <h3 class="service-title">Боты для мессенджеров</h3>
-                <p class="service-desc">MAX, Telegram, VK Teams. Автоматизация ответов, обработка заявок, интеграция с CRM и учётными системами.</p>
-                <ul class="service-list">
-                    <li><a href="npln-pay.html">&#128179; NPLN Pay — платежи через MAX</a></li>
+                <p class="service-desc">MAX, Telegram, VK Teams. Квалификация лидов, ответы клиентам и передача данных в CRM без ручной рутины.</p>
+                <ul class="service-links">
+                    <li><a href="#case-bots">кейс: бот для квалификации заявок →</a></li>
+                    <li><a href="npln-pay.html">решение: NPLN Pay через MAX →</a></li>
                 </ul>
-            </div>
+            </article>
 
-            <div class="service-card">
+            <article class="service-card">
                 <div class="service-icon">&#128279;</div>
                 <h3 class="service-title">Интеграции с маркетплейсами</h3>
-                <p class="service-desc">Ozon, Wildberries, Яндекс.Маркет. Синхронизация остатков, автоматизация отчётов, дашборды продаж.</p>
-            </div>
+                <p class="service-desc">Ozon, Wildberries, Яндекс.Маркет. Синхронизация остатков, управленческая аналитика и отчеты в одном потоке.</p>
+                <ul class="service-links">
+                    <li><a href="#case-marketplaces">кейс: синхронизация остатков + отчеты →</a></li>
+                </ul>
+            </article>
 
-            <a class="service-card service-card-link" href="learning-hub.html" aria-label="Открыть раздел Обучение по-новому">
+            <article class="service-card">
                 <div class="service-icon">&#127891;</div>
                 <h3 class="service-title">Обучение по-новому</h3>
-                <p class="service-desc">Создаём обучающие материалы в современных форматах: видео, вебкомикс, инфографика. Чтобы учиться было удобно и запоминалось.</p>
-            </a>
+                <p class="service-desc">Learning hub в формате comic + video: быстрее онбординг, меньше вопросов в чатах и выше вовлеченность команды.</p>
+                <ul class="service-links">
+                    <li><a href="#case-learning">кейс: онбординг команды в learning hub →</a></li>
+                    <li><a href="learning-hub.html">открыть learning hub →</a></li>
+                </ul>
+            </article>
 
-            <div class="service-card">
+            <article class="service-card">
                 <div class="service-icon">&#127760;</div>
                 <h3 class="service-title">Разработка сайтов</h3>
-                <p class="service-desc">Лендинги, каталоги, корпоративные сайты. Современный дизайн, быстрая загрузка, адаптив под все устройства.</p>
-                <ul class="service-list">
-                    <li><a href="napoleon/">&#128193; Портфолио: 50 магазинов</a></li>
+                <p class="service-desc">Корпоративные сайты и продуктовые страницы в вашем стиле: быстро, адаптивно, с акцентом на конверсию и доверие.</p>
+                <ul class="service-links">
+                    <li><a href="#case-web">кейс: сайт-витрина для сети магазинов →</a></li>
+                    <li><a href="napoleon/">портфолио: 50 магазинов →</a></li>
                 </ul>
+            </article>
+        </div>
+
+        <div class="service-bridge" aria-label="Готовые сервисы NPLN">
+            <div>
+                <p class="service-bridge-label">готовые сервисы</p>
+                <h3 class="service-bridge-title">Запуск без разработки и ожидания</h3>
+                <p class="service-bridge-desc">Отдельные инструменты можно подключить сразу: это быстрый вход в экосистему NPLN Tech до крупных внедрений.</p>
             </div>
+            <ul class="service-bridge-list">
+                <li><a href="calculator.html">&#129518; Калькулятор магазина 2026</a></li>
+                <li><a href="claims.html">&#128203; Претензионный помощник</a></li>
+                <li><a href="learning-hub.html">&#127891; Learning Hub: comic + video</a></li>
+            </ul>
         </div>
     </section>
 
@@ -2253,7 +2317,7 @@
         <div class="section-header">
             <span class="section-tag">кейсы</span>
             <h2 class="section-title">Кейсы и результат</h2>
-            <p class="section-desc">Показываем не обещания, а измеримый эффект. Выберите тип задач и посмотрите типовой результат внедрения.</p>
+            <p class="section-desc">Каждый кейс связан с направлением выше. Выберите тип задач и посмотрите измеримый эффект внедрения.</p>
         </div>
 
         <div class="cases-toolbar" role="tablist" aria-label="Фильтр кейсов">
@@ -2268,7 +2332,7 @@
         </div>
 
         <div class="cases-grid">
-            <article class="case-card" data-case="retail,support">
+            <article class="case-card" data-case="retail,support" id="case-claims">
                 <span class="case-proof-badge">проверено</span>
                 <div class="case-top">
                     <span class="case-domain">Retail Ops</span>
@@ -2284,7 +2348,7 @@
                 <a class="case-link" href="claims.html">открыть инструмент →</a>
             </article>
 
-            <article class="case-card" data-case="marketplaces,retail">
+            <article class="case-card" data-case="marketplaces,retail" id="case-marketplaces">
                 <span class="case-proof-badge">проверено</span>
                 <div class="case-top">
                     <span class="case-domain">Marketplace Sync</span>
@@ -2299,7 +2363,7 @@
                 <div class="case-signal">сигнал: синхронизация остатков и ежедневная аналитика в работе</div>
             </article>
 
-            <article class="case-card" data-case="support">
+            <article class="case-card" data-case="support" id="case-bots">
                 <span class="case-proof-badge">проверено</span>
                 <div class="case-top">
                     <span class="case-domain">Messenger Bots</span>
@@ -2314,7 +2378,7 @@
                 <div class="case-signal">сигнал: маршрутизация лидов и передача в CRM активны</div>
             </article>
 
-            <article class="case-card" data-case="retail,marketplaces,support">
+            <article class="case-card" data-case="retail,marketplaces,support" id="case-learning">
                 <span class="case-proof-badge">проверено</span>
                 <div class="case-top">
                     <span class="case-domain">Learning Hub</span>
@@ -2328,6 +2392,22 @@
                 </div>
                 <div class="case-signal">сигнал: онбординг-контент проходит единым сценарием</div>
                 <a class="case-link" href="learning-hub.html">посмотреть learning hub →</a>
+            </article>
+
+            <article class="case-card" data-case="retail" id="case-web">
+                <span class="case-proof-badge">проверено</span>
+                <div class="case-top">
+                    <span class="case-domain">Web Platform</span>
+                    <span class="case-time">2 недели</span>
+                </div>
+                <h3 class="case-title">Сайт-витрина для сети магазинов + каталог</h3>
+                <p class="case-desc">Собрали корпоративную веб-платформу с каталогом и понятной структурой, чтобы клиент быстрее доходил до контакта и заявки.</p>
+                <div class="case-metrics">
+                    <span class="metric-chip">+доверие к бренду</span>
+                    <span class="metric-chip">быстрый путь до заявки</span>
+                </div>
+                <div class="case-signal">сигнал: веб-платформа работает в продуктиве и масштабируется</div>
+                <a class="case-link" href="napoleon/">посмотреть пример →</a>
             </article>
         </div>
     </section>
