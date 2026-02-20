@@ -1539,6 +1539,35 @@
             margin: -1rem 0 2rem;
         }
 
+        .cases-actions {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+            margin: -1.2rem 0 1.4rem;
+        }
+
+        .cases-action-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            text-decoration: none;
+            border: 1px solid var(--border);
+            border-radius: 999px;
+            padding: 0.45rem 0.85rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.74rem;
+            color: var(--text-secondary);
+            background: rgba(0, 229, 255, 0.06);
+            transition: all 0.22s ease;
+        }
+
+        .cases-action-link:hover {
+            color: var(--cyan);
+            border-color: var(--cyan);
+            box-shadow: 0 0 12px rgba(0, 229, 255, 0.15);
+        }
+
         .case-filter {
             border: 1px solid var(--border);
             border-radius: 999px;
@@ -2220,6 +2249,10 @@
             <button class="case-filter" type="button" data-case-filter="retail">розница</button>
             <button class="case-filter" type="button" data-case-filter="marketplaces">маркетплейсы</button>
             <button class="case-filter" type="button" data-case-filter="support">поддержка</button>
+        </div>
+
+        <div class="cases-actions">
+            <a class="cases-action-link" href="casebook.html">открыть кейсбук для клиентов →</a>
         </div>
 
         <div class="cases-grid">

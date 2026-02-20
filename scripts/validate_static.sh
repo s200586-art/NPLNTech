@@ -12,6 +12,7 @@ fail() {
 required_files=(
   "index.html"
   "learning-hub.html"
+  "casebook.html"
   "calculator.html"
   "claims.html"
   "npln-pay.html"

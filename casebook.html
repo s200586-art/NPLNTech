@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Кейсбук NPLN Tech | Результаты автоматизации</title>
+    <meta name="description" content="Кейсбук NPLN Tech: реальные результаты автоматизации бизнеса в рознице, маркетплейсах и поддержке клиентов.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://npln.tech/casebook.html">
+
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://npln.tech/casebook.html">
+    <meta property="og:title" content="Кейсбук NPLN Tech">
+    <meta property="og:description" content="Реальные кейсы автоматизации с измеримым эффектом для бизнеса.">
+    <meta property="og:image" content="https://npln.tech/files/learning-hub-og.png?v=20260218a">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:locale" content="ru_RU">
+    <meta property="og:site_name" content="NPLN Tech">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Кейсбук NPLN Tech">
+    <meta name="twitter:description" content="Реальные кейсы автоматизации с измеримым эффектом для бизнеса.">
+    <meta name="twitter:image" content="https://npln.tech/files/learning-hub-og.png?v=20260218a">
+
+    <link rel="icon" type="image/x-icon" href="/files/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="/files/apple-touch-icon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --cyan: #00E5FF;
+            --cyan-dim: rgba(0, 229, 255, 0.14);
+            --cyan-glow: rgba(0, 229, 255, 0.38);
+            --bg: #0a0e14;
+            --card: rgba(14, 21, 30, 0.9);
+            --border: rgba(0, 229, 255, 0.24);
+            --text: #e6edf3;
+            --muted: #8b949e;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text);
+            background: var(--bg);
+            min-height: 100vh;
+            background-image:
+                linear-gradient(var(--cyan-dim) 1px, transparent 1px),
+                linear-gradient(90deg, var(--cyan-dim) 1px, transparent 1px);
+            background-size: 42px 42px;
+        }
+
+        .wrap {
+            width: min(1180px, 94vw);
+            margin: 34px auto 50px;
+        }
+
+        .hero {
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 1.2rem;
+            background: linear-gradient(145deg, rgba(12, 18, 28, 0.95), rgba(0, 229, 255, 0.04));
+            box-shadow: 0 0 28px rgba(0, 229, 255, 0.1);
+        }
+
+        .crumbs {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.78rem;
+            color: var(--muted);
+            margin-bottom: 0.7rem;
+        }
+
+        .crumbs a {
+            color: var(--cyan);
+            text-decoration: none;
+        }
+
+        h1 {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: clamp(1.4rem, 3.8vw, 2.35rem);
+            margin-bottom: 0.55rem;
+        }
+
+        .hero p {
+            color: var(--muted);
+            max-width: 760px;
+            margin-bottom: 0.95rem;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 0.65rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            text-decoration: none;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.78rem;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            padding: 0.58rem 0.85rem;
+        }
+
+        .btn-primary {
+            color: #001119;
+            background: var(--cyan);
+            border-color: var(--cyan);
+            box-shadow: 0 0 16px var(--cyan-glow);
+        }
+
+        .btn-secondary {
+            color: var(--text);
+            background: rgba(0, 229, 255, 0.07);
+        }
+
+        .summary {
+            margin-top: 1rem;
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 0.65rem;
+        }
+
+        .summary-card {
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            background: var(--card);
+            padding: 0.75rem;
+        }
+
+        .summary-value {
+            display: block;
+            color: var(--cyan);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.05rem;
+            margin-bottom: 0.22rem;
+        }
+
+        .summary-label {
+            color: var(--muted);
+            font-size: 0.83rem;
+        }
+
+        .grid {
+            margin-top: 1rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 0.75rem;
+        }
+
+        .case {
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            background: linear-gradient(165deg, rgba(14, 20, 28, 0.95), rgba(0, 229, 255, 0.04));
+            padding: 0.9rem;
+        }
+
+        .case-top {
+            display: flex;
+            justify-content: space-between;
+            gap: 0.7rem;
+            margin-bottom: 0.45rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+        }
+
+        .case-domain { color: var(--cyan); text-transform: uppercase; }
+        .case-time { color: var(--muted); }
+
+        .case h3 {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.98rem;
+            margin-bottom: 0.42rem;
+        }
+
+        .case p {
+            color: var(--muted);
+            font-size: 0.88rem;
+            margin-bottom: 0.55rem;
+        }
+
+        .chips { display: flex; flex-wrap: wrap; gap: 0.35rem; }
+
+        .chip {
+            border: 1px solid var(--border);
+            border-radius: 999px;
+            padding: 0.2rem 0.5rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.67rem;
+            color: var(--text);
+            background: rgba(0, 229, 255, 0.07);
+        }
+
+        .foot {
+            margin-top: 1rem;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 0.85rem;
+            background: rgba(0, 229, 255, 0.04);
+            display: flex;
+            justify-content: space-between;
+            gap: 0.8rem;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .foot p {
+            color: var(--muted);
+            font-size: 0.86rem;
+        }
+
+        @media (max-width: 760px) {
+            .summary { grid-template-columns: 1fr 1fr; }
+        }
+
+        @media (max-width: 520px) {
+            .summary { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <section class="hero">
+            <div class="crumbs"><a href="index.html">Главная</a> / Кейсбук</div>
+            <h1>Кейсбук NPLN Tech</h1>
+            <p>Одна ссылка для клиента, партнёра или чата: здесь собраны реальные сценарии автоматизации и измеримый бизнес-эффект.</p>
+            <div class="hero-actions">
+                <a class="btn btn-primary" href="index.html#contact">→ обсудить проект</a>
+                <a class="btn btn-secondary" href="learning-hub.html">обучение по-новому</a>
+            </div>
+
+            <div class="summary">
+                <article class="summary-card"><span class="summary-value">50+</span><span class="summary-label">автоматизаций</span></article>
+                <article class="summary-card"><span class="summary-value">1-4 недели</span><span class="summary-label">до первого эффекта</span></article>
+                <article class="summary-card"><span class="summary-value">-40% ... -62%</span><span class="summary-label">снижение рутины</span></article>
+                <article class="summary-card"><span class="summary-value">+31%</span><span class="summary-label">рост конверсии в созвон</span></article>
+            </div>
+        </section>
+
+        <section class="grid">
+            <article class="case">
+                <div class="case-top"><span class="case-domain">Retail Ops</span><span class="case-time">3 недели</span></div>
+                <h3>Автообработка претензий и возвратов</h3>
+                <p>Единый сценарий для менеджеров: входящее обращение, шаблон ответа, контроль статуса и эскалация.</p>
+                <div class="chips">
+                    <span class="chip">-62% ручных ответов</span>
+                    <span class="chip">x2 скорость реакции</span>
+                </div>
+            </article>
+
+            <article class="case">
+                <div class="case-top"><span class="case-domain">Marketplace Sync</span><span class="case-time">4 недели</span></div>
+                <h3>Синхронизация Ozon/WB + отчёты</h3>
+                <p>Убрали ручные таблицы, настроили автосбор данных и ежедневные управленческие отчёты в одном окне.</p>
+                <div class="chips">
+                    <span class="chip">-9 ч/нед рутины</span>
+                    <span class="chip">прозрачность маржи</span>
+                </div>
+            </article>
+
+            <article class="case">
+                <div class="case-top"><span class="case-domain">Messenger Bots</span><span class="case-time">2 недели</span></div>
+                <h3>Бот квалификации заявок</h3>
+                <p>Сбор данных до менеджера, маршрутизация заявок и выгрузка в CRM без потери контекста.</p>
+                <div class="chips">
+                    <span class="chip">+31% конверсия</span>
+                    <span class="chip">-48% потерянных лидов</span>
+                </div>
+            </article>
+
+            <article class="case">
+                <div class="case-top"><span class="case-domain">Learning Hub</span><span class="case-time">1 неделя</span></div>
+                <h3>Онбординг: comic + video</h3>
+                <p>Обучающий раздел внутри экосистемы: команда быстрее внедряет правила и задаёт меньше вопросов.</p>
+                <div class="chips">
+                    <span class="chip">-40% вопросов в чате</span>
+                    <span class="chip">быстрый вход новичков</span>
+                </div>
+            </article>
+        </section>
+
+        <section class="foot">
+            <p>Нужен такой же результат под ваш процесс? Разберём задачу и покажем рабочий сценарий автоматизации.</p>
+            <div class="hero-actions">
+                <a class="btn btn-primary" href="index.html#contact">получить план внедрения</a>
+                <a class="btn btn-secondary" href="index.html#cases">вернуться к кейсам</a>
+            </div>
+        </section>
+    </div>
+
+    <script defer src="https://cdn.amplitude.com/libs/analytics-browser-2.11.1-min.js.gz"></script>
+    <script defer src="https://cdn.amplitude.com/libs/plugin-autocapture-browser-0.9.0-min.js.gz"></script>
+    <script defer src="analytics.js"></script>
+</body>
+</html>
