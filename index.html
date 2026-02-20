@@ -679,7 +679,7 @@
             background: linear-gradient(135deg, rgba(10, 18, 28, 0.95) 0%, rgba(0, 229, 255, 0.06) 100%);
             border: 1px solid var(--border);
             border-radius: 12px;
-            padding: 1.4rem 1.5rem;
+            padding: 1.25rem 1.4rem;
             position: relative;
             overflow: hidden;
         }
@@ -707,25 +707,66 @@
 
         .manifest-quote {
             font-family: 'JetBrains Mono', monospace;
-            font-size: clamp(1rem, 2.4vw, 1.2rem);
+            font-size: clamp(1.04rem, 2.5vw, 1.25rem);
             color: var(--text-primary);
-            margin-bottom: 0.45rem;
-            line-height: 1.45;
+            margin-bottom: 0.5rem;
+            line-height: 1.5;
+        }
+
+        .manifest-quote::before,
+        .manifest-quote::after {
+            content: '"';
+            color: var(--cyan);
+            opacity: 0.9;
         }
 
         .manifest-note {
             color: var(--text-secondary);
-            font-size: 0.92rem;
-            margin-bottom: 0.65rem;
+            font-size: 0.9rem;
+            margin-bottom: 0.55rem;
         }
 
         .manifest-author {
             display: inline-flex;
             font-family: 'JetBrains Mono', monospace;
             color: var(--cyan);
-            font-size: 0.78rem;
+            font-size: 0.76rem;
             letter-spacing: 0.04em;
             text-transform: uppercase;
+        }
+
+        .manifest-rotator {
+            min-height: 6.9rem;
+            transition: opacity 0.25s ease, transform 0.25s ease;
+            will-change: opacity, transform;
+        }
+
+        .manifest-rotator.is-swapping {
+            opacity: 0.15;
+            transform: translateY(6px);
+        }
+
+        .manifest-dots {
+            display: flex;
+            align-items: center;
+            gap: 0.35rem;
+            margin-top: 0.55rem;
+        }
+
+        .manifest-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 999px;
+            border: 1px solid var(--border);
+            background: rgba(0, 229, 255, 0.15);
+            transition: all 0.2s ease;
+        }
+
+        .manifest-dot.active {
+            background: var(--cyan);
+            border-color: var(--cyan);
+            box-shadow: 0 0 10px var(--cyan-glow);
+            transform: scale(1.15);
         }
 
         /* Services Grid */
@@ -1411,7 +1452,11 @@
             }
 
             .manifest {
-                padding: 2rem 1.5rem;
+                padding: 1.1rem 1rem;
+            }
+
+            .manifest-rotator {
+                min-height: 8.6rem;
             }
 
             .process-step {
@@ -1653,8 +1698,26 @@
 
         .cases-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: 1fr;
             gap: 1rem;
+        }
+
+        @media (min-width: 720px) {
+            .cases-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        @media (min-width: 980px) {
+            .cases-grid {
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+            }
+        }
+
+        @media (min-width: 1180px) {
+            .cases-grid {
+                grid-template-columns: repeat(5, minmax(0, 1fr));
+            }
         }
 
         .case-card {
@@ -2195,9 +2258,12 @@
     <section>
         <div class="manifest">
             <span class="manifest-label">позиция основателя</span>
-            <p class="manifest-quote">Мы строим IT-решения так, как их видит собственник бизнеса, а не только разработка.</p>
-            <p class="manifest-note">Сначала считаем ценность для бизнеса, потом автоматизируем процесс и доводим до стабильной работы.</p>
-            <span class="manifest-author">Сергей, основатель NPLN Tech</span>
+            <div class="manifest-rotator" id="manifestRotator">
+                <p class="manifest-quote" id="manifestQuote">Я не айтишник, который думает, что знает бизнес. Я бизнесмен, который разобрался в IT.</p>
+                <p class="manifest-note" id="manifestNote">Сначала считаю бизнес-ценность и экономику процесса, потом выбираю технологию.</p>
+            </div>
+            <span class="manifest-author" id="manifestAuthor">Сергей, основатель NPLN Tech</span>
+            <div class="manifest-dots" id="manifestDots" aria-hidden="true"></div>
         </div>
     </section>
 
@@ -3075,6 +3141,75 @@
                 heroLineIndex = (heroLineIndex + 1) % heroLines.length;
                 heroStatusLine.textContent = heroLines[heroLineIndex];
             }, 3200);
+        }
+
+        // Manifest quote rotation
+        const manifestRotator = document.getElementById('manifestRotator');
+        const manifestQuote = document.getElementById('manifestQuote');
+        const manifestNote = document.getElementById('manifestNote');
+        const manifestAuthor = document.getElementById('manifestAuthor');
+        const manifestDots = document.getElementById('manifestDots');
+
+        const manifestPhrases = [
+            {
+                quote: 'Я не айтишник, который думает, что знает бизнес. Я бизнесмен, который разобрался в IT.',
+                note: 'Сначала считаю бизнес-ценность и экономику процесса, потом выбираю технологию.',
+                author: 'Сергей, основатель NPLN Tech'
+            },
+            {
+                quote: 'Я не разговариваю словами разработки. Я разговариваю словами бизнеса: прибыль, скорость, контроль.',
+                note: 'Любая автоматизация должна быть понятна собственнику в цифрах, а не только в коде.',
+                author: 'Сергей, основатель NPLN Tech'
+            },
+            {
+                quote: 'Я переводчик между бизнесом и IT.',
+                note: 'Преобразую запрос владельца в рабочий цифровой сценарий, который можно внедрить и измерить.',
+                author: 'Сергей, основатель NPLN Tech'
+            },
+            {
+                quote: 'Я выходец из реального операционного бизнеса, поэтому автоматизирую то, что реально болит каждый день.',
+                note: 'Меньше рутины, быстрее решения, прозрачнее контроль и стабильнее рост.',
+                author: 'Сергей, основатель NPLN Tech'
+            }
+        ];
+
+        if (manifestRotator && manifestQuote && manifestNote && manifestAuthor && manifestPhrases.length) {
+            if (manifestDots) {
+                manifestDots.innerHTML = '';
+                manifestPhrases.forEach((_, idx) => {
+                    const dot = document.createElement('span');
+                    dot.className = 'manifest-dot' + (idx === 0 ? ' active' : '');
+                    manifestDots.appendChild(dot);
+                });
+            }
+
+            const renderManifestPhrase = (index) => {
+                const phrase = manifestPhrases[index];
+                manifestQuote.textContent = phrase.quote;
+                manifestNote.textContent = phrase.note;
+                manifestAuthor.textContent = phrase.author;
+
+                if (manifestDots) {
+                    const dots = manifestDots.querySelectorAll('.manifest-dot');
+                    dots.forEach((dot, dotIndex) => {
+                        dot.classList.toggle('active', dotIndex === index);
+                    });
+                }
+            };
+
+            let manifestIndex = 0;
+            renderManifestPhrase(manifestIndex);
+
+            if (!prefersReducedMotion && manifestPhrases.length > 1) {
+                setInterval(() => {
+                    manifestRotator.classList.add('is-swapping');
+                    setTimeout(() => {
+                        manifestIndex = (manifestIndex + 1) % manifestPhrases.length;
+                        renderManifestPhrase(manifestIndex);
+                        manifestRotator.classList.remove('is-swapping');
+                    }, 200);
+                }, 6200);
+            }
         }
 
         // Scrollspy
