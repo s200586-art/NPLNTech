@@ -170,8 +170,6 @@
     </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preload" href="/files/npln-logo-hero-premium.mp4?v=20260220-sora1" as="video" type="video/mp4">
-    <link rel="preload" href="/files/npln-logo-animated.svg?v=20260220-premium2" as="image" type="image/svg+xml" fetchpriority="high">
     <link rel="preload" href="/files/npln-logo.webp" as="image" type="image/webp" fetchpriority="high">
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
@@ -524,13 +522,6 @@
             margin-bottom: 3rem;
             filter: drop-shadow(0 0 30px var(--cyan-glow));
             animation: float 6s ease-in-out infinite;
-        }
-
-        .hero-logo-video {
-            border-radius: 14px;
-            border: 1px solid rgba(0, 229, 255, 0.22);
-            background: rgba(0, 0, 0, 0.35);
-            box-shadow: 0 0 34px rgba(0, 229, 255, 0.18);
         }
 
         @keyframes float {
@@ -2355,10 +2346,7 @@
     </aside>
 
     <section class="hero">
-        <video class="hero-logo hero-logo-video" autoplay muted loop playsinline preload="auto" poster="/files/npln-logo-animated.svg?v=20260220-premium2">
-            <source src="/files/npln-logo-hero-premium.mp4?v=20260220-sora1" type="video/mp4">
-            <img src="/files/npln-logo-animated.svg?v=20260220-premium2" alt="NPLN Tech" class="hero-logo" fetchpriority="high" decoding="async">
-        </video>
+        <img src="/files/npln-logo.webp" alt="NPLN Tech" class="hero-logo" fetchpriority="high" decoding="async">
         
         <h1>Автоматизация <span class="highlight">рутины</span> для бизнеса</h1>
         
