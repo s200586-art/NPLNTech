@@ -968,77 +968,6 @@
             box-shadow: 0 0 12px rgba(0, 229, 255, 0.15);
         }
 
-        .service-bridge {
-            margin-top: 1rem;
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 1rem;
-            background:
-                radial-gradient(circle at 90% 20%, rgba(0, 229, 255, 0.11), transparent 45%),
-                linear-gradient(140deg, rgba(8, 19, 30, 0.95), rgba(16, 22, 30, 0.93));
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 0.85rem;
-        }
-
-        .service-bridge-label {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.72rem;
-            letter-spacing: 0.06em;
-            text-transform: uppercase;
-            color: var(--cyan);
-            margin-bottom: 0.3rem;
-        }
-
-        .service-bridge-title {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 1rem;
-            margin-bottom: 0.25rem;
-        }
-
-        .service-bridge-desc {
-            color: var(--text-secondary);
-            font-size: 0.88rem;
-        }
-
-        .service-bridge-list {
-            list-style: none;
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 0.45rem;
-        }
-
-        .service-bridge-list a {
-            display: inline-flex;
-            align-items: center;
-            width: 100%;
-            text-decoration: none;
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            padding: 0.48rem 0.65rem;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.74rem;
-            color: var(--text-primary);
-            background: rgba(0, 229, 255, 0.07);
-            transition: all 0.2s ease;
-        }
-
-        .service-bridge-list a:hover {
-            color: var(--cyan);
-            border-color: var(--cyan);
-        }
-
-        @media (min-width: 900px) {
-            .service-bridge {
-                grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr);
-                align-items: center;
-            }
-
-            .service-bridge-list {
-                grid-template-columns: repeat(3, minmax(0, 1fr));
-            }
-        }
-
         /* Clients Section */
         .clients-grid {
             display: grid;
@@ -2525,19 +2454,17 @@
                     <li><a href="leads/">лендинг под клиента за 5 мин →</a></li>
                 </ul>
             </article>
-        </div>
 
-        <div class="service-bridge" aria-label="Готовые сервисы NPLN">
-            <div>
-                <p class="service-bridge-label">готовые сервисы</p>
-                <h3 class="service-bridge-title">Запуск без разработки и ожидания</h3>
-                <p class="service-bridge-desc">Отдельные инструменты можно подключить сразу: это быстрый вход в экосистему NPLN Tech до крупных внедрений.</p>
-            </div>
-            <ul class="service-bridge-list">
-                <li><a href="calculator.html">&#129518; Калькулятор магазина 2026</a></li>
-                <li><a href="claims.html">&#128203; Претензионный помощник</a></li>
-                <li><a href="learning-hub.html">&#127891; Learning Hub: comic + video</a></li>
-            </ul>
+            <article class="service-card" aria-label="Готовые сервисы NPLN">
+                <div class="service-icon">&#128640;</div>
+                <h3 class="service-title">Запуск без разработки и ожидания</h3>
+                <p class="service-desc">Готовые сервисы NPLN можно подключить сразу: это быстрый вход в экосистему до крупных внедрений.</p>
+                <ul class="service-links">
+                    <li><a href="calculator.html">&#129518; калькулятор магазина 2026 →</a></li>
+                    <li><a href="claims.html">&#128203; претензионный помощник →</a></li>
+                    <li><a href="learning-hub.html">&#127891; learning hub: comic + video →</a></li>
+                </ul>
+            </article>
         </div>
     </section>
 
