@@ -1790,7 +1790,7 @@
 
         @media (min-width: 1180px) {
             .cases-grid {
-                grid-template-columns: repeat(5, minmax(0, 1fr));
+                grid-template-columns: repeat(3, minmax(0, 1fr));
             }
         }
 
@@ -1849,6 +1849,9 @@
             transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
         }
 
         .case-card:hover {
@@ -1949,6 +1952,7 @@
             text-decoration: none;
             font-family: 'JetBrains Mono', monospace;
             font-size: 0.78rem;
+            margin-top: 0.55rem;
         }
 
         .case-link:hover {
@@ -1956,7 +1960,7 @@
         }
 
         .case-signal {
-            margin-top: 0.55rem;
+            margin-top: auto;
             border: 1px solid var(--border);
             border-radius: 8px;
             background: rgba(0, 229, 255, 0.05);
