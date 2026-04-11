@@ -1,0 +1,1266 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Лига Элит Строй — Симферополь | Строительные материалы</title>
+  <meta name="description" content="Лига Элит Строй в Симферополе. Строительные и отделочные материалы. Приезжайте — 12 минут от центра. Звоните: +7-918-942-32-75"/>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "Лига Элит Строй",
+    "description": "Оптовый склад строительных и отделочных материалов. Фасадные материалы, напольные покрытия, межкомнатные двери, керамическая плитка. Розница и опт, доставка по Крыму.",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "ул. Москалёва, 1",
+      "addressLocality": "Симферополь",
+      "postalCode": "295014",
+      "addressCountry": "RU"
+    },
+    "telephone": "+79189423275",
+    "openingHours": "Mo-Fr 09:00-13:00,14:00-18:00",
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": "44.952",
+      "longitude": "34.093"
+    }
+  }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;700;900&family=Onest:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+
+  <style>
+    :root {
+      --orange:       #E8590C;
+      --orange-hot:   #FF6B1A;
+      --orange-glow:  rgba(232,89,12,.15);
+      --orange-deep:  #C2410C;
+      --black:        #0F0F0F;
+      --black-soft:   #1A1A1A;
+      --charcoal:     #2D2D2D;
+      --white:        #FFFFFF;
+      --cream:        #FAF8F5;
+      --warm-gray:    #F5F0EB;
+      --gray-400:     #9CA3AF;
+      --gray-500:     #71717A;
+      --gray-600:     #52525B;
+      --green:        #22C55E;
+      --green-soft:   rgba(34,197,94,.12);
+      --font-display: 'Unbounded', system-ui, sans-serif;
+      --font-body:    'Onest', system-ui, sans-serif;
+      --ease:         cubic-bezier(.22,1,.36,1);
+      --ease-bounce:  cubic-bezier(.34,1.56,.64,1);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+    body {
+      font-family: var(--font-body);
+      background: var(--cream);
+      color: var(--black);
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    /* ── PROGRESS BAR ── */
+    #progress-bar {
+      position: fixed; top: 0; left: 0; z-index: 9999;
+      height: 3px; width: 0%;
+      background: linear-gradient(90deg, var(--orange), var(--orange-hot), #FF9A4A);
+      transition: width .1s linear;
+      box-shadow: 0 0 8px rgba(232,89,12,.6);
+    }
+
+    /* ── STICKY CTA BAR ── */
+    .sticky-cta {
+      position: fixed; bottom: 0; left: 0; right: 0; z-index: 999;
+      background: var(--black);
+      padding: 12px 16px;
+      padding-bottom: max(12px, env(safe-area-inset-bottom));
+      display: flex; gap: 10px;
+      box-shadow: 0 -4px 30px rgba(0,0,0,.25);
+      transform: translateY(100%);
+      animation: slideUp .5s var(--ease) .8s forwards;
+    }
+    @keyframes slideUp { to { transform: translateY(0); } }
+    .sticky-cta a {
+      flex: 1; display: flex; align-items: center; justify-content: center; gap: 8px;
+      padding: 14px 8px; border-radius: 12px;
+      font-family: var(--font-body); font-weight: 700; font-size: 15px;
+      text-decoration: none; transition: transform .15s var(--ease);
+      -webkit-tap-highlight-color: transparent;
+    }
+    .sticky-cta a:active { transform: scale(.96); }
+    .cta-call { background: var(--orange); color: var(--white); box-shadow: 0 4px 20px rgba(232,89,12,.4); }
+    .cta-msg { background: linear-gradient(135deg, #2B7FFF, #8B5CF6); color: var(--white); box-shadow: 0 4px 20px rgba(139,92,246,.3); }
+    .cta-route { background: var(--charcoal); color: var(--white); border: 1px solid rgba(255,255,255,.1); }
+    @media (min-width: 769px) { .sticky-cta { display: none; } }
+
+    /* ── HERO ── */
+    .hero {
+      background: var(--black); color: var(--white);
+      padding: 0 20px 64px;
+      position: relative; overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute; inset: 0; pointer-events: none;
+      will-change: transform;
+    }
+    .hero-bg::before {
+      content: ''; position: absolute; top: -50%; right: -30%; width: 80vw; height: 80vw;
+      background: radial-gradient(circle, rgba(232,89,12,.12) 0%, transparent 70%);
+    }
+    .hero-bg::after {
+      content: ''; position: absolute; bottom: -30%; left: -20%; width: 60vw; height: 60vw;
+      background: radial-gradient(circle, rgba(139,92,246,.06) 0%, transparent 70%);
+    }
+    /* Animated tech grid */
+    .hero-grid {
+      position: absolute; inset: 0; pointer-events: none;
+      background-image:
+        linear-gradient(rgba(232,89,12,.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(232,89,12,.04) 1px, transparent 1px);
+      background-size: 60px 60px;
+      mask-image: radial-gradient(ellipse 80% 70% at 50% 40%, black 30%, transparent 100%);
+      -webkit-mask-image: radial-gradient(ellipse 80% 70% at 50% 40%, black 30%, transparent 100%);
+      animation: gridPulse 8s ease-in-out infinite;
+    }
+    @keyframes gridPulse {
+      0%,100% { opacity: .6; }
+      50% { opacity: 1; }
+    }
+    /* Floating orbs */
+    .hero-orb {
+      position: absolute; border-radius: 50%; pointer-events: none;
+      filter: blur(80px); animation: orbFloat 12s ease-in-out infinite;
+    }
+    .hero-orb-1 {
+      width: 400px; height: 400px; top: -10%; right: 5%;
+      background: radial-gradient(circle, rgba(232,89,12,.18) 0%, transparent 70%);
+    }
+    .hero-orb-2 {
+      width: 300px; height: 300px; bottom: 0; left: 10%;
+      background: radial-gradient(circle, rgba(139,92,246,.1) 0%, transparent 70%);
+      animation-delay: -4s;
+    }
+    .hero-orb-3 {
+      width: 200px; height: 200px; top: 40%; left: 50%;
+      background: radial-gradient(circle, rgba(232,89,12,.08) 0%, transparent 70%);
+      animation-delay: -8s;
+    }
+    @keyframes orbFloat {
+      0%,100% { transform: translate(0, 0) scale(1); }
+      33% { transform: translate(20px, -30px) scale(1.05); }
+      66% { transform: translate(-15px, 15px) scale(.95); }
+    }
+    .hero-noise {
+      position: absolute; inset: 0; pointer-events: none;
+      background: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.03'/%3E%3C/svg%3E");
+      opacity: .5;
+    }
+    .hero-inner { max-width: 1120px; margin: 0 auto; position: relative; z-index: 1; padding-top: 48px; }
+    @media (min-width: 769px) {
+      .hero-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
+      .hero-left { grid-column: 1; }
+      .hero-right { grid-column: 2; display: flex; flex-direction: column; align-items: flex-end; gap: 20px; }
+    }
+
+    .brand-label {
+      font-family: var(--font-display);
+      font-size: clamp(18px, 4vw, 26px);
+      font-weight: 900;
+      color: var(--white);
+      letter-spacing: -.01em;
+      margin-bottom: 12px;
+      line-height: 1.1;
+    }
+    .brand-label span { color: var(--orange-hot); }
+
+    .geo-tag {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.12);
+      border-radius: 100px; padding: 8px 16px;
+      font-size: 13px; font-weight: 600; color: var(--gray-400);
+      letter-spacing: .3px; margin-bottom: 20px; backdrop-filter: blur(8px);
+    }
+    .geo-tag svg { color: var(--orange); }
+
+    .hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(28px, 6vw, 48px);
+      font-weight: 900; line-height: 1.1; letter-spacing: -.02em;
+      margin-bottom: 16px;
+    }
+    .hero h1 .city-accent { color: var(--orange-hot); }
+
+    .hero-subtitle {
+      font-size: clamp(16px, 2.5vw, 20px); color: var(--gray-400);
+      line-height: 1.5; max-width: 500px; margin-bottom: 28px;
+    }
+
+    /* ── STATS ROW (animated counters) ── */
+    .hero-stats {
+      display: flex; flex-wrap: wrap; gap: 16px;
+      margin-bottom: 32px; width: 100%;
+    }
+    .stat-item {
+      display: flex; flex-direction: column;
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 14px; padding: 16px 20px;
+      backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+      flex: 1; min-width: 100px;
+      transition: all .3s var(--ease);
+    }
+    .stat-item:hover {
+      background: rgba(255,255,255,.08);
+      border-color: rgba(232,89,12,.3);
+      transform: translateY(-2px);
+    }
+    .stat-number {
+      font-family: var(--font-display);
+      font-size: clamp(26px, 4vw, 36px);
+      font-weight: 900; line-height: 1;
+      color: var(--orange-hot);
+      letter-spacing: -.02em;
+    }
+    .stat-number sup {
+      font-size: .55em; vertical-align: super;
+    }
+    .stat-label {
+      font-size: 12px; color: var(--gray-400); font-weight: 500;
+      margin-top: 6px; line-height: 1.3;
+    }
+    .stat-divider {
+      display: none;
+    }
+
+    /* ── FLOATING COUPON ── */
+    .promo-coupon {
+      position: absolute; top: 20px; right: 20px; z-index: 10;
+      cursor: pointer; -webkit-tap-highlight-color: transparent;
+    }
+    .promo-coupon-pill {
+      display: flex; align-items: center; gap: 8px;
+      background: linear-gradient(135deg, var(--orange), var(--orange-hot));
+      color: var(--white); padding: 10px 16px; border-radius: 100px;
+      font-weight: 700; font-size: 13px; white-space: nowrap;
+      box-shadow: 0 6px 24px rgba(232,89,12,.35);
+      animation: coupon-bounce 3s ease-in-out infinite;
+      transition: all .25s var(--ease); position: relative; overflow: hidden;
+    }
+    .promo-coupon-pill::before {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,.2) 50%, transparent 100%);
+      transform: translateX(-100%); animation: shimmer 3s ease infinite;
+    }
+    @keyframes shimmer { 0% { transform: translateX(-100%); } 100% { transform: translateX(100%); } }
+    @keyframes coupon-bounce {
+      0%,100% { transform: translateY(0) rotate(0deg); }
+      25% { transform: translateY(-3px) rotate(1deg); }
+      75% { transform: translateY(1px) rotate(-0.5deg); }
+    }
+    .promo-coupon-pill svg { flex-shrink: 0; position: relative; }
+    .promo-coupon-pill span { position: relative; }
+    .promo-coupon-expanded {
+      position: absolute; top: calc(100% + 10px); right: 0;
+      background: var(--white); color: var(--black);
+      border-radius: 16px; padding: 20px; width: 260px;
+      box-shadow: 0 16px 48px rgba(0,0,0,.18);
+      opacity: 0; transform: translateY(-8px) scale(.95);
+      pointer-events: none;
+      transition: all .25s var(--ease-bounce);
+    }
+    .promo-coupon.open .promo-coupon-expanded {
+      opacity: 1; transform: translateY(0) scale(1); pointer-events: auto;
+    }
+    .promo-coupon.open .promo-coupon-pill {
+      animation: none; box-shadow: 0 4px 16px rgba(232,89,12,.2);
+    }
+    .promo-coupon-expanded .promo-title {
+      font-family: var(--font-display); font-size: 18px; font-weight: 900;
+      color: var(--orange); margin-bottom: 6px;
+    }
+    .promo-coupon-expanded .promo-desc {
+      font-size: 13px; color: var(--gray-600); line-height: 1.5; margin-bottom: 12px;
+    }
+    .promo-coupon-expanded .promo-code {
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+      background: var(--cream); border: 2px dashed var(--orange);
+      border-radius: 10px; padding: 10px; font-family: var(--font-display);
+      font-size: 14px; font-weight: 700; color: var(--orange); letter-spacing: 1px;
+    }
+    .promo-coupon-expanded .promo-hint {
+      font-size: 11px; color: var(--gray-500); margin-top: 8px; text-align: center;
+    }
+    @media (max-width: 480px) {
+      .promo-coupon { top: 12px; right: 12px; }
+      .promo-coupon-pill { padding: 8px 12px; font-size: 12px; }
+      .promo-coupon-expanded { width: 240px; padding: 16px; }
+    }
+
+    .travel-chips { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 32px; }
+    .travel-chip {
+      display: flex; align-items: center; gap: 8px;
+      background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.1);
+      border-radius: 10px; padding: 10px 16px;
+      font-size: 14px; font-weight: 500; color: rgba(255,255,255,.75);
+    }
+    .travel-chip svg { color: var(--orange); flex-shrink: 0; }
+    .travel-chip strong { color: var(--white); }
+
+    .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+    .hero-btn {
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 16px 28px; border-radius: 14px;
+      font-family: var(--font-body); font-weight: 700; font-size: 16px;
+      text-decoration: none; transition: all .2s var(--ease);
+      -webkit-tap-highlight-color: transparent;
+    }
+    .hero-btn:active { transform: scale(.97); }
+    .hero-btn-primary {
+      background: var(--orange); color: var(--white);
+      box-shadow: 0 6px 24px rgba(232,89,12,.4);
+    }
+    .hero-btn-primary:hover { background: var(--orange-hot); transform: translateY(-2px); box-shadow: 0 10px 32px rgba(232,89,12,.5); }
+    .hero-btn-secondary {
+      background: rgba(255,255,255,.08); color: var(--white);
+      border: 1px solid rgba(255,255,255,.15);
+    }
+    .hero-btn-secondary:hover { background: rgba(255,255,255,.14); border-color: rgba(255,255,255,.25); }
+
+    .status-pill {
+      display: inline-flex; align-items: center; gap: 8px;
+      margin-top: 28px; padding: 8px 16px;
+      background: var(--green-soft); border: 1px solid rgba(34,197,94,.2);
+      border-radius: 100px; font-size: 13px; font-weight: 600; color: var(--green);
+    }
+    .status-dot {
+      width: 8px; height: 8px; background: var(--green); border-radius: 50%;
+      animation: pulse-dot 2s ease infinite;
+    }
+    @keyframes pulse-dot {
+      0%,100% { box-shadow: 0 0 0 0 rgba(34,197,94,.4); }
+      50% { box-shadow: 0 0 0 6px rgba(34,197,94,0); }
+    }
+
+    /* ── GEO BANNER ── */
+    .geo-banner {
+      display: none; background: linear-gradient(135deg, var(--orange-glow), rgba(232,89,12,.05));
+      border: 1px solid rgba(232,89,12,.15); border-radius: 14px; padding: 16px 20px;
+      margin-bottom: 24px; font-size: 14px; color: var(--charcoal);
+    }
+    .geo-banner strong { color: var(--orange-deep); }
+    .geo-banner.active { display: flex; align-items: center; gap: 12px; }
+    .geo-banner svg { flex-shrink: 0; color: var(--orange); }
+
+    /* ── SECTION DIVIDER ── */
+    .section-divider {
+      height: 1px; max-width: 1120px; margin: 0 auto;
+      background: linear-gradient(90deg, transparent, rgba(232,89,12,.3), transparent);
+    }
+
+    /* ── ARGUMENTS ── */
+    .arguments { padding: 80px 20px; background: var(--white); position: relative; }
+    .arguments::before {
+      content: ''; position: absolute; top: 0; right: 0; width: 40%; height: 100%;
+      background: radial-gradient(ellipse at 100% 0%, rgba(232,89,12,.03) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .arguments-inner { max-width: 1120px; margin: 0 auto; position: relative; }
+    .section-label {
+      font-family: var(--font-display); font-size: 11px; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 2.5px; color: var(--orange); margin-bottom: 12px;
+      display: inline-flex; align-items: center; gap: 10px;
+    }
+    .section-label::before {
+      content: ''; width: 24px; height: 2px;
+      background: linear-gradient(90deg, var(--orange), transparent);
+    }
+    .section-title {
+      font-family: var(--font-display); font-size: clamp(24px, 4vw, 38px);
+      font-weight: 900; line-height: 1.15; letter-spacing: -.01em;
+      color: var(--black); margin-bottom: 48px;
+    }
+    .arg-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    @media (max-width: 768px) { .arg-grid { grid-template-columns: 1fr; } }
+    .arg-card {
+      background: var(--cream); border: 1px solid rgba(0,0,0,.06);
+      border-radius: 20px; padding: 32px 28px;
+      transition: all .3s var(--ease); position: relative; overflow: hidden;
+    }
+    .arg-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+      background: linear-gradient(90deg, var(--orange), var(--orange-hot));
+      transform: scaleX(0); transform-origin: left;
+      transition: transform .4s var(--ease);
+    }
+    .arg-card::after {
+      content: ''; position: absolute; bottom: -50%; right: -30%; width: 200px; height: 200px;
+      background: radial-gradient(circle, rgba(232,89,12,.04) 0%, transparent 70%);
+      transition: opacity .3s; opacity: 0;
+    }
+    .arg-card:hover::before { transform: scaleX(1); }
+    .arg-card:hover::after { opacity: 1; }
+    .arg-card:hover { transform: translateY(-6px); box-shadow: 0 16px 48px rgba(0,0,0,.1); }
+    .arg-icon {
+      width: 52px; height: 52px; background: var(--orange-glow); border-radius: 14px;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 18px; border: 1px solid rgba(232,89,12,.1);
+    }
+    .arg-card h3 { font-family: var(--font-display); font-size: 16px; font-weight: 700; color: var(--black); margin-bottom: 10px; }
+    .arg-card p { font-size: 14px; color: var(--gray-600); line-height: 1.7; }
+
+    /* ── CATEGORIES (glassmorphism + fixed 2×2 grid) ── */
+    .categories { padding: 80px 20px; background: linear-gradient(135deg, #0a0a1a 0%, #111827 50%, #0c1a2e 100%); position: relative; overflow: hidden; }
+    .categories::before {
+      content: ''; position: absolute; inset: 0; pointer-events: none;
+      background-image:
+        linear-gradient(rgba(232,89,12,.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(232,89,12,.03) 1px, transparent 1px);
+      background-size: 80px 80px;
+      mask-image: radial-gradient(ellipse 60% 60% at 50% 50%, black 20%, transparent 80%);
+      -webkit-mask-image: radial-gradient(ellipse 60% 60% at 50% 50%, black 20%, transparent 80%);
+    }
+    .categories-inner { max-width: 1120px; margin: 0 auto; position: relative; z-index: 1; }
+    .categories .section-label { color: var(--orange-hot); }
+    .categories .section-title { color: var(--white); }
+
+    /* Default: 2 columns */
+    .cat-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+    /* When any card is open — switch to single column */
+    .cat-grid.has-open {
+      grid-template-columns: 1fr;
+    }
+    @media (max-width: 500px) {
+      .cat-grid { grid-template-columns: 1fr; }
+    }
+
+    /* GLASSMORPHISM cat cards */
+    .cat-card {
+      background: rgba(255,255,255,.08);
+      border: 1.5px solid rgba(255,255,255,.15);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-radius: 20px; overflow: hidden;
+      transition: all .3s var(--ease); cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+      box-shadow: 0 4px 24px rgba(0,0,0,.2), inset 0 1px 0 rgba(255,255,255,.15);
+    }
+    .cat-card:hover {
+      border-color: rgba(232,89,12,.5);
+      box-shadow: 0 12px 40px rgba(232,89,12,.2), inset 0 1px 0 rgba(255,255,255,.2);
+      transform: translateY(-4px);
+      background: rgba(255,255,255,.12);
+    }
+    .cat-card.open {
+      border-color: rgba(232,89,12,.6);
+      box-shadow: 0 16px 48px rgba(232,89,12,.25), inset 0 1px 0 rgba(255,255,255,.2);
+      background: rgba(255,255,255,.12);
+    }
+    .cat-header {
+      display: flex; align-items: center; gap: 14px;
+      padding: 18px 18px; position: relative;
+    }
+    .cat-icon {
+      width: 44px; height: 44px; flex-shrink: 0;
+      background: rgba(232,89,12,.2);
+      border: 1px solid rgba(232,89,12,.3);
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .cat-info { flex: 1; min-width: 0; }
+    .cat-name { font-weight: 700; font-size: 15px; color: var(--white); line-height: 1.3; }
+    .cat-note { font-size: 12px; color: rgba(255,255,255,.5); margin-top: 2px; }
+    .cat-arrow {
+      width: 24px; height: 24px; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      color: rgba(255,255,255,.4); transition: transform .25s var(--ease);
+    }
+    .cat-card.open .cat-arrow { transform: rotate(180deg); color: var(--orange-hot); }
+    .cat-body {
+      max-height: 0; overflow: hidden;
+      transition: max-height .4s var(--ease);
+    }
+    .cat-card.open .cat-body { max-height: 320px; }
+    .cat-body-inner {
+      padding: 0 18px 18px;
+      border-top: 1px solid rgba(255,255,255,.08);
+    }
+    .cat-body-inner p {
+      font-size: 13px; color: rgba(255,255,255,.65); line-height: 1.65;
+      padding-top: 14px;
+    }
+    .cat-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+    .cat-tag {
+      background: rgba(232,89,12,.2); color: var(--orange-hot);
+      border: 1px solid rgba(232,89,12,.3);
+      font-size: 11px; font-weight: 600; padding: 4px 10px;
+      border-radius: 100px; white-space: nowrap;
+    }
+
+    /* ── EXTERNAL PROFILES ── (heavy version) */
+    .profiles { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 20px; }
+    @media (max-width: 600px) { .profiles { grid-template-columns: 1fr; } }
+    .profile-btn {
+      display: flex; align-items: center; gap: 10px;
+      padding: 14px 20px; border-radius: 14px;
+      font-family: var(--font-body); font-weight: 700; font-size: 14px;
+      text-decoration: none; transition: all .22s var(--ease);
+      position: relative; overflow: hidden; width: 100%;
+    }
+    .profile-btn::after {
+      content: ''; position: absolute; inset: 0; opacity: 0;
+      transition: opacity .2s;
+    }
+    .profile-btn:hover { transform: translateY(-3px); }
+    .profile-btn:hover::after { opacity: 1; }
+    .profile-btn:active { transform: scale(.97); }
+
+    .profile-2gis {
+      background: #1a3d22; color: #4ADE80;
+      border: 1.5px solid rgba(74,222,128,.2);
+      box-shadow: 0 4px 16px rgba(34,197,94,.15);
+    }
+    .profile-2gis:hover { background: #1e4428; box-shadow: 0 8px 28px rgba(34,197,94,.25); }
+    .profile-2gis .profile-meta { font-size: 11px; color: rgba(74,222,128,.6); font-weight: 500; }
+
+    .profile-yandex {
+      background: #3d2b00; color: #FCD34D;
+      border: 1.5px solid rgba(252,211,77,.2);
+      box-shadow: 0 4px 16px rgba(245,158,11,.15);
+    }
+    .profile-yandex:hover { background: #4a3400; box-shadow: 0 8px 28px rgba(245,158,11,.25); }
+    .profile-yandex .profile-meta { font-size: 11px; color: rgba(252,211,77,.6); font-weight: 500; }
+
+    .profile-avito {
+      background: #001a3d; color: #60A5FA;
+      border: 1.5px solid rgba(96,165,250,.2);
+      box-shadow: 0 4px 16px rgba(59,130,246,.15);
+    }
+    .profile-avito:hover { background: #002050; box-shadow: 0 8px 28px rgba(59,130,246,.25); }
+    .profile-avito .profile-meta { font-size: 11px; color: rgba(96,165,250,.6); font-weight: 500; }
+
+    .profile-btn-content { display: flex; flex-direction: column; }
+    .profile-btn-label { line-height: 1.2; }
+
+    /* ── LOCATION ── */
+    .location { padding: 80px 20px; background: var(--white); }
+    .location-inner { max-width: 1120px; margin: 0 auto; }
+    @media (min-width: 769px) {
+      .location-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; align-items: start; }
+    }
+    .map-container {
+      border-radius: 20px; overflow: hidden; height: 360px;
+      background: var(--warm-gray); border: 1px solid rgba(0,0,0,.06);
+      margin-bottom: 20px; position: relative;
+      box-shadow: 0 8px 32px rgba(0,0,0,.08);
+    }
+    .map-container iframe { width: 100%; height: 100%; border: none; }
+
+    .route-btn {
+      display: flex; align-items: center; justify-content: center; gap: 10px;
+      width: 100%; padding: 16px; background: var(--black); color: var(--white);
+      border-radius: 14px; font-family: var(--font-body);
+      font-weight: 700; font-size: 16px; text-decoration: none;
+      transition: all .2s var(--ease); margin-bottom: 20px;
+    }
+    .route-btn:hover { background: var(--charcoal); transform: translateY(-2px); }
+    .route-btn:active { transform: scale(.98); }
+
+    .address-card {
+      background: var(--cream); border: 1px solid rgba(0,0,0,.06);
+      border-radius: 16px; padding: 24px;
+    }
+    .address-card-row {
+      display: flex; gap: 14px; align-items: flex-start;
+      padding: 12px 0; border-bottom: 1px solid rgba(0,0,0,.05);
+    }
+    .address-card-row:last-child { border-bottom: none; }
+    .address-card-icon {
+      width: 40px; height: 40px; flex-shrink: 0;
+      background: var(--orange-glow); border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .address-card-label {
+      font-size: 11px; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 1.5px; color: var(--gray-500); margin-bottom: 4px;
+    }
+    .address-card-value { font-size: 15px; font-weight: 600; color: var(--black); line-height: 1.5; }
+    .address-card-value a { color: var(--black); text-decoration: none; }
+    .address-card-value a:hover { color: var(--orange); }
+
+    /* ── TRUST ── */
+    .trust { padding: 80px 20px; background: var(--cream); }
+    .trust-inner { max-width: 1120px; margin: 0 auto; }
+    @media (min-width: 769px) {
+      .trust-grid { display: grid; grid-template-columns: 340px 1fr; gap: 32px; align-items: start; }
+    }
+    .review-widget {
+      background: var(--white); border: 1px solid rgba(0,0,0,.06);
+      border-radius: 20px; padding: 32px 28px; text-align: center; margin-bottom: 16px;
+      box-shadow: 0 4px 24px rgba(0,0,0,.04);
+    }
+    .review-stars { display: flex; align-items: center; justify-content: center; gap: 4px; margin-bottom: 8px; }
+    .review-score { font-family: var(--font-display); font-size: 40px; font-weight: 900; color: var(--black); letter-spacing: -.02em; }
+    .review-count { font-size: 14px; color: var(--gray-500); margin-top: 4px; }
+    .review-sources { display: flex; justify-content: center; gap: 24px; margin-top: 16px; font-size: 13px; font-weight: 600; color: var(--gray-600); }
+    .review-sources span { display: flex; align-items: center; gap: 6px; }
+
+    .faq-list { display: flex; flex-direction: column; gap: 8px; margin-top: 32px; }
+    .faq-item { background: var(--white); border: 1px solid rgba(0,0,0,.06); border-radius: 12px; overflow: hidden; }
+    .faq-question {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 16px 20px; font-weight: 600; font-size: 15px; color: var(--black);
+      cursor: pointer; -webkit-tap-highlight-color: transparent;
+      background: none; border: none; width: 100%; font-family: var(--font-body); text-align: left;
+    }
+    .faq-question:hover { color: var(--orange); }
+    .faq-toggle {
+      width: 28px; height: 28px; flex-shrink: 0; background: var(--cream);
+      border-radius: 8px; display: flex; align-items: center; justify-content: center;
+      font-size: 18px; color: var(--orange); transition: transform .25s var(--ease);
+    }
+    .faq-item.open .faq-toggle { transform: rotate(45deg); }
+    .faq-answer { max-height: 0; overflow: hidden; transition: max-height .3s var(--ease); }
+    .faq-answer-inner { padding: 0 20px 16px; font-size: 14px; color: var(--gray-600); line-height: 1.7; }
+    .faq-item.open .faq-answer { max-height: 200px; }
+
+    /* ── CALLBACK ── */
+    .callback { padding: 80px 20px; background: var(--black); color: var(--white); position: relative; overflow: hidden; }
+    .callback::before {
+      content: ''; position: absolute; inset: 0; pointer-events: none;
+      background-image:
+        linear-gradient(rgba(232,89,12,.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(232,89,12,.03) 1px, transparent 1px);
+      background-size: 60px 60px;
+      mask-image: radial-gradient(ellipse 50% 70% at 50% 50%, black 20%, transparent 80%);
+      -webkit-mask-image: radial-gradient(ellipse 50% 70% at 50% 50%, black 20%, transparent 80%);
+    }
+    .callback::after {
+      content: ''; position: absolute; top: -100px; left: 50%; transform: translateX(-50%);
+      width: 600px; height: 600px; pointer-events: none;
+      background: radial-gradient(circle, rgba(232,89,12,.08) 0%, transparent 60%);
+    }
+    .callback-inner { max-width: 680px; margin: 0 auto; text-align: center; position: relative; z-index: 1; }
+    .callback h2 { font-family: var(--font-display); font-size: clamp(24px, 4vw, 34px); font-weight: 900; margin-bottom: 10px; }
+    .callback p { font-size: 16px; color: var(--gray-400); margin-bottom: 32px; }
+    .callback-form { display: flex; flex-direction: column; gap: 12px; }
+    .callback-input {
+      width: 100%; background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.12); border-radius: 12px;
+      padding: 14px 18px; font-family: var(--font-body);
+      font-size: 16px; color: var(--white); outline: none; transition: border-color .2s;
+    }
+    .callback-input::placeholder { color: var(--gray-500); }
+    .callback-input:focus { border-color: var(--orange); background: rgba(255,255,255,.1); }
+    .callback-submit {
+      width: 100%; background: var(--orange); color: var(--white);
+      border: none; border-radius: 12px; padding: 16px;
+      font-family: var(--font-body); font-weight: 700; font-size: 16px;
+      cursor: pointer; transition: all .2s var(--ease);
+      box-shadow: 0 6px 24px rgba(232,89,12,.3);
+    }
+    .callback-submit:hover { background: var(--orange-hot); transform: translateY(-2px); box-shadow: 0 10px 32px rgba(232,89,12,.4); }
+    .callback-submit:active { transform: scale(.98); }
+    .callback-note { font-size: 12px; color: var(--gray-600); margin-top: 8px; }
+
+    /* ── FOOTER ── */
+    .hours-footer { padding: 32px 20px; background: var(--cream); text-align: center; }
+    .hours-footer-inner { max-width: 1120px; margin: 0 auto; font-size: 14px; color: var(--gray-600); }
+    .hours-footer .schedule { font-weight: 700; color: var(--black); font-size: 16px; margin-bottom: 4px; }
+    .hours-footer .copy { margin-top: 20px; font-size: 12px; color: var(--gray-500); }
+
+    /* ── DESKTOP FAB ── */
+    .desktop-fab { display: none; position: fixed; bottom: 32px; right: 32px; z-index: 200; }
+    @media (min-width: 769px) { .desktop-fab { display: flex; flex-direction: column; gap: 10px; } }
+    .fab-btn {
+      display: flex; align-items: center; gap: 10px; padding: 14px 22px;
+      border-radius: 100px; font-family: var(--font-body); font-weight: 700; font-size: 14px;
+      text-decoration: none; transition: all .2s var(--ease);
+      box-shadow: 0 8px 28px rgba(0,0,0,.2);
+    }
+    .fab-btn:hover { transform: translateY(-3px); }
+    .fab-call { background: var(--orange); color: var(--white); animation: fab-pulse 3s ease infinite; }
+    .fab-msg { background: linear-gradient(135deg, #2B7FFF, #8B5CF6); color: var(--white); }
+    @keyframes fab-pulse {
+      0%,100% { transform: translateY(0); box-shadow: 0 8px 28px rgba(232,89,12,.3); }
+      50% { transform: translateY(-4px); box-shadow: 0 14px 40px rgba(232,89,12,.4); }
+    }
+
+    /* ── REVEAL ANIMATIONS (directional) ── */
+    .reveal {
+      opacity: 0; transform: translateY(30px);
+      transition: opacity .65s var(--ease), transform .65s var(--ease);
+    }
+    .reveal-left {
+      opacity: 0; transform: translateX(-40px);
+      transition: opacity .65s var(--ease), transform .65s var(--ease);
+    }
+    .reveal-right {
+      opacity: 0; transform: translateX(40px);
+      transition: opacity .65s var(--ease), transform .65s var(--ease);
+    }
+    .reveal.visible, .reveal-left.visible, .reveal-right.visible {
+      opacity: 1; transform: none;
+    }
+    .reveal-d1 { transition-delay: .1s; }
+    .reveal-d2 { transition-delay: .2s; }
+    .reveal-d3 { transition-delay: .3s; }
+    .reveal-d4 { transition-delay: .4s; }
+
+    @media (max-width: 768px) { body { padding-bottom: 80px; } }
+  </style>
+</head>
+<body>
+
+  <!-- PROGRESS BAR -->
+  <div id="progress-bar"></div>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg" id="heroBg"></div>
+    <div class="hero-grid"></div>
+    <div class="hero-orb hero-orb-1"></div>
+    <div class="hero-orb hero-orb-2"></div>
+    <div class="hero-orb hero-orb-3"></div>
+    <div class="hero-noise"></div>
+    <div class="hero-inner">
+     <div class="hero-left">
+      <div class="geo-tag">
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a2 2 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><circle cx="12" cy="11" r="3"/></svg>
+        Симферополь, ул. Москалёва 1
+      </div>
+
+      <div class="brand-label"><span>Лига Элит Строй</span></div>
+
+      <h1>
+        Строительные<br/>материалы<br/>
+        <span class="city-accent">в&nbsp;Симферополе</span>
+      </h1>
+
+      <p class="hero-subtitle">
+        Фасады, полы, двери, плитка — всё в наличии на оптовом складе. Розница и опт. Доставка по Крыму. Приезжайте — покажем, потрогаете, подберём.
+      </p>
+
+      </div><!-- /hero-left -->
+      <div class="hero-right">
+      <!-- Animated stats counters -->
+      <div class="hero-stats">
+        <div class="stat-item">
+          <div class="stat-number" data-count="200" data-suffix="+">0</div>
+          <div class="stat-label">образцов<br/>в зале</div>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+          <div class="stat-number" data-count="47">0</div>
+          <div class="stat-label">отзывов<br/>4.8★</div>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+          <div class="stat-number" data-count="12">0</div>
+          <div class="stat-label">лет<br/>на рынке</div>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+          <div class="stat-number" data-count="2" data-suffix=" мин">0</div>
+          <div class="stat-label">бесплатный<br/>расчёт</div>
+        </div>
+      </div>
+
+      <!-- Floating coupon moved to top-right of hero -->
+      <div class="promo-coupon" id="promoCoupon" onclick="this.classList.toggle('open')">
+        <div class="promo-coupon-pill">
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M23 19a2 2 0 01-2 2H3a2 2 0 01-2-2V8a2 2 0 012-2h4l2-3h6l2 3h4a2 2 0 012 2z"/><circle cx="12" cy="13" r="4"/></svg>
+          <span>Скидка 5%</span>
+        </div>
+        <div class="promo-coupon-expanded">
+          <div class="promo-title">Скидка 5%</div>
+          <div class="promo-desc">Сделайте скриншот этой страницы и покажите продавцу в магазине</div>
+          <div class="promo-code">
+            <svg width="16" height="16" fill="none" stroke="var(--orange)" stroke-width="2" viewBox="0 0 24 24"><path d="M23 19a2 2 0 01-2 2H3a2 2 0 01-2-2V8a2 2 0 012-2h4l2-3h6l2 3h4a2 2 0 012 2z"/><circle cx="12" cy="13" r="4"/></svg>
+            СКРИНШОТ = СКИДКА
+          </div>
+          <div class="promo-hint">Действует при покупке от 5 000 ₽</div>
+        </div>
+      </div>
+
+      <div class="travel-chips">
+        <div class="travel-chip reveal">
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+          <strong>12 мин</strong>&nbsp;от центра
+        </div>
+        <div class="travel-chip reveal reveal-d1">
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="1" y="4" width="22" height="16" rx="2"/><path d="M1 10h22"/></svg>
+          Парковка у входа
+        </div>
+        <div class="travel-chip reveal reveal-d2">
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
+          Бесплатный расчёт за 2 мин
+        </div>
+      </div>
+
+      <div class="hero-actions">
+        <a href="tel:+79189423275" class="hero-btn hero-btn-primary">
+          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+          Позвонить
+        </a>
+        <a href="https://max.ru/79189423275" class="hero-btn hero-btn-secondary" target="_blank">
+          <img src="https://max.ru/favicon.png" width="22" height="22" alt="Max" style="border-radius:6px;display:block;"/>
+          Max
+        </a>
+      </div>
+
+      <div class="status-pill">
+        <span class="status-dot"></span>
+        Пн–Пт · до 18:00
+      </div>
+      </div><!-- /hero-right -->
+    </div>
+  </section>
+
+  <!-- GEO BANNER -->
+  <div style="max-width:1120px;margin:0 auto;padding:16px 20px 0;">
+    <div class="geo-banner" id="geoBanner">
+      <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a2 2 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><circle cx="12" cy="11" r="3"/></svg>
+      <span>Вы в <strong id="geoCity">Симферополе</strong>. Магазин всего в <strong id="geoDist">3.8 км</strong> от вас.</span>
+    </div>
+  </div>
+
+  <!-- ARGUMENTS -->
+  <section class="arguments">
+    <div class="arguments-inner">
+      <div class="section-label">Зачем приезжать</div>
+      <h2 class="section-title">Почему нельзя просто<br/>заказать на маркетплейсе?</h2>
+      <div class="arg-grid">
+        <div class="arg-card reveal-left">
+          <div class="arg-icon"><svg width="24" height="24" fill="none" stroke="var(--orange)" stroke-width="2" viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></div>
+          <h3>Увидите реальный цвет</h3>
+          <p>Цвет на фото ≠ цвет в жизни. Увидите реальный оттенок только при дневном свете в зале.</p>
+        </div>
+        <div class="arg-card reveal">
+          <div class="arg-icon"><svg width="24" height="24" fill="none" stroke="var(--orange)" stroke-width="2" viewBox="0 0 24 24"><path d="M18 11V6a2 2 0 00-4 0m0 5V4a2 2 0 00-4 0m0 7V6a2 2 0 00-4 0v7"/><path d="M6 13v-1a2 2 0 00-4 0v5a8 8 0 0016 0v-5a2 2 0 00-4 0"/></svg></div>
+          <h3>Потрогаете перед покупкой</h3>
+          <p>200+ образцов в зале. Текстура, толщина, качество — всё проверите руками.</p>
+        </div>
+        <div class="arg-card reveal-right">
+          <div class="arg-icon"><svg width="24" height="24" fill="none" stroke="var(--orange)" stroke-width="2" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
+          <h3>Бесплатный расчёт за 2 мин</h3>
+          <p>Назовите площадь — посчитаем с запасом. Можно взять образец домой.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CATEGORIES (glassmorphism + fixed 2×2 grid) -->
+  <section class="categories">
+    <div class="categories-inner">
+      <div class="section-label">Ассортимент</div>
+      <h2 class="section-title">Что у нас есть</h2>
+      <div class="cat-grid">
+
+        <div class="cat-card reveal-left">
+          <div class="cat-header">
+            <div class="cat-icon"><svg width="22" height="22" fill="none" stroke="var(--orange-hot)" stroke-width="1.5" viewBox="0 0 24 24"><path d="M3 21h18M3 10h18M5 6l7-3 7 3M4 10v11M20 10v11M8 14v3M12 14v3M16 14v3"/></svg></div>
+            <div class="cat-info">
+              <div class="cat-name">Фасадные материалы</div>
+              <div class="cat-note">Панели, утеплители, конструкции</div>
+            </div>
+            <div class="cat-arrow"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></div>
+          </div>
+          <div class="cat-body"><div class="cat-body-inner">
+            <p>Полный спектр фасадных решений: сайдинг, фиброцементные панели, термопанели, утеплители (минвата, пенополистирол), штукатурные системы. Всё в наличии на складе — можно сравнить цвета и текстуры вживую.</p>
+            <div class="cat-tags">
+              <span class="cat-tag">Сайдинг</span>
+              <span class="cat-tag">Термопанели</span>
+              <span class="cat-tag">Утеплители</span>
+              <span class="cat-tag">Фиброцемент</span>
+              <span class="cat-tag">Водостоки</span>
+            </div>
+          </div></div>
+        </div>
+
+        <div class="cat-card reveal-right">
+          <div class="cat-header">
+            <div class="cat-icon"><svg width="22" height="22" fill="none" stroke="var(--orange-hot)" stroke-width="1.5" viewBox="0 0 24 24"><rect x="1" y="6" width="22" height="12" rx="1"/><path d="M1 12h22M6 6v12M12 6v12M18 6v12"/></svg></div>
+            <div class="cat-info">
+              <div class="cat-name">Напольные покрытия</div>
+              <div class="cat-note">Ламинат, кварцвинил, паркет</div>
+            </div>
+            <div class="cat-arrow"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></div>
+          </div>
+          <div class="cat-body"><div class="cat-body-inner">
+            <p>200+ образцов напольных покрытий: ламинат 32-34 класса, кварцвинил SPC и LVT, инженерная доска, линолеум. Приезжайте — потрогаете каждый образец, оцените толщину, фаску, замок.</p>
+            <div class="cat-tags">
+              <span class="cat-tag">Ламинат</span>
+              <span class="cat-tag">Кварцвинил SPC</span>
+              <span class="cat-tag">Паркетная доска</span>
+              <span class="cat-tag">Линолеум</span>
+              <span class="cat-tag">Плинтус</span>
+            </div>
+          </div></div>
+        </div>
+
+        <div class="cat-card reveal-left reveal-d1">
+          <div class="cat-header">
+            <div class="cat-icon"><svg width="22" height="22" fill="none" stroke="var(--orange-hot)" stroke-width="1.5" viewBox="0 0 24 24"><path d="M5 2h14a1 1 0 011 1v18a1 1 0 01-1 1H5a1 1 0 01-1-1V3a1 1 0 011-1z"/><circle cx="15" cy="12" r="1" fill="var(--orange-hot)"/><path d="M4 22h16"/></svg></div>
+            <div class="cat-info">
+              <div class="cat-name">Межкомнатные двери</div>
+              <div class="cat-note">Массив, МДФ, шпон, экошпон</div>
+            </div>
+            <div class="cat-arrow"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></div>
+          </div>
+          <div class="cat-body"><div class="cat-body-inner">
+            <p>Двери от бюджетных до премиум: экошпон, натуральный шпон, массив. В зале стоят образцы — откройте, закройте, оцените фурнитуру. Подберём под цвет пола и интерьер.</p>
+            <div class="cat-tags">
+              <span class="cat-tag">Экошпон</span>
+              <span class="cat-tag">Шпон</span>
+              <span class="cat-tag">Массив</span>
+              <span class="cat-tag">Фурнитура</span>
+              <span class="cat-tag">Погонаж</span>
+            </div>
+          </div></div>
+        </div>
+
+        <div class="cat-card reveal-right reveal-d1">
+          <div class="cat-header">
+            <div class="cat-icon"><svg width="22" height="22" fill="none" stroke="var(--orange-hot)" stroke-width="1.5" viewBox="0 0 24 24"><rect x="2" y="2" width="9" height="9" rx="1"/><rect x="13" y="2" width="9" height="9" rx="1"/><rect x="2" y="13" width="9" height="9" rx="1"/><rect x="13" y="13" width="9" height="9" rx="1"/></svg></div>
+            <div class="cat-info">
+              <div class="cat-name">Керамическая плитка</div>
+              <div class="cat-note">Керамогранит, мозаика, клей</div>
+            </div>
+            <div class="cat-arrow"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></div>
+          </div>
+          <div class="cat-body"><div class="cat-body-inner">
+            <p>Керамогранит для пола и стен, мозаика, декоры, бордюры. Плиточный клей, затирки, СВП. Реальные цвета видны только вживую — фото и экран искажают оттенки на 30-40%.</p>
+            <div class="cat-tags">
+              <span class="cat-tag">Керамогранит</span>
+              <span class="cat-tag">Мозаика</span>
+              <span class="cat-tag">Плиточный клей</span>
+              <span class="cat-tag">Затирки</span>
+              <span class="cat-tag">СВП</span>
+            </div>
+          </div></div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- LOCATION -->
+  <section class="location" id="map">
+    <div class="location-inner">
+      <div class="section-label">Как добраться</div>
+      <h2 class="section-title">Мы рядом</h2>
+      <div class="location-grid">
+      <div>
+      <div class="map-container reveal">
+        <iframe src="https://yandex.ru/map-widget/v1/?ll=34.093000%2C44.952000&z=16&pt=34.093000,44.952000,pm2rdm" title="Карта — Лига Элит Строй" loading="lazy" allowfullscreen></iframe>
+      </div>
+      <a href="https://yandex.ru/maps/?rtext=~44.952,34.093" target="_blank" class="route-btn reveal">
+        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l5.447 2.724A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"/></svg>
+        Построить маршрут
+      </a>
+      </div>
+      <div class="address-card reveal">
+        <div class="address-card-row">
+          <div class="address-card-icon"><svg width="20" height="20" fill="none" stroke="var(--orange)" stroke-width="2" viewBox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a2 2 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><circle cx="12" cy="11" r="3"/></svg></div>
+          <div>
+            <div class="address-card-label">Адрес</div>
+            <div class="address-card-value">ул. Москалёва, 1, 1 этаж, Симферополь, 295014</div>
+          </div>
+        </div>
+        <div class="address-card-row">
+          <div class="address-card-icon"><svg width="20" height="20" fill="none" stroke="var(--orange)" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg></div>
+          <div>
+            <div class="address-card-label">Телефоны</div>
+            <div class="address-card-value">
+              <a href="tel:+79189423275">+7-918-942-32-75</a><br/>
+              <a href="tel:+79178606060">+7-917-860-60-60</a><br/>
+              <a href="tel:+79789100010">+7-978-910-00-10</a>
+            </div>
+          </div>
+        </div>
+        <div class="address-card-row">
+          <div class="address-card-icon"><svg width="20" height="20" fill="none" stroke="var(--orange)" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div>
+          <div>
+            <div class="address-card-label">Режим работы</div>
+            <div class="address-card-value">Пн–Пт 09:00 – 18:00, обед 13:00–14:00</div>
+          </div>
+        </div>
+        <div class="address-card-row">
+          <div class="address-card-icon"><svg width="20" height="20" fill="none" stroke="var(--orange)" stroke-width="2" viewBox="0 0 24 24"><path d="M5 17h14M5 17a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v9a2 2 0 01-2 2M5 17l-1 3h2M19 17l1 3h-2"/><path d="M3 10h18"/><circle cx="7.5" cy="14" r="1" fill="var(--orange)"/><circle cx="16.5" cy="14" r="1" fill="var(--orange)"/></svg></div>
+          <div>
+            <div class="address-card-label">Транспорт</div>
+            <div class="address-card-value">Ост. «Персиковый переулок» — 7 мин пешком (600 м). Парковка рядом.</div>
+          </div>
+        </div>
+      </div>
+      </div><!-- /location-grid -->
+    </div>
+  </section>
+
+  <!-- TRUST -->
+  <section class="trust">
+    <div class="trust-inner">
+      <div class="section-label">Отзывы</div>
+      <h2 class="section-title">Нам доверяют</h2>
+      <div class="trust-grid">
+      <div>
+      <div class="review-widget reveal">
+        <div class="review-stars"><svg width="28" height="28" viewBox="0 0 24 24" fill="#F59E0B"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg width="28" height="28" viewBox="0 0 24 24" fill="#F59E0B"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg width="28" height="28" viewBox="0 0 24 24" fill="#F59E0B"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg width="28" height="28" viewBox="0 0 24 24" fill="#F59E0B"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg width="28" height="28" viewBox="0 0 24 24" fill="#F59E0B"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
+        <div class="review-score">4.8</div>
+        <div class="review-count">47 отзывов</div>
+        <div class="review-sources">
+          <span><svg width="16" height="16" fill="none" stroke="var(--orange)" stroke-width="2" viewBox="0 0 24 24"><path d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l5.447 2.724A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"/></svg> Яндекс.Карты</span>
+          <span><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="#22C55E" stroke-width="2"/><path d="M8 12l3 3 5-6" stroke="#22C55E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> 2ГИС</span>
+        </div>
+      </div>
+
+      <!-- External profile links — HEAVY VERSION -->
+      <div class="profiles reveal" style="grid-template-columns:1fr;">
+        <a href="https://2gis.ru/simferopol/firm/70000001101727804" target="_blank" class="profile-btn profile-2gis">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="#4ADE80" stroke-width="2"/><path d="M8 12l3 3 5-6" stroke="#4ADE80" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <div class="profile-btn-content">
+            <span class="profile-btn-label">Мы на 2ГИС</span>
+            <span class="profile-meta">4.8 · 47 отзывов</span>
+          </div>
+        </a>
+        <a href="https://yandex.com/maps/org/liga_elit_stroy/76230747451/reviews/" target="_blank" class="profile-btn profile-yandex">
+          <svg width="20" height="20" fill="none" stroke="#FCD34D" stroke-width="2" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <div class="profile-btn-content">
+            <span class="profile-btn-label">Яндекс.Карты</span>
+            <span class="profile-meta">Читать отзывы →</span>
+          </div>
+        </a>
+        <a href="https://www.avito.ru/brands/ligaelitstroy/all?sellerId=3a6ac9faf5311ee363e0f4d385e70cca" target="_blank" class="profile-btn profile-avito">
+          <svg width="20" height="20" fill="none" stroke="#60A5FA" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M8 12h8M12 8v8"/></svg>
+          <div class="profile-btn-content">
+            <span class="profile-btn-label">Товары на Авито</span>
+            <span class="profile-meta">Каталог и цены →</span>
+          </div>
+        </a>
+      </div>
+      </div><!-- /left column -->
+
+      <div class="faq-list">
+        <div class="faq-item reveal-left">
+          <button class="faq-question" onclick="this.parentElement.classList.toggle('open')">
+            <span>Есть ли доставка?</span>
+            <span class="faq-toggle">+</span>
+          </button>
+          <div class="faq-answer"><div class="faq-answer-inner">Да, доставляем по Симферополю и всему Крыму. Стоимость зависит от объёма — уточняйте по телефону.</div></div>
+        </div>
+        <div class="faq-item reveal-right">
+          <button class="faq-question" onclick="this.parentElement.classList.toggle('open')">
+            <span>Можно ли вернуть товар?</span>
+            <span class="faq-toggle">+</span>
+          </button>
+          <div class="faq-answer"><div class="faq-answer-inner">Да, возврат в течение 14 дней при сохранении товарного вида и упаковки.</div></div>
+        </div>
+        <div class="faq-item reveal-left reveal-d1">
+          <button class="faq-question" onclick="this.parentElement.classList.toggle('open')">
+            <span>Помогаете с укладкой?</span>
+            <span class="faq-toggle">+</span>
+          </button>
+          <div class="faq-answer"><div class="faq-answer-inner">Порекомендуем проверенных мастеров. Также поможем с расчётом материалов — бесплатно.</div></div>
+        </div>
+      </div>
+      </div><!-- /trust-grid -->
+    </div>
+  </section>
+
+  <!-- CALLBACK -->
+  <section class="callback">
+    <div class="callback-inner">
+      <h2>Не хотите звонить?</h2>
+      <p>Оставьте номер — перезвоним за 15 минут в рабочее время</p>
+      <form class="callback-form" id="callbackForm" onsubmit="handleCallback(event)">
+        <input class="callback-input" type="text" placeholder="Ваше имя" autocomplete="given-name"/>
+        <input class="callback-input" type="tel" id="cbPhone" placeholder="+7 (___) ___-__-__" autocomplete="tel" required/>
+        <button type="submit" class="callback-submit">Перезвоните мне</button>
+      </form>
+      <div class="callback-note">Нажимая кнопку, вы соглашаетесь на обработку данных</div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="hours-footer">
+    <div class="hours-footer-inner">
+      <div class="schedule">Пн–Пт 09:00 – 18:00, обед 13:00–14:00</div>
+      <div>ул. Москалёва, 1, 1 этаж, Симферополь, 295014</div>
+      <div class="copy">&copy; 2026 Лига Элит Строй</div>
+    </div>
+  </footer>
+
+  <!-- MOBILE STICKY BAR -->
+  <div class="sticky-cta">
+    <a href="tel:+79189423275" class="cta-call">
+      <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+      Позвонить
+    </a>
+    <a href="https://max.ru/79189423275" class="cta-msg" target="_blank">
+      <img src="https://max.ru/favicon.png" width="20" height="20" alt="Max" style="border-radius:5px;display:block;"/>
+    </a>
+    <a href="#map" class="cta-route">
+      <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l5.447 2.724A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"/></svg>
+    </a>
+  </div>
+
+  <!-- DESKTOP FABs -->
+  <div class="desktop-fab">
+    <a href="tel:+79189423275" class="fab-btn fab-call">
+      <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+      Позвонить
+    </a>
+    <a href="https://max.ru/79189423275" target="_blank" class="fab-btn fab-msg">
+      <img src="https://max.ru/favicon.png" width="20" height="20" alt="Max" style="border-radius:5px;display:block;"/>
+      Max
+    </a>
+  </div>
+
+  <script>
+    /* ── PROGRESS BAR ── */
+    const progressBar = document.getElementById('progress-bar');
+    function updateProgressBar() {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+      progressBar.style.width = pct + '%';
+    }
+    window.addEventListener('scroll', updateProgressBar, { passive: true });
+
+    /* ── PARALLAX HERO ── */
+    const heroBg = document.getElementById('heroBg');
+    function updateParallax() {
+      const y = window.scrollY;
+      if (y < window.innerHeight * 1.5 && heroBg) {
+        heroBg.style.transform = 'translateY(' + (y * 0.4) + 'px)';
+      }
+    }
+    window.addEventListener('scroll', updateParallax, { passive: true });
+
+    /* ── INTERSECTION OBSERVER (reveal animations) ── */
+    const revealObs = new IntersectionObserver(
+      entries => entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          revealObs.unobserve(e.target);
+        }
+      }),
+      { threshold: .12 }
+    );
+    document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => revealObs.observe(el));
+
+    /* ── ANIMATED COUNTERS ── */
+    function animateCounter(el) {
+      const target = parseInt(el.dataset.count, 10);
+      const suffix = el.dataset.suffix || '';
+      const duration = 1600;
+      const start = performance.now();
+      function update(now) {
+        const elapsed = now - start;
+        const progress = Math.min(elapsed / duration, 1);
+        // ease-out cubic
+        const eased = 1 - Math.pow(1 - progress, 3);
+        const current = Math.round(eased * target);
+        el.textContent = current + suffix;
+        if (progress < 1) requestAnimationFrame(update);
+      }
+      requestAnimationFrame(update);
+    }
+
+    const counterObs = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting && !e.target.dataset.counted) {
+          e.target.dataset.counted = '1';
+          animateCounter(e.target);
+        }
+      });
+    }, { threshold: .5 });
+
+    document.querySelectorAll('[data-count]').forEach(el => counterObs.observe(el));
+
+    /* ── PHONE MASK ── */
+    const ph = document.getElementById('cbPhone');
+    if (ph) {
+      ph.addEventListener('input', function() {
+        let v = this.value.replace(/\D/g, '');
+        if (v.startsWith('8')) v = '7' + v.slice(1);
+        if (!v.startsWith('7') && v.length) v = '7' + v;
+        v = v.slice(0, 11);
+        let f = '';
+        if (v.length > 0) f = '+7';
+        if (v.length > 1) f += ' (' + v.slice(1, 4);
+        if (v.length >= 4) f += ') ' + v.slice(4, 7);
+        if (v.length >= 7) f += '-' + v.slice(7, 9);
+        if (v.length >= 9) f += '-' + v.slice(9, 11);
+        this.value = f;
+      });
+    }
+
+    /* ── CALLBACK FORM ── */
+    function handleCallback(e) {
+      e.preventDefault();
+      const phone = document.getElementById('cbPhone').value.replace(/\D/g, '');
+      if (phone.length < 11) { document.getElementById('cbPhone').style.borderColor = '#EF4444'; return; }
+      const btn = e.target.querySelector('button');
+      btn.textContent = 'Отправлено \u2713';
+      btn.style.background = '#22C55E';
+      btn.disabled = true;
+    }
+
+    /* ── GEOLOCATION ── */
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(function(pos) {
+        const storeLat = 44.952, storeLng = 34.093;
+        const R = 6371;
+        const dLat = (storeLat - pos.coords.latitude) * Math.PI / 180;
+        const dLng = (storeLng - pos.coords.longitude) * Math.PI / 180;
+        const a = Math.sin(dLat/2)**2 + Math.cos(pos.coords.latitude*Math.PI/180) * Math.cos(storeLat*Math.PI/180) * Math.sin(dLng/2)**2;
+        const d = R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+        const banner = document.getElementById('geoBanner');
+        const distEl = document.getElementById('geoDist');
+        if (d < 50 && banner && distEl) {
+          distEl.textContent = d < 1 ? Math.round(d * 1000) + ' м' : d.toFixed(1) + ' км';
+          banner.classList.add('active');
+        }
+      }, function(){}, { timeout: 5000 });
+    }
+
+    /* ── CATEGORY CARDS — smart accordion ── */
+    (function() {
+      const grid = document.querySelector('.cat-grid');
+      if (!grid) return;
+      grid.querySelectorAll('.cat-card').forEach(card => {
+        card.addEventListener('click', function() {
+          const wasOpen = this.classList.contains('open');
+          // Close all
+          grid.querySelectorAll('.cat-card').forEach(c => c.classList.remove('open'));
+          // Toggle clicked
+          if (!wasOpen) this.classList.add('open');
+          // Switch grid layout
+          const anyOpen = grid.querySelector('.cat-card.open');
+          grid.classList.toggle('has-open', !!anyOpen);
+        });
+      });
+    })();
+
+    /* ── CLOSE COUPON ON OUTSIDE CLICK ── */
+    document.addEventListener('click', function(e) {
+      const coupon = document.getElementById('promoCoupon');
+      if (coupon && !coupon.contains(e.target)) coupon.classList.remove('open');
+    });
+  </script>
+
+</body>
+</html>
