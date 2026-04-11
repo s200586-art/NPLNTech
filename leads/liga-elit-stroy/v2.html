@@ -107,6 +107,9 @@
       padding: 0 20px 64px;
       position: relative; overflow: hidden;
     }
+    @media (min-width: 1024px) {
+      .hero { padding: 0 48px 80px; }
+    }
     .hero-bg {
       position: absolute; inset: 0; pointer-events: none;
       will-change: transform;
@@ -163,7 +166,7 @@
       background: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.03'/%3E%3C/svg%3E");
       opacity: .5;
     }
-    .hero-inner { max-width: 1120px; margin: 0 auto; position: relative; z-index: 1; padding-top: 48px; }
+    .hero-inner { max-width: 1400px; margin: 0 auto; position: relative; z-index: 1; padding-top: 48px; }
     @media (min-width: 769px) {
       .hero-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
       .hero-left { grid-column: 1; }
@@ -199,8 +202,8 @@
     .hero h1 .city-accent { color: var(--orange-hot); }
 
     .hero-subtitle {
-      font-size: clamp(16px, 2.5vw, 20px); color: var(--gray-400);
-      line-height: 1.5; max-width: 500px; margin-bottom: 28px;
+      font-size: clamp(16px, 2.5vw, 21px); color: var(--gray-400);
+      line-height: 1.5; max-width: 600px; margin-bottom: 28px;
     }
 
     /* ── STATS ROW (animated counters) ── */
@@ -367,12 +370,13 @@
 
     /* ── ARGUMENTS ── */
     .arguments { padding: 80px 20px; background: var(--white); position: relative; }
+    @media (min-width: 1024px) { .arguments { padding: 100px 48px; } }
     .arguments::before {
       content: ''; position: absolute; top: 0; right: 0; width: 40%; height: 100%;
       background: radial-gradient(ellipse at 100% 0%, rgba(232,89,12,.03) 0%, transparent 60%);
       pointer-events: none;
     }
-    .arguments-inner { max-width: 1120px; margin: 0 auto; position: relative; }
+    .arguments-inner { max-width: 1400px; margin: 0 auto; position: relative; }
     .section-label {
       font-family: var(--font-display); font-size: 11px; font-weight: 700;
       text-transform: uppercase; letter-spacing: 2.5px; color: var(--orange); margin-bottom: 12px;
@@ -387,7 +391,7 @@
       font-weight: 900; line-height: 1.15; letter-spacing: -.01em;
       color: var(--black); margin-bottom: 48px;
     }
-    .arg-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .arg-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
     @media (max-width: 768px) { .arg-grid { grid-template-columns: 1fr; } }
     .arg-card {
       background: var(--cream); border: 1px solid rgba(0,0,0,.06);
@@ -418,6 +422,7 @@
 
     /* ── CATEGORIES (glassmorphism + fixed 2×2 grid) ── */
     .categories { padding: 80px 20px; background: linear-gradient(135deg, #0a0a1a 0%, #111827 50%, #0c1a2e 100%); position: relative; overflow: hidden; }
+    @media (min-width: 1024px) { .categories { padding: 100px 48px; } }
     .categories::before {
       content: ''; position: absolute; inset: 0; pointer-events: none;
       background-image:
@@ -427,7 +432,7 @@
       mask-image: radial-gradient(ellipse 60% 60% at 50% 50%, black 20%, transparent 80%);
       -webkit-mask-image: radial-gradient(ellipse 60% 60% at 50% 50%, black 20%, transparent 80%);
     }
-    .categories-inner { max-width: 1120px; margin: 0 auto; position: relative; z-index: 1; }
+    .categories-inner { max-width: 1400px; margin: 0 auto; position: relative; z-index: 1; }
     .categories .section-label { color: var(--orange-hot); }
     .categories .section-title { color: var(--white); }
 
@@ -555,7 +560,8 @@
 
     /* ── LOCATION ── */
     .location { padding: 80px 20px; background: var(--white); }
-    .location-inner { max-width: 1120px; margin: 0 auto; }
+    @media (min-width: 1024px) { .location { padding: 100px 48px; } }
+    .location-inner { max-width: 1400px; margin: 0 auto; }
     @media (min-width: 769px) {
       .location-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; align-items: start; }
     }
@@ -601,7 +607,8 @@
 
     /* ── TRUST ── */
     .trust { padding: 80px 20px; background: var(--cream); }
-    .trust-inner { max-width: 1120px; margin: 0 auto; }
+    @media (min-width: 1024px) { .trust { padding: 100px 48px; } }
+    .trust-inner { max-width: 1400px; margin: 0 auto; }
     @media (min-width: 769px) {
       .trust-grid { display: grid; grid-template-columns: 340px 1fr; gap: 32px; align-items: start; }
     }
@@ -637,6 +644,7 @@
 
     /* ── CALLBACK ── */
     .callback { padding: 80px 20px; background: var(--black); color: var(--white); position: relative; overflow: hidden; }
+    @media (min-width: 1024px) { .callback { padding: 100px 48px; } }
     .callback::before {
       content: ''; position: absolute; inset: 0; pointer-events: none;
       background-image:
@@ -651,7 +659,7 @@
       width: 600px; height: 600px; pointer-events: none;
       background: radial-gradient(circle, rgba(232,89,12,.08) 0%, transparent 60%);
     }
-    .callback-inner { max-width: 680px; margin: 0 auto; text-align: center; position: relative; z-index: 1; }
+    .callback-inner { max-width: 800px; margin: 0 auto; text-align: center; position: relative; z-index: 1; }
     .callback h2 { font-family: var(--font-display); font-size: clamp(24px, 4vw, 34px); font-weight: 900; margin-bottom: 10px; }
     .callback p { font-size: 16px; color: var(--gray-400); margin-bottom: 32px; }
     .callback-form { display: flex; flex-direction: column; gap: 12px; }
@@ -676,7 +684,7 @@
 
     /* ── FOOTER ── */
     .hours-footer { padding: 32px 20px; background: var(--cream); text-align: center; }
-    .hours-footer-inner { max-width: 1120px; margin: 0 auto; font-size: 14px; color: var(--gray-600); }
+    .hours-footer-inner { max-width: 1400px; margin: 0 auto; font-size: 14px; color: var(--gray-600); }
     .hours-footer .schedule { font-weight: 700; color: var(--black); font-size: 16px; margin-bottom: 4px; }
     .hours-footer .copy { margin-top: 20px; font-size: 12px; color: var(--gray-500); }
 
@@ -829,7 +837,7 @@
   </section>
 
   <!-- GEO BANNER -->
-  <div style="max-width:1120px;margin:0 auto;padding:16px 20px 0;">
+  <div style="max-width:1400px;margin:0 auto;padding:16px 20px 0;">
     <div class="geo-banner" id="geoBanner">
       <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a2 2 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><circle cx="12" cy="11" r="3"/></svg>
       <span>Вы в <strong id="geoCity">Симферополе</strong>. Магазин всего в <strong id="geoDist">3.8 км</strong> от вас.</span>
