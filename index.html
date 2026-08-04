@@ -899,7 +899,7 @@
         }
         
         .service-card-link {
-            display: block;
+            display: flex;
             text-decoration: none;
             color: inherit;
             cursor: pointer;
@@ -908,6 +908,28 @@
         .service-card-link:focus-visible {
             outline: 2px solid var(--cyan);
             outline-offset: 2px;
+        }
+
+        .service-card-cta {
+            display: inline-flex;
+            align-items: center;
+            width: 100%;
+            margin-top: auto;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 0.55rem 0.7rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.76rem;
+            color: var(--cyan);
+            background: rgba(0, 229, 255, 0.08);
+            transition: all 0.2s ease;
+        }
+
+        .service-card-link:hover .service-card-cta,
+        .service-card-link:focus-visible .service-card-cta {
+            border-color: var(--cyan);
+            background: rgba(0, 229, 255, 0.13);
+            box-shadow: 0 0 14px rgba(0, 229, 255, 0.16);
         }
 
         .service-icon {
@@ -2456,16 +2478,12 @@
                 </ul>
             </article>
 
-            <article class="service-card" aria-label="Готовые сервисы NPLN">
-                <div class="service-icon">&#128640;</div>
-                <h3 class="service-title">Запуск без разработки и ожидания</h3>
-                <p class="service-desc">Готовые сервисы NPLN можно подключить сразу: это быстрый вход в экосистему до крупных внедрений.</p>
-                <ul class="service-links">
-                    <li><a href="calculator.html">&#129518; калькулятор магазина 2026 →</a></li>
-                    <li><a href="claims.html">&#128203; претензионный помощник →</a></li>
-                    <li><a href="learning-hub.html">&#127891; learning hub: comic + video →</a></li>
-                </ul>
-            </article>
+            <a class="service-card service-card-link" href="https://rasklad.npln.tech/" aria-label="Открыть калькулятор напольных покрытий">
+                <div class="service-icon">&#129518;</div>
+                <h3 class="service-title">Калькулятор напольных покрытий</h3>
+                <p class="service-desc">Расчёт упаковок, запаса материала и схемы укладки по каждой комнате — для менеджера и клиента.</p>
+                <span class="service-card-cta">Открыть калькулятор →</span>
+            </a>
         </div>
     </section>
 
